@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="false"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btRicercaFilmHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:lineSpacingExtra="8sp"
+            android:text="Ricerca Film"
+            android:textColor="#F8F5F5"
+            android:textColorHint="#F3EEEE"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:iconTint="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btAmiciHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:text="Amici"
+            android:textColor="#F6F3F3"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btPreferitiHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:text="Preferiti"
+            android:textColor="#F6F4F4"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btListePersonalizzateHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:text="My List"
+            android:textColor="#F8F0F0"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btFilmDaVedereHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:text="Film da Vedere"
+            android:textColor="#F8F6F6"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btNotificheHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:text="Notifiche"
+            android:textColor="#EFEDED"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btCondividiFilmPreferitoHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:text="Condividi Film Preferito"
+            android:textColor="#F4F3F3"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btCondividiListaPersonalizzataHome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttoncustom_home"
+            android:text="Condividi My List"
+            android:textColor="#F8F7F7"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btLogoutHome"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/buttoncustom_home"
+        android:text="Logout"
+        android:textAllCaps="true"
+        android:textColor="#F1EBEB"
+        android:textColorHint="#070000"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:iconTint="#FFFFFF" />
+</LinearLayout>
