@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cinemates20.Model.Film;
-import com.example.cinemates20.Utils.AdapterRicercaFilm;
+import com.example.cinemates20.Widgets.AdapterRicercaFilm;
 import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
 
 import java.util.ArrayList;
