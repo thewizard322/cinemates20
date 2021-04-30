@@ -41,8 +41,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:textStyle="italic"
-        android:text="testo recensione" />
+        android:text="testo recensione"
+        android:textColor="#474747"
+        android:textStyle="italic" />
 
 
         <Button
