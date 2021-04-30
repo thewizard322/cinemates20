@@ -12,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.cinemates20.Controller.Fragment.HomeController;
-import com.example.cinemates20.Model.Utente;
+import com.example.cinemates20.Presenter.Fragment.HomePresenter;
 import com.example.cinemates20.R;
 
 public class HomeFragment extends Fragment {
@@ -49,7 +48,7 @@ public class HomeFragment extends Fragment {
         btCondividiListaPersonalizzataHome = view.findViewById(R.id.btCondividiListaPersonalizzataHome);
         btLogoutHome = view.findViewById(R.id.btLogoutHome);
 
-        new HomeController(this);
+        new HomePresenter(this);
     }
 
     public Button getBtRicercaFilmHome() {

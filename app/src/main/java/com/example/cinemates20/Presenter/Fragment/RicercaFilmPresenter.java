@@ -1,4 +1,4 @@
-package com.example.cinemates20.Controller.Fragment;
+package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
 import android.view.KeyEvent;
@@ -21,13 +21,13 @@ import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
-public class RicercaFilmController {
+public class RicercaFilmPresenter {
 
     private AdapterRicercaFilm adapterRicercaFilm;
     private ArrayList<Film> arrayListFilm = new ArrayList<Film>();
     private RicercaFilmFragment ricercaFilmFragment;
 
-    public RicercaFilmController(RicercaFilmFragment ricercaFilmFragment){
+    public RicercaFilmPresenter(RicercaFilmFragment ricercaFilmFragment){
         this.ricercaFilmFragment = ricercaFilmFragment;
         initializeListener();
         initializeListView();

@@ -8,16 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.cinemates20.Controller.Fragment.RegistrazioneController;
+import com.example.cinemates20.Presenter.Fragment.RegistrazionePresenter;
 import com.example.cinemates20.R;
-import com.example.cinemates20.View.Activity.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegistrazioneFragment extends Fragment {
@@ -43,7 +41,7 @@ public class RegistrazioneFragment extends Fragment {
         tilEmailReg = view.findViewById(R.id.tilEmail);
         btRegistrati = view.findViewById(R.id.btRegistrati);
         initializeProgressDialog();
-        new RegistrazioneController(this);
+        new RegistrazionePresenter(this);
     }
 
     private void initializeProgressDialog(){

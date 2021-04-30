@@ -1,4 +1,4 @@
-package com.example.cinemates20.Controller.Activity;
+package com.example.cinemates20.Presenter.Activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;

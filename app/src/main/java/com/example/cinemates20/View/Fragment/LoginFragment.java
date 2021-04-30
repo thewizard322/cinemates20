@@ -15,9 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.cinemates20.Controller.Fragment.LoginController;
+import com.example.cinemates20.Presenter.Fragment.LoginPresenter;
 import com.example.cinemates20.R;
-import com.example.cinemates20.View.Activity.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginFragment extends Fragment {
@@ -43,7 +42,7 @@ public class LoginFragment extends Fragment {
         btLogin = view.findViewById(R.id.btLogin);
         txtRegistrazioneLgn = view.findViewById(R.id.txtRegistrazioneLgn);
         initializeProgressDialog();
-        new LoginController(this);
+        new LoginPresenter(this);
     }
 
     private void initializeProgressDialog(){

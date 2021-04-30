@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.cinemates20.Controller.Activity.MainController;
+import com.example.cinemates20.Presenter.Activity.MainController;
 import com.example.cinemates20.R;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.cinemates20.Controller.Fragment;
+package com.example.cinemates20.Presenter.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,11 +22,11 @@ import com.example.cinemates20.View.Fragment.RegistrazioneFragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
-public class LoginController {
+public class LoginPresenter {
 
     private LoginFragment loginFragment;
 
-    public LoginController(LoginFragment loginFragment){
+    public LoginPresenter(LoginFragment loginFragment){
         this.loginFragment=loginFragment;
         initializeListener();
     }

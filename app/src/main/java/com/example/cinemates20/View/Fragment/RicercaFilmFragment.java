@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.cinemates20.Controller.Fragment.RicercaFilmController;
+import com.example.cinemates20.Presenter.Fragment.RicercaFilmPresenter;
 import com.example.cinemates20.R;
 
 public class RicercaFilmFragment extends Fragment {
@@ -43,7 +43,7 @@ public class RicercaFilmFragment extends Fragment {
         lwRicercaFilm = view.findViewById(R.id.lwRicercaFilm);
         tvEmptyRicercaFilm = view.findViewById(R.id.tvEmptyRicercaFilm);
         initializeProgressDialog();
-        new RicercaFilmController(this);
+        new RicercaFilmPresenter(this);
     }
 
     private void initializeProgressDialog(){

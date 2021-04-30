@@ -1,4 +1,4 @@
-package com.example.cinemates20.Controller.Fragment;
+package com.example.cinemates20.Presenter.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,11 +15,11 @@ import com.example.cinemates20.View.Fragment.HomeFragment;
 import com.example.cinemates20.View.Fragment.LoginFragment;
 import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
 
-public class HomeController {
+public class HomePresenter {
 
     private HomeFragment homeFragment;
 
-    public HomeController(HomeFragment homeFragment){
+    public HomePresenter(HomeFragment homeFragment){
         this.homeFragment = homeFragment;
         initializeListener();
     }
