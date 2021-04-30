@@ -1,32 +1,39 @@
 package com.example.cinemates20.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Film {
+public class Film implements Serializable {
 
+    private int id;
     private String titolo;
     private String dataUscita;
-    private String genere;
+    private List<String> generi;
     private String trama;
     private String regista;
     private List<String> attori;
     private String pathPoster;
 
-    public Film(String titolo, String dataUscita, String pathPoster){
+    public Film(int id, String titolo, String dataUscita, String pathPoster){
+        this.id = id;
         this.titolo = titolo;
         this.dataUscita = dataUscita;
         this.pathPoster = pathPoster;
     }
 
-    public Film(String titolo, String dataUscita, String trama, String genere, String regista, List<String> attori,
+    public Film(String titolo, String dataUscita, String trama, List<String> generi, String regista, List<String> attori,
                 String pathPoster){
         this.titolo = titolo;
         this.dataUscita = dataUscita;
-        this.genere = genere;
+        this.generi = generi;
         this.trama = trama;
         this.regista = regista;
         this.attori = attori;
         this.pathPoster = pathPoster;
+    }
+
+    public int getId(){
+        return id;
     }
 
     public String getTitolo(){
@@ -41,12 +48,16 @@ public class Film {
         return attori;
     }
 
-    public String getGenere(){
-        return genere;
+    public List<String> getGenere(){
+        return generi;
     }
 
     public String getPatPosterW92() {
         return "https://image.tmdb.org/t/p/w92"+pathPoster;
+    }
+
+    public String getPatPosterW154(){
+        return "https://image.tmdb.org/t/p/w154"+pathPoster;
     }
 
     public String getTrama() {
@@ -57,4 +68,19 @@ public class Film {
         return dataUscita;
     }
 
+    public void setGeneri(List<String> generi){
+        this.generi = generi;
+    }
+
+    public void setTrama(String trama){
+        this.trama = trama;
+    }
+
+    public void setRegista(String regista) {
+        this.regista = regista;
+    }
+
+    public void setAttori(List<String> attori) {
+        this.attori = attori;
+    }
 }
