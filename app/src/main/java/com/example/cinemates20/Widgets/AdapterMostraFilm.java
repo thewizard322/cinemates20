@@ -1,7 +1,6 @@
 package com.example.cinemates20.Widgets;
 
 import android.content.Context;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Recensione;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
-import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
 
 import java.util.ArrayList;
 
@@ -113,7 +111,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
             holderRecensione = (ViewHolderRecensione) rowView.getTag();
             holderRecensione.tvUtenteRecensione.setText(arrayList.get(position-1).getUsername());
             holderRecensione.tvTestoRecensione.setText(arrayList.get(position-1).getTesto());
-            holderRecensione.tvValutazioneRecensione.setText(String.valueOf(arrayList.get(position-1).getValutazione()));
+            holderRecensione.tvValutazioneRecensione.setText("Voto: "+ arrayList.get(position-1).getValutazione());
         }
         return rowView;
     }
