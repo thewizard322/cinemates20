@@ -17,7 +17,7 @@ public class ConnectionDAO {
             return null;
         }
         String url = "jdbc:mysql://cinematesdb.cuma8ibw5lcn.eu-central-1.rds.amazonaws.com/cinemates20" +
-                "?autoReconnect=true&useSSL=false";
+                "?autoReconnect=true&useSSL=false&sendStringParametersAsUnicode=false";
         String usr = "admin";
         String pwd = "cinematespwd";
         try {
