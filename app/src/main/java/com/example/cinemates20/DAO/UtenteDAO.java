@@ -48,7 +48,7 @@ public class UtenteDAO {
         boolean isCon = connect();
         if(isCon==false)
             return 3;
-        String query = "SELECT COUNT(*) AS count FROM utente WHERE (username=? AND password=?)";
+        String query = "SELECT COUNT(*) AS count FROM utente WHERE username= BINARY ? AND password= BINARY ?";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
