@@ -3,6 +3,7 @@ package com.example.cinemates20.Presenter.Fragment;
 import android.os.AsyncTask;
 import android.widget.ListView;
 
+import com.example.cinemates20.DAO.RecensioneDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Recensione;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
@@ -46,6 +47,21 @@ public class MostraFilmPresenter {
         lwRicercaFilm.setAdapter(adapterMostraFilm);
     }
 
+    private class PrelevaRecensioniTask extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... aVoid) {
+            RecensioneDAO recensioneDAO = new RecensioneDAO();
+            arrayRecensione = recensioneDAO.prelevaRecensioniFilm(filmSelezionato.getId());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            initializeListView();
+        }
+    }
+
     private class PrelevaDatiFilmTask extends AsyncTask<Void,Void,Void> {
 
         @Override
@@ -76,7 +92,8 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            initializeListView();
+            PrelevaRecensioniTask prelevaRecensioniTask = new PrelevaRecensioniTask();
+            prelevaRecensioniTask.execute();
         }
     }
 

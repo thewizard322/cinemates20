@@ -11,26 +11,26 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvUtenteRecensione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="utente"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintEnd_toStartOf="@+id/tvTestoRecensione"
             app:layout_constraintHorizontal_bias="0.02"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvTestoRecensione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="testo recensione"
-            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintBottom_toTopOf="@+id/bSegnalaRecenesione"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.019"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             app:layout_constraintVertical_bias="0.875" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvValutazioneRecensione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="valutazone"
@@ -50,7 +50,7 @@
             app:layout_constraintVertical_bias="0.122" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/bSegnalaRecenesione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -60,7 +60,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.012"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/tvUtenteRecensione"
             app:layout_constraintVertical_bias="0.941" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

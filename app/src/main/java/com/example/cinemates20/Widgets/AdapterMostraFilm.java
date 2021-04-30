@@ -69,33 +69,69 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View rowView = convertView;
+        ViewHolderFilm holderFilm;
+        ViewHolderRecensione holderRecensione;
+
         if(rowView == null){
             if(position==0){
                 LayoutInflater inflater = mostraFilmFragment.getLayoutInflater();
-                rowView = inflater.inflate(R.layout.row_mostrafilm,null,true);}
+                rowView = inflater.inflate(R.layout.row_mostrafilm,null,true);
+                holderFilm = new ViewHolderFilm();
+                holderFilm.iwMostraFilm = rowView.findViewById(R.id.iwMostraFilm);
+                holderFilm.tvTitoloMostraFilm = rowView.findViewById(R.id.tvTitoloMostraFilm);
+                holderFilm.tvData = rowView.findViewById(R.id.tvDataMostraFilm);
+                holderFilm.tvGeneriMostraFilm = rowView.findViewById(R.id.tvGeneriMostraFilm);
+                holderFilm.tvAttoriMostraFilm = rowView.findViewById(R.id.tvAttoriMostraFilm);
+                holderFilm.tvRegistaMostraFilm = rowView.findViewById(R.id.tvRegistaMostraFilm);
+                holderFilm.tvTramaMostraFilm = rowView.findViewById(R.id.tvTramaMostraFilm);
+                rowView.setTag(holderFilm);
+            }
             else{
                 LayoutInflater inflater = mostraFilmFragment.getLayoutInflater();
-                rowView = inflater.inflate(R.layout.row_recensione,null,true); }
+                rowView = inflater.inflate(R.layout.row_recensione,null,true);
+                holderRecensione = new ViewHolderRecensione();
+                holderRecensione.tvUtenteRecensione = rowView.findViewById(R.id.tvUtenteRecensione);
+                holderRecensione.tvTestoRecensione = rowView.findViewById(R.id.tvTestoRecensione);
+                holderRecensione.tvValutazioneRecensione = rowView.findViewById(R.id.tvValutazioneRecensione);
+                rowView.setTag(holderRecensione);
+            }
         }
 
         if(position == 0){
-            ImageView iwMostraFilm = rowView.findViewById(R.id.iwMostraFilm);
-            TextView tvTitoloMostraFilm = rowView.findViewById(R.id.tvTitoloMostraFilm);
-            TextView tvData = rowView.findViewById(R.id.tvDataMostraFilm);
-            TextView tvGeneriMostraFilm = rowView.findViewById(R.id.tvGeneriMostraFilm);
-            TextView tvAttoriMostraFilm = rowView.findViewById(R.id.tvAttoriMostraFilm);
-            TextView tvRegistaMostraFilm = rowView.findViewById(R.id.tvRegistaMostraFilm);
-            TextView tvTramaMostraFilm = rowView.findViewById(R.id.tvTramaMostraFilm);
-            tvTitoloMostraFilm.setText(film.getTitolo());
-            tvData.setText(film.getDataUscita());
-            tvGeneriMostraFilm.setText(film.getGenere().toString());
-            tvAttoriMostraFilm.setText(film.getAttori().toString());
-            tvRegistaMostraFilm.setText(film.getRegista());
-            tvTramaMostraFilm.setText(film.getTrama());
+            holderFilm = (ViewHolderFilm) rowView.getTag();
+            holderFilm.tvTitoloMostraFilm.setText(film.getTitolo());
+            holderFilm.tvData.setText(film.getDataUscita());
+            holderFilm.tvGeneriMostraFilm.setText(film.getGenere().toString());
+            holderFilm.tvAttoriMostraFilm.setText(film.getAttori().toString());
+            holderFilm.tvRegistaMostraFilm.setText(film.getRegista());
+            holderFilm.tvTramaMostraFilm.setText(film.getTrama());
             RequestOptions options = new RequestOptions()
                     .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
-            Glide.with(context).load(film.getPatPosterW154()).apply(options).into(iwMostraFilm);
+            Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);
+        }
+        else{
+            holderRecensione = (ViewHolderRecensione) rowView.getTag();
+            holderRecensione.tvUtenteRecensione.setText(arrayList.get(position-1).getUsername());
+            holderRecensione.tvTestoRecensione.setText(arrayList.get(position-1).getTesto());
+            holderRecensione.tvValutazioneRecensione.setText(String.valueOf(arrayList.get(position-1).getValutazione()));
         }
         return rowView;
     }
+
+    private static class ViewHolderFilm{
+        ImageView iwMostraFilm;
+        TextView tvTitoloMostraFilm;
+        TextView tvData;
+        TextView tvGeneriMostraFilm;
+        TextView tvAttoriMostraFilm;
+        TextView tvRegistaMostraFilm;
+        TextView tvTramaMostraFilm;
+    }
+
+    private static class ViewHolderRecensione{
+        TextView tvUtenteRecensione;
+        TextView tvTestoRecensione;
+        TextView tvValutazioneRecensione;
+    }
+
 }
