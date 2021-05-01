@@ -53,7 +53,6 @@ public class MostraFilmPresenter {
             arrayRecensione = recensioneDAO.prelevaRecensioniFilm(filmSelezionato.getId());
             return null;
         }
-
         @Override
         protected void onPostExecute(Void aVoid) {
             initializeListView();

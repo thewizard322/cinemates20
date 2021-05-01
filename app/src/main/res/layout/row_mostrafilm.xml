@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -31,68 +31,39 @@
 
                 <TextView
                     android:id="@+id/tvTitoloMostraFilm"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:text="titolo" />
 
                 <TextView
                     android:id="@+id/tvDataMostraFilm"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="18dp"
                     android:text="anno" />
 
                 <TextView
                     android:id="@+id/tvGeneriMostraFilm"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="18dp"
                     android:text="generi" />
                 <TextView
                     android:id="@+id/tvAttoriMostraFilm"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="18dp"
                     android:text="attori" />
 
                 <TextView
                     android:id="@+id/tvRegistaMostraFilm"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="18dp"
                     android:text="regista" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/bPreferitiMostraFilm"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="P" />
-
-                <Button
-                    android:id="@+id/bFilmDaVedereMostraFilm"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="D" />
-
-                <Button
-                    android:id="@+id/bListePersMostraFilm"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="L" />
 
             </LinearLayout>
 
@@ -102,18 +73,68 @@
             android:id="@+id/tvTramaMostraFilm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_margin="8dp"
             android:text="trama" />
 
-        <Button
-            android:id="@+id/bRecensisciMostraFilm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="Recensisci" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bPreferitiMostraFilm"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/button_circle"
+                app:backgroundTint="@null"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="30dp"
+                app:iconTint="@null"
+                app:icon="@android:drawable/btn_star_big_on" />
+
+            <Button
+                android:id="@+id/bFilmDaVedereMostraFilm"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/button_circle"
+                app:backgroundTint="@null"
+                app:icon="@android:drawable/presence_away"
+                app:iconTint="@null"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="30dp"/>
+
+            <Button
+                android:id="@+id/bListePersMostraFilm"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/button_circle"
+                app:backgroundTint="@null"
+                app:icon="@drawable/aggiungi_a_liste"
+                app:iconTint="@null"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="30dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/bRecensisciMostraFilm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:layout_margin="4dp"
+                    android:backgroundTint="#012AC6"
+                    android:text="Recensisci" />
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -98,10 +98,10 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
         if(position == 0){
             holderFilm = (ViewHolderFilm) rowView.getTag();
             holderFilm.tvTitoloMostraFilm.setText(film.getTitolo());
-            holderFilm.tvData.setText(film.getDataUscita());
+            holderFilm.tvData.setText("Data uscita: "+film.getDataUscita());
             holderFilm.tvGeneriMostraFilm.setText(film.getGenere().toString());
             holderFilm.tvAttoriMostraFilm.setText(film.getAttori().toString());
-            holderFilm.tvRegistaMostraFilm.setText(film.getRegista());
+            holderFilm.tvRegistaMostraFilm.setText("Regia di "+film.getRegista());
             holderFilm.tvTramaMostraFilm.setText(film.getTrama());
             RequestOptions options = new RequestOptions()
                     .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);

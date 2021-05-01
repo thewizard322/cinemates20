@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#E1E1E1"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,23 +16,23 @@
             android:id="@+id/tvUtenteRecensione"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:layout_weight="1"
             android:layout_margin="8dp"
-            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="utente"
             android:textColor="@color/black"
-            android:text="utente" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvValutazioneRecensione"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="8dp"
+            android:layout_weight="1"
             android:gravity="right"
-            android:textStyle="bold"
+            android:text="valutazone"
             android:textColor="@color/black"
-            android:text="valutazone" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -42,14 +43,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="testo recensione"
-        android:textColor="#474747"
+        android:textColor="@color/black"
         android:textStyle="italic" />
 
 
-        <Button
-            android:id="@+id/bSegnalaRecenesione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Segnala" />
+    <Button
+        android:id="@+id/bSegnalaRecenesione"
+        android:layout_width="88dp"
+        android:layout_height="35dp"
+        android:layout_margin="8dp"
+        android:backgroundTint="#FF0000"
+        android:text="Segnala"
+        android:textSize="10dp" />
 </LinearLayout>
