@@ -22,17 +22,12 @@ import com.example.cinemates20.Widgets.AdapterRicercaFilm;
 import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
 import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.TmdbMovies;
-import info.movito.themoviedbapi.model.Genre;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
-import info.movito.themoviedbapi.model.people.PersonCast;
-import info.movito.themoviedbapi.model.people.PersonCrew;
 
 public class RicercaFilmPresenter {
 
@@ -71,8 +66,10 @@ public class RicercaFilmPresenter {
         etTitoloRicercaFilm.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE)
+                if(actionId == EditorInfo.IME_ACTION_DONE) {
                     bRicercaFilm.performClick();
+                    return true;
+                }
                 return false;
             }
         });

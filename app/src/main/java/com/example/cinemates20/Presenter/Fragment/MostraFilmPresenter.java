@@ -4,8 +4,10 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 
 import com.example.cinemates20.DAO.RecensioneDAO;
+import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Recensione;
+import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.Widgets.AdapterMostraFilm;
 
@@ -41,8 +43,15 @@ public class MostraFilmPresenter {
     private void initializeListView(){
         ListView lwRicercaFilm = mostraFilmFragment.getLwMostraFilm();
         adapterMostraFilm = new AdapterMostraFilm(Objects.requireNonNull(mostraFilmFragment.getContext()),mostraFilmFragment
-                ,arrayRecensione,filmSelezionato);
+                ,this,arrayRecensione,filmSelezionato);
         lwRicercaFilm.setAdapter(adapterMostraFilm);
+    }
+
+    public void aggiungiAiPreferiti(){
+        String username = Utente.getUtenteLoggato().getUsername();
+        Integer idFilm = filmSelezionato.getId();
+        AggiungiAiPreferitiTask aggiungiAiPreferitiTask = new AggiungiAiPreferitiTask(username,idFilm);
+        aggiungiAiPreferitiTask.execute();
     }
 
     private class PrelevaRecensioniTask extends AsyncTask<Void,Void,Void>{
@@ -94,5 +103,37 @@ public class MostraFilmPresenter {
         }
     }
 
+    private class AggiungiAiPreferitiTask extends AsyncTask<Void,Void,Boolean>{
+
+        private String username;
+        private int idFilm;
+
+        public AggiungiAiPreferitiTask(String username, int idFilm){
+            this.username = username;
+            this.idFilm = idFilm;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            mostraFilmFragment.getProgressDialogCaricamento().show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            UtenteDAO utenteDAO = new UtenteDAO();
+            boolean filmAggiunto = utenteDAO.aggiungiAiPreferiti(username,idFilm);
+            return filmAggiunto;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean filmAggiunto) {
+            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
+            if(filmAggiunto==false){
+                mostraFilmFragment.mostraAlertDialogOk("ERRORE","Hai già questo film tra i preferiti");
+            }
+            else
+                mostraFilmFragment.mostraAlertDialogOk("FILM AGGIUNTO","Film aggiunto ai preferiti");
+        }
+    }
 
 }
