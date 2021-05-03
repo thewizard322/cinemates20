@@ -87,6 +87,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
                 holderFilm.tvRegistaMostraFilm = rowView.findViewById(R.id.tvRegistaMostraFilm);
                 holderFilm.tvTramaMostraFilm = rowView.findViewById(R.id.tvTramaMostraFilm);
                 holderFilm.bPreferitiMostraFilm = rowView.findViewById(R.id.bPreferitiMostraFilm);
+                holderFilm.bFilmDaVedereMostraFilm = rowView.findViewById(R.id.bFilmDaVedereMostraFilm);
                 rowView.setTag(holderFilm);
             }
             else{
@@ -108,15 +109,23 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
             holderFilm.tvAttoriMostraFilm.setText(film.getAttori().toString());
             holderFilm.tvRegistaMostraFilm.setText("Regia di "+film.getRegista());
             holderFilm.tvTramaMostraFilm.setText(film.getTrama());
+            RequestOptions options = new RequestOptions()
+                    .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+            Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);
+
             holderFilm.bPreferitiMostraFilm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mostraFilmPresenter.aggiungiAiPreferiti();
                 }
             });
-            RequestOptions options = new RequestOptions()
-                    .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
-            Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);
+
+            holderFilm.bFilmDaVedereMostraFilm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mostraFilmPresenter.aggiungiAiFilmDaVedere();
+                }
+            });
         }
         else{
             holderRecensione = (ViewHolderRecensione) rowView.getTag();
@@ -142,6 +151,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
         TextView tvRegistaMostraFilm;
         TextView tvTramaMostraFilm;
         Button bPreferitiMostraFilm;
+        Button bFilmDaVedereMostraFilm;
     }
 
     private static class ViewHolderRecensione{

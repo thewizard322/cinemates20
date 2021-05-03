@@ -142,27 +142,6 @@ public class UtenteDAO {
         return 0;
     }
 
-    public boolean aggiungiAiPreferiti(String username, int idFilm){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "INSERT INTO film_preferito (id_film,username) VALUES (?,?)";
-        try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, idFilm);
-            st.setString(2, username);
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error add pref","Impossibile aggiungere film preferito");
-            return false;
-        }
-        finally {
-            closeConnection();
-        }
-        return true;
-    }
-
     public void closeConnection(){
         try {
             con.close();

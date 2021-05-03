@@ -3,6 +3,7 @@ package com.example.cinemates20.Presenter.Fragment;
 import android.os.AsyncTask;
 import android.widget.ListView;
 
+import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.RecensioneDAO;
 import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Film;
@@ -51,6 +52,13 @@ public class MostraFilmPresenter {
         String username = Utente.getUtenteLoggato().getUsername();
         Integer idFilm = filmSelezionato.getId();
         AggiungiAiPreferitiTask aggiungiAiPreferitiTask = new AggiungiAiPreferitiTask(username,idFilm);
+        aggiungiAiPreferitiTask.execute();
+    }
+
+    public void aggiungiAiFilmDaVedere(){
+        String username = Utente.getUtenteLoggato().getUsername();
+        Integer idFilm = filmSelezionato.getId();
+        AggiungiAiFilmDaVedereTask aggiungiAiPreferitiTask = new AggiungiAiFilmDaVedereTask(username,idFilm);
         aggiungiAiPreferitiTask.execute();
     }
 
@@ -120,8 +128,8 @@ public class MostraFilmPresenter {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            UtenteDAO utenteDAO = new UtenteDAO();
-            boolean filmAggiunto = utenteDAO.aggiungiAiPreferiti(username,idFilm);
+            FilmDAO filmDAO = new FilmDAO();
+            boolean filmAggiunto = filmDAO.aggiungiAiPreferiti(username,idFilm);
             return filmAggiunto;
         }
 
@@ -133,6 +141,39 @@ public class MostraFilmPresenter {
             }
             else
                 mostraFilmFragment.mostraAlertDialogOk("FILM AGGIUNTO","Film aggiunto ai preferiti");
+        }
+    }
+
+    private class AggiungiAiFilmDaVedereTask extends AsyncTask<Void,Void,Boolean>{
+
+        private String username;
+        private int idFilm;
+
+        public AggiungiAiFilmDaVedereTask(String username, int idFilm){
+            this.username = username;
+            this.idFilm = idFilm;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            mostraFilmFragment.getProgressDialogCaricamento().show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            FilmDAO filmDAO = new FilmDAO();
+            boolean filmAggiunto = filmDAO.aggiungiAiFilmDaVedere(username,idFilm);
+            return filmAggiunto;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean filmAggiunto) {
+            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
+            if(filmAggiunto==false){
+                mostraFilmFragment.mostraAlertDialogOk("ERRORE","Hai già questo film da vedere");
+            }
+            else
+                mostraFilmFragment.mostraAlertDialogOk("FILM AGGIUNTO","Film da vedere aggiunto");
         }
     }
 
