@@ -39,12 +39,14 @@
 
         <Spinner
             android:id="@+id/spinnerValutazioneRecensione"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:dropDownWidth="70dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:spinnerMode="dropdown"
-            android:entries="@array/stringArraySpinnerVoto" />
+            android:background="@drawable/spinner_custom"
+            android:entries="@array/stringArraySpinnerVoto"/>
 
         <Button
             android:id="@+id/bRececensisciInserisciRecensione"

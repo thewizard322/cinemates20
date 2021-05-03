@@ -53,6 +53,12 @@ public class InserisciRecensionePresenter {
         return true;
     }
 
+    private void onReviewInsertSuccess(){
+        inserisciRecensioneFragment.mostraAlertDialogOk("RECENSIONE INSERITA"
+                ,"Recensione inserita con successo");
+        backToMostraFilmFragment();
+    }
+
     private void backToMostraFilmFragment(){
         FragmentManager fm = inserisciRecensioneFragment.getActivity().getSupportFragmentManager();
         fm.popBackStack();
@@ -75,11 +81,10 @@ public class InserisciRecensionePresenter {
 
         @Override
         protected void onPostExecute(Boolean recensioneInserita) {
-            if(recensioneInserita == false){
+            if(recensioneInserita == false)
                 inserisciRecensioneFragment.mostraToast("Hai già inserito una recensione per questo film");
-            }
             else
-                backToMostraFilmFragment();
+                onReviewInsertSuccess();
         }
     }
 

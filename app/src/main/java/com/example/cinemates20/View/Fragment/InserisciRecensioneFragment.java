@@ -1,5 +1,7 @@
 package com.example.cinemates20.View.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +48,19 @@ public class InserisciRecensioneFragment extends Fragment {
 
     public void mostraToast(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+    }
+
+    public void mostraAlertDialogOk(String titolo, String msg){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity())
+                .setTitle(titolo)
+                .setMessage(msg)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
     public Spinner getSpinnerVoto() {
