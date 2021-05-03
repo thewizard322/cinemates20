@@ -29,4 +29,5 @@ public class Recensione {
     public int getValutazione() {
         return valutazione;
     }
+
 }
