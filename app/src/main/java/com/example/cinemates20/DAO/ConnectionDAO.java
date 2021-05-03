@@ -5,7 +5,7 @@ import android.util.Log;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-//Christian gray
+
 public class ConnectionDAO {
 
     public static Connection getConnection(){
