@@ -53,7 +53,7 @@ public class RegistrazionePresenter {
 
     private void onRegisterSuccess(){
         registrazioneFragment.mostraToast("Utente registrato con successo");
-        replaceLoginFragment();
+        backToLoginFragment();
     }
 
     private void onRegisterError(int err){
@@ -104,12 +104,11 @@ public class RegistrazionePresenter {
         }
     }
 
-    private void replaceLoginFragment() {
-        Fragment fg = new LoginFragment();
+    private void backToLoginFragment() {
         FragmentManager fm = registrazioneFragment.getActivity().getSupportFragmentManager();
         fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).commit();
+        ft.commit();
     }
 
     private void onRegister(){
@@ -127,7 +126,6 @@ public class RegistrazionePresenter {
         }
     }
 
-    //Task per la registrazione
     private class RegisterTask extends AsyncTask<String,Void,String>{
 
         @Override

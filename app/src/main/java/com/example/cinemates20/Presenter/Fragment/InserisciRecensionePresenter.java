@@ -4,6 +4,9 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.cinemates20.DAO.RecensioneDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
@@ -38,12 +41,23 @@ public class InserisciRecensionePresenter {
         if(campiNonVuoti == false){
             inserisciRecensioneFragment.mostraToast("Compilare tutti i campi richiesti");
         }
+        else{
+            InserisciRecensioneTask inserisciRecensioneTask = new InserisciRecensioneTask();
+            inserisciRecensioneTask.execute(testoRecensione,votoRecensione);
+        }
     }
 
     private boolean campiNonVuoti(String testo, String votoRecensione){
         if(testo.equals("") || votoRecensione.equals(""))
             return false;
         return true;
+    }
+
+    private void backToMostraFilmFragment(){
+        FragmentManager fm = inserisciRecensioneFragment.getActivity().getSupportFragmentManager();
+        fm.popBackStack();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.commit();
     }
 
     private class InserisciRecensioneTask extends AsyncTask<String,Void,Boolean> {
@@ -57,6 +71,15 @@ public class InserisciRecensionePresenter {
             String voto = strings[1];
             boolean recensioneInserita = recensioneDAO.inserisciRecensione(username,idFilm,testo,voto);
             return recensioneInserita;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean recensioneInserita) {
+            if(recensioneInserita == false){
+                inserisciRecensioneFragment.mostraToast("Hai già inserito una recensione per questo film");
+            }
+            else
+                backToMostraFilmFragment();
         }
     }
 
