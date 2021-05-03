@@ -88,6 +88,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
                 holderFilm.tvTramaMostraFilm = rowView.findViewById(R.id.tvTramaMostraFilm);
                 holderFilm.bPreferitiMostraFilm = rowView.findViewById(R.id.bPreferitiMostraFilm);
                 holderFilm.bFilmDaVedereMostraFilm = rowView.findViewById(R.id.bFilmDaVedereMostraFilm);
+                holderFilm.bRecensisciMostraFilm = rowView.findViewById(R.id.bRecensisciMostraFilm);
                 rowView.setTag(holderFilm);
             }
             else{
@@ -126,6 +127,13 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
                     mostraFilmPresenter.aggiungiAiFilmDaVedere();
                 }
             });
+
+            holderFilm.bRecensisciMostraFilm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mostraFilmPresenter.inserisciRecensione();
+                }
+            });
         }
         else{
             holderRecensione = (ViewHolderRecensione) rowView.getTag();
@@ -152,6 +160,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
         TextView tvTramaMostraFilm;
         Button bPreferitiMostraFilm;
         Button bFilmDaVedereMostraFilm;
+        Button bRecensisciMostraFilm;
     }
 
     private static class ViewHolderRecensione{

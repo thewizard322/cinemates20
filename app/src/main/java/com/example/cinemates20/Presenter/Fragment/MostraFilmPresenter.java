@@ -1,7 +1,12 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.RecensioneDAO;
@@ -9,6 +14,8 @@ import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Recensione;
 import com.example.cinemates20.Model.Utente;
+import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.InserisciRecensioneFragment;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.Widgets.AdapterMostraFilm;
 
@@ -28,7 +35,7 @@ public class MostraFilmPresenter {
     private MostraFilmFragment mostraFilmFragment;
     private ArrayList<Recensione> arrayRecensione = new ArrayList<>();
     private Film filmSelezionato;
-    AdapterMostraFilm adapterMostraFilm;
+    private AdapterMostraFilm adapterMostraFilm;
 
     public MostraFilmPresenter(MostraFilmFragment mostraFilmFragment, Film filmSelezionato){
         this.mostraFilmFragment = mostraFilmFragment;
@@ -62,6 +69,34 @@ public class MostraFilmPresenter {
         aggiungiAiPreferitiTask.execute();
     }
 
+    public void inserisciRecensione(){
+        boolean checkRecensione = checkRecensioneGiaInserita();
+        if(checkRecensione == false)
+            mostraFilmFragment.mostraAlertDialogOk("ERRORE"
+                    , "Hai già inserito una recensione per questo film");
+        else
+            replaceInserisciRecensioneFragment();
+    }
+
+    public boolean checkRecensioneGiaInserita() {
+        Utente utenteLoggato = Utente.getUtenteLoggato();
+        for (Recensione recensione : arrayRecensione) {
+            if (recensione.getUsername().equals(utenteLoggato.getUsername()))
+                return false;
+        }
+        return true;
+    }
+
+    private void replaceInserisciRecensioneFragment(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("film", filmSelezionato);
+        Fragment fg = new InserisciRecensioneFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = mostraFilmFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+    }
+
     private class PrelevaRecensioniTask extends AsyncTask<Void,Void,Void>{
 
         @Override
@@ -81,7 +116,8 @@ public class MostraFilmPresenter {
         @Override
         protected Void doInBackground(Void... aVoid) {
             TmdbApi tmdbApi = new TmdbApi("2bc3bb8279aa7bcc7bd18d60857dc82a");
-            MovieDb moviedB = tmdbApi.getMovies().getMovie(filmSelezionato.getId(),"it", TmdbMovies.MovieMethod.credits);
+            MovieDb moviedB = tmdbApi.getMovies().getMovie(filmSelezionato.getId(),"it"
+                    , TmdbMovies.MovieMethod.credits);
             List<PersonCast> cast = moviedB.getCast();
             List<String> attori = new ArrayList<>();
             List<String> generi = new ArrayList<>();

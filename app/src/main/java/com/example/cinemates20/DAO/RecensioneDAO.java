@@ -52,6 +52,29 @@ public class RecensioneDAO {
         return recensioneList;
     }
 
+    public boolean inserisciRecensione(String username, int idFilm, String testo, String voto){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "INSERT INTO recensione (id_film,username,testo,valutazione) VALUES (?,?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, idFilm);
+            st.setString(2, username);
+            st.setString(3,testo);
+            st.setString(4,voto);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error insert recensione","Impossibile inserire recensione");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
+
     public void closeConnection(){
         try {
             con.close();
