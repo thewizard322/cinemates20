@@ -1,6 +1,7 @@
 package com.example.cinemates20.View.Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,9 +22,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class InserisciRecensioneFragment extends Fragment {
 
-    Spinner spinnerVoto;
-    TextInputLayout tilTestoRecensioneInserisciRecensione;
-    Button bRececensisciInserisciRecensione;
+    private Spinner spinnerVoto;
+    private TextInputLayout tilTestoRecensioneInserisciRecensione;
+    private Button bRececensisciInserisciRecensione;
+    private ProgressDialog progressDialogRecensione;
 
     @Nullable
     @Override
@@ -38,12 +40,20 @@ public class InserisciRecensioneFragment extends Fragment {
         spinnerVoto = view.findViewById(R.id.spinnerValutazioneRecensione);
         tilTestoRecensioneInserisciRecensione = view.findViewById(R.id.tilTestoRecensioneInserisciRecensione);
         bRececensisciInserisciRecensione = view.findViewById(R.id.bRececensisciInserisciRecensione);
+        initializeProgressDialog();
 
         Bundle bundle = getArguments();
         if (bundle != null) {
             Film film = (Film) bundle.getSerializable("film");
             new InserisciRecensionePresenter(this,film);
         }
+    }
+
+    private void initializeProgressDialog(){
+        progressDialogRecensione = new ProgressDialog(getActivity());
+        progressDialogRecensione.setTitle("");
+        progressDialogRecensione.setMessage("Invio recensione");
+        progressDialogRecensione.setCancelable(false);
     }
 
     public void mostraToast(String msg){
@@ -61,6 +71,10 @@ public class InserisciRecensioneFragment extends Fragment {
                     }
                 });
         alertDialog.show();
+    }
+
+    public ProgressDialog getProgressDialogRecensione(){
+        return progressDialogRecensione;
     }
 
     public Spinner getSpinnerVoto() {

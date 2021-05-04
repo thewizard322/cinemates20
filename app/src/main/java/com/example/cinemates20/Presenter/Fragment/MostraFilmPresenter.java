@@ -107,11 +107,17 @@ public class MostraFilmPresenter {
         }
         @Override
         protected void onPostExecute(Void aVoid) {
+            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
             initializeListView();
         }
     }
 
     private class PrelevaDatiFilmTask extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected void onPreExecute() {
+            mostraFilmFragment.getProgressDialogCaricamento().show();
+        }
 
         @Override
         protected Void doInBackground(Void... aVoid) {

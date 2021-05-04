@@ -69,6 +69,11 @@ public class InserisciRecensionePresenter {
     private class InserisciRecensioneTask extends AsyncTask<String,Void,Boolean> {
 
         @Override
+        protected void onPreExecute() {
+            inserisciRecensioneFragment.getProgressDialogRecensione().show();
+        }
+
+        @Override
         protected Boolean doInBackground(String... strings) {
             RecensioneDAO recensioneDAO = new RecensioneDAO();
             int idFilm = filmSelezionato.getId();
@@ -81,6 +86,7 @@ public class InserisciRecensionePresenter {
 
         @Override
         protected void onPostExecute(Boolean recensioneInserita) {
+            inserisciRecensioneFragment.getProgressDialogRecensione().dismiss();
             if(recensioneInserita == false)
                 inserisciRecensioneFragment.mostraToast("Hai già inserito una recensione per questo film");
             else
