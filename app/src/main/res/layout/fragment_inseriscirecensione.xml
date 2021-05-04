@@ -13,6 +13,16 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tvFilmInserisciRecensione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="Stai recensendo 'Titolo film'"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilTestoRecensioneInserisciRecensione"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -20,7 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:boxBackgroundColor="#FFFFFF"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            app:counterMaxLength="300"
+            app:counterEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -37,16 +49,30 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spinnerValutazioneRecensione"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:dropDownWidth="70dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:spinnerMode="dropdown"
-            android:background="@drawable/spinner_custom"
-            android:entries="@array/stringArraySpinnerVoto"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="VOTO" />
+
+            <Spinner
+                android:id="@+id/spinnerValutazioneRecensione"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="70dp"
+                android:layout_margin="10dp"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/spinner_custom"
+                android:entries="@array/stringArraySpinnerVoto"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/bRececensisciInserisciRecensione"

@@ -20,6 +20,8 @@ public class InserisciRecensionePresenter {
     public InserisciRecensionePresenter(InserisciRecensioneFragment inserisciRecensioneFragment, Film filmSelezionato){
         this.inserisciRecensioneFragment = inserisciRecensioneFragment;
         this.filmSelezionato = filmSelezionato;
+        inserisciRecensioneFragment.setTvFilmInserisciRecensione("Stai recensendo '"+
+                filmSelezionato.getTitolo()+"'");
         initializeListener();
     }
 

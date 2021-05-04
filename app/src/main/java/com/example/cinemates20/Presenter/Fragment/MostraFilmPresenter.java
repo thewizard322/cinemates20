@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.RecensioneDAO;
-import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Recensione;
 import com.example.cinemates20.Model.Utente;

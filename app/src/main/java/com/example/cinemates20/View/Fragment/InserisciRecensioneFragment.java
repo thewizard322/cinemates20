@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class InserisciRecensioneFragment extends Fragment {
     private Spinner spinnerVoto;
     private TextInputLayout tilTestoRecensioneInserisciRecensione;
     private Button bRececensisciInserisciRecensione;
+    private TextView tvFilmInserisciRecensione;
     private ProgressDialog progressDialogRecensione;
 
     @Nullable
@@ -40,6 +42,7 @@ public class InserisciRecensioneFragment extends Fragment {
         spinnerVoto = view.findViewById(R.id.spinnerValutazioneRecensione);
         tilTestoRecensioneInserisciRecensione = view.findViewById(R.id.tilTestoRecensioneInserisciRecensione);
         bRececensisciInserisciRecensione = view.findViewById(R.id.bRececensisciInserisciRecensione);
+        tvFilmInserisciRecensione = view.findViewById(R.id.tvFilmInserisciRecensione);
         initializeProgressDialog();
 
         Bundle bundle = getArguments();
@@ -87,5 +90,9 @@ public class InserisciRecensioneFragment extends Fragment {
 
     public Button getbRececensisciInserisciRecensione() {
         return bRececensisciInserisciRecensione;
+    }
+
+    public void setTvFilmInserisciRecensione(String msg){
+        tvFilmInserisciRecensione.setText(msg);
     }
 }
