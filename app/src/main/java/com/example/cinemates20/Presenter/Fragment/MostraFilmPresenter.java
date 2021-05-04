@@ -77,6 +77,12 @@ public class MostraFilmPresenter {
             replaceInserisciRecensioneFragment();
     }
 
+    public void segnalaRecensione(int idRecensione){
+        String username = Utente.getUtenteLoggato().getUsername();
+        SegnalaRecensioneTask segnalaRecensioneTask = new SegnalaRecensioneTask(username,idRecensione);
+        segnalaRecensioneTask.execute();
+    }
+
     public boolean checkRecensioneGiaInserita() {
         Utente utenteLoggato = Utente.getUtenteLoggato();
         for (Recensione recensione : arrayRecensione) {
@@ -215,6 +221,41 @@ public class MostraFilmPresenter {
             }
             else
                 mostraFilmFragment.mostraAlertDialogOk("FILM AGGIUNTO","Film da vedere aggiunto");
+        }
+    }
+
+    private class SegnalaRecensioneTask extends AsyncTask<Void,Void,Boolean>{
+
+        private String username;
+        private int idRecensione;
+
+        public SegnalaRecensioneTask(String username, int idRecensione){
+            this.username = username;
+            this.idRecensione = idRecensione;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            mostraFilmFragment.getProgressDialogCaricamento().show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            RecensioneDAO filmDAO = new RecensioneDAO();
+            boolean segnalazioneAvvenuta = filmDAO.segnalaRecensione(username,idRecensione);
+            return segnalazioneAvvenuta;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean segnalazioneAvvenuta) {
+            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
+            if(segnalazioneAvvenuta==false){
+                mostraFilmFragment.mostraAlertDialogOk("ERRORE","Hai già segnalato questa recensione " +
+                        "e un amministratore ancora non ha preso una decisione");
+            }
+            else
+                mostraFilmFragment.mostraAlertDialogOk("SEGNALAZIONE INVIATA","Recensione segnalata " +
+                        "con successo");
         }
     }
 

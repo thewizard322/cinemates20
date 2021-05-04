@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Recensione;
+import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.Presenter.Fragment.MostraFilmPresenter;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
@@ -140,12 +141,18 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
             holderRecensione.tvUtenteRecensione.setText(arrayList.get(position-1).getUsername());
             holderRecensione.tvTestoRecensione.setText(arrayList.get(position-1).getTesto());
             holderRecensione.tvValutazioneRecensione.setText("Voto: "+ arrayList.get(position-1).getValutazione());
-            holderRecensione.bSegnalaRecenesione.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostraFilmFragment.mostraToast("Ho cliccato segnala su" + arrayList.get(position-1).getUsername());
-                }
-            });
+
+            if(Utente.getUtenteLoggato().getUsername().equals(arrayList.get(position-1).getUsername()))
+                holderRecensione.bSegnalaRecenesione.setVisibility(View.GONE);
+            else {
+                holderRecensione.bSegnalaRecenesione.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int idRecensione = arrayList.get(position - 1).getIdRecenesione();
+                        mostraFilmPresenter.segnalaRecensione(idRecensione);
+                    }
+                });
+            }
         }
         return rowView;
     }
