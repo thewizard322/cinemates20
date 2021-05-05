@@ -48,9 +48,8 @@ public class PreferitiPresenter {
     public PreferitiPresenter(PreferitiFragment preferitiFragment) {
         this.preferitiFragment = preferitiFragment;
         initializeListView();
-      PrelievoIdTask prelievoIdTask = new PrelievoIdTask();
+        PrelievoIdTask prelievoIdTask = new PrelievoIdTask();
         prelievoIdTask.execute();
-
     }
 
     private void initializeListView() {
@@ -63,21 +62,25 @@ public class PreferitiPresenter {
         adapterPreferiti.notifyDataSetChanged();
     }
 
-    private void prelevaPreferiti(ArrayList<Integer> listId)
-    {
+    private void prelevaPreferiti(ArrayList<Integer> listId){
         PrelievoPreferitiTask prelievoPreferitiTask=new PrelievoPreferitiTask();
         prelievoPreferitiTask.execute(listId);
     }
-    public void rimuoviDaPreferiti(int id_film)
-    {
 
+    public void rimuoviDaPreferiti(int id_film){
         RimozionePreferitiTask rimozionePreferitiTask=new RimozionePreferitiTask();
         rimozionePreferitiTask.execute(id_film);
-        }
-     private class PrelievoIdTask extends AsyncTask<Void,Void,ArrayList<Integer>>
-    {
+    }
+
+     private class PrelievoIdTask extends AsyncTask<Void,Void,ArrayList<Integer>>{
+
         @Override
-        protected ArrayList<Integer> doInBackground(Void... voids) {
+        protected void onPreExecute() {
+            preferitiFragment.getProgressDialogRicercaInCorso().show();
+        }
+
+        @Override
+        protected ArrayList<Integer> doInBackground(Void... voids){
             FilmDAO filmDAO = new FilmDAO();
             ArrayList<Integer> list=filmDAO.preleva_id_preferiti(Utente.getUtenteLoggato().getUsername());
              return list;
@@ -86,30 +89,22 @@ public class PreferitiPresenter {
         @Override
         protected void onPostExecute(ArrayList<Integer> list) {
             prelevaPreferiti(list);
-
         }
     }
-    private class PrelievoPreferitiTask extends AsyncTask<ArrayList<Integer>,Void,Void>
-    {
+
+    private class PrelievoPreferitiTask extends AsyncTask<ArrayList<Integer>,Void,Void> {
         @Override
         protected Void doInBackground(ArrayList<Integer>... arrayLists) {
             TmdbApi tmdbApi = new TmdbApi("2bc3bb8279aa7bcc7bd18d60857dc82a");
-            for(Integer id_film:arrayLists[0])
-            {
+            for(Integer id_film:arrayLists[0]) {
                 MovieDb moviedB = tmdbApi.getMovies().getMovie(id_film,"it");
                 Film film = new Film(id_film,moviedB.getTitle()  ,moviedB.getReleaseDate(),moviedB.getPosterPath());
-               filmPreferiti.add(film);
+                filmPreferiti.add(film);
             }
-            for(Film film:filmPreferiti)
-            {
+            for(Film film:filmPreferiti) {
                 System.out.println(film.getTitolo());
             }
             return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            preferitiFragment.getProgressDialogRicercaInCorso().show();
         }
 
         @Override
@@ -119,8 +114,8 @@ public class PreferitiPresenter {
             preferitiFragment.getProgressDialogRicercaInCorso().dismiss();
         }
     }
-    private class RimozionePreferitiTask extends AsyncTask<Integer,Void,Boolean>
-    {
+
+    private class RimozionePreferitiTask extends AsyncTask<Integer,Void,Boolean> {
         @Override
         protected Boolean doInBackground(Integer... integers) {
             int id_film=integers[0];
