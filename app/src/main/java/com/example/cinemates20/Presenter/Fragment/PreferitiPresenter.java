@@ -1,44 +1,21 @@
 package com.example.cinemates20.Presenter.Fragment;
 
-import android.app.AlertDialog;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
-import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
-import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.PreferitiFragment;
-import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
 import com.example.cinemates20.Widgets.AdapterPreferiti;
-import com.example.cinemates20.Widgets.AdapterRicercaFilm;
-
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.core.MovieResultsPage;
-import info.movito.themoviedbapi.model.people.PersonCast;
 
 public class PreferitiPresenter {
     private ArrayList <Film> filmPreferiti=new ArrayList<Film>();
