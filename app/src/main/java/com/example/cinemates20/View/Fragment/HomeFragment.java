@@ -58,6 +58,7 @@ public class HomeFragment extends Fragment {
     public Button getBtLogoutHome(){
         return btLogoutHome;
     }
+    public Button getBtPreferitiHome() { return btPreferitiHome; }
 
     public void mostraToast(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
