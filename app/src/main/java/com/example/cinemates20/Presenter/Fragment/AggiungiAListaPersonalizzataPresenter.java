@@ -21,31 +21,31 @@ public class AggiungiAListaPersonalizzataPresenter {
     Film filmSelezionato;
 
     public AggiungiAListaPersonalizzataPresenter(AggiungiAListaPersonalizzataFragment aggiungiAListaPersonalizzataFragment,
-                                                 Film filmSelezionato){
+                                                 Film filmSelezionato) {
         this.aggiungiAListaPersonalizzataFragment = aggiungiAListaPersonalizzataFragment;
         this.filmSelezionato = filmSelezionato;
         prelevaListePersonalizzate();
         initializeListener();
     }
 
-    private void initializeListener(){
+    private void initializeListener() {
         Button bAggiungiFilmAListaPers = aggiungiAListaPersonalizzataFragment.getbAggiungiFilmAListaPers();
         bAggiungiFilmAListaPers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                aggiungiFilmAListaPers();
             }
         });
     }
 
-    private void prelevaListePersonalizzate(){
+    private void prelevaListePersonalizzate() {
         PrelevaListeTask prelevaListeTask = new PrelevaListeTask();
-        prelevaListeTask.execute(Utente.getUtenteLoggato().getUsername());
+        prelevaListeTask.execute();
     }
 
-    private void riempiSpinnerListe(ArrayList<ListaPersonalizzata> listePers){
+    private void riempiSpinnerListe(ArrayList<ListaPersonalizzata> listePers) {
         ArrayList<String> arrayList = new ArrayList<>();
-        for(ListaPersonalizzata listaPersonalizzata : listePers){
+        for (ListaPersonalizzata listaPersonalizzata : listePers) {
             arrayList.add(listaPersonalizzata.getTitolo());
         }
 
@@ -69,20 +69,59 @@ public class AggiungiAListaPersonalizzataPresenter {
 
             }
         });
-
     }
 
-    private class PrelevaListeTask extends AsyncTask<String,Void, ArrayList<ListaPersonalizzata>>{
+    private void aggiungiFilmAListaPers() {
+        AggiungiFilmAListaTask aggiungiFilmAListaTask = new AggiungiFilmAListaTask();
+        aggiungiFilmAListaTask.execute();
+    }
+
+    private class PrelevaListeTask extends AsyncTask<Void, Void, ArrayList<ListaPersonalizzata>> {
         @Override
-        protected ArrayList<ListaPersonalizzata> doInBackground(String... strings) {
-            String username = strings[0];
+        protected void onPreExecute() {
+            aggiungiAListaPersonalizzataFragment.mostraProgressDialogCaricamento();
+        }
+
+        @Override
+        protected ArrayList<ListaPersonalizzata> doInBackground(Void... aVoid) {
+            String username = Utente.getUtenteLoggato().getUsername();
             ListaPersonalizzataDAO listaPersonalizzataDAO = new ListaPersonalizzataDAO();
             return listaPersonalizzataDAO.prelevaListePersonalizzate(username);
         }
 
         @Override
         protected void onPostExecute(ArrayList<ListaPersonalizzata> listaPersonalizzatas) {
+            aggiungiAListaPersonalizzataFragment.togliProgrssDialogCaricamento();
             riempiSpinnerListe(listaPersonalizzatas);
+        }
+    }
+
+    private class AggiungiFilmAListaTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            aggiungiAListaPersonalizzataFragment.mostraProgressDialogCaricamento();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... aVoid) {
+            String username = Utente.getUtenteLoggato().getUsername();
+            String titoloLista = aggiungiAListaPersonalizzataFragment.getSpinnerTitoloListaPersAggiungiAListaPers()
+                    .getSelectedItem().toString();
+            int idFilm = filmSelezionato.getId();
+            ListaPersonalizzataDAO listaPersonalizzataDAO = new ListaPersonalizzataDAO();
+            return listaPersonalizzataDAO.aggiungiFilmAListaPers(username,titoloLista,idFilm);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean filmAggiunto) {
+            aggiungiAListaPersonalizzataFragment.togliProgrssDialogCaricamento();
+            if(filmAggiunto)
+                aggiungiAListaPersonalizzataFragment.mostraAlertDialogOk("FILM AGGIUNTO"
+                        ,"Film aggiunto alla lista");
+            else
+                aggiungiAListaPersonalizzataFragment.mostraAlertDialogOk("ERRORE"
+                        ,"Hai già questo film nella lista selezionata");
         }
     }
 

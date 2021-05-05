@@ -1,5 +1,8 @@
 package com.example.cinemates20.View.Fragment;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Presenter.Fragment.AggiungiAListaPersonalizzataPresenter;
-import com.example.cinemates20.Presenter.Fragment.InserisciRecensionePresenter;
 import com.example.cinemates20.R;
 
 public class AggiungiAListaPersonalizzataFragment extends Fragment {
@@ -22,6 +24,7 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
     Spinner spinnerTitoloListaPersAggiungiAListaPers;
     TextView tvDescrizioneListaAggiungiAListaPers;
     Button bAggiungiFilmAListaPers;
+    ProgressDialog progressDialogCaricamento;
 
     @Nullable
     @Override
@@ -36,6 +39,7 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
         spinnerTitoloListaPersAggiungiAListaPers = view.findViewById(R.id.spinnerTitoloListaPersAggiungiAListaPers);
         tvDescrizioneListaAggiungiAListaPers = view.findViewById(R.id.tvDescrizioneListaAggiungiAListaPers);
         bAggiungiFilmAListaPers = view.findViewById(R.id.bAggiungiFilmAListaPers);
+        initializeProgressDialog();
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -43,6 +47,13 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
             new AggiungiAListaPersonalizzataPresenter(this,film);
         }
 
+    }
+
+    private void initializeProgressDialog(){
+        progressDialogCaricamento = new ProgressDialog(getActivity());
+        progressDialogCaricamento.setTitle("");
+        progressDialogCaricamento.setMessage("Caricamento");
+        progressDialogCaricamento.setCancelable(false);
     }
 
     public Spinner getSpinnerTitoloListaPersAggiungiAListaPers() {
@@ -55,6 +66,27 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
 
     public Button getbAggiungiFilmAListaPers() {
         return bAggiungiFilmAListaPers;
+    }
+
+    public void mostraProgressDialogCaricamento(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgrssDialogCaricamento(){
+        progressDialogCaricamento.dismiss();
+    }
+
+    public void mostraAlertDialogOk(String titolo, String msg){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity())
+                .setTitle(titolo)
+                .setMessage(msg)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
     public void setTextDescrizione(String descrizione){

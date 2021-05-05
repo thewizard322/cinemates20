@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -8,7 +9,20 @@
     <LinearLayout
         android:layout_width="330dp"
         android:layout_height="wrap_content"
+        android:background="#E8E8E8"
+        android:gravity="center"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitoloFilmAggiungiAPers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Stai aggiungendo 'Titolo film'"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,13 +35,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Titolo" />
+                android:text="TITOLO"
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinnerTitoloListaPersAggiungiAListaPers"
                 android:layout_width="240dp"
+                android:layout_height="29dp"
                 android:layout_margin="8dp"
-                android:layout_height="wrap_content" />
+                android:background="@drawable/spinner_custom"
+                android:dropDownWidth="240dp" />
 
         </LinearLayout>
 
@@ -36,29 +54,32 @@
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
+            android:background="#FFFFFF"
             android:gravity="center"
-            android:background="#CACACA"
-            android:textStyle="bold"
+            android:text="DESCRIZIONE"
             android:textColor="#000000"
-            android:textSize="18dp"
-            android:text="DESCRIZIONE" />
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDescrizioneListaAggiungiAListaPers"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#CACACA"
-            android:textStyle="italic"
-            android:text="Descrizione" />
+            android:background="#FFFFFF"
+            android:text="Descrizione"
+            android:textSize="14dp"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/bAggiungiFilmAListaPers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:layout_gravity="center"
-            android:text="Aggiungi" />
+            android:layout_margin="20dp"
+            android:background="@drawable/buttonstandard_custom"
+            android:text="Aggiungi"
+            app:backgroundTint="@null" />
     </LinearLayout>
 </LinearLayout>

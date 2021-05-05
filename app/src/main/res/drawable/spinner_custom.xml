@@ -8,7 +8,7 @@
                 <corners android:radius="0dp" />
                 <padding android:top="3dp" android:bottom="3dp" android:right="3dp" android:left="3dp" />
             </shape></item>
-        <item android:drawable="@drawable/ic_baseline_arrow_drop_down_24" android:gravity="right|bottom"></item>
+        <item android:drawable="@drawable/ic_baseline_arrow_drop_down_24" android:gravity="right|center"></item>
     </layer-list></item>
 
 </selector>

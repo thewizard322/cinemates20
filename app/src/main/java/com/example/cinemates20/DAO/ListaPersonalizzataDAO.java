@@ -40,13 +40,35 @@ public class ListaPersonalizzataDAO {
             }
             st.close();
         } catch (SQLException throwables) {
-            Log.e("Error prelievo","Impossibile prelevare gli id");
+            Log.e("Error prelievo","Impossibile prelevare le liste pers");
             return arrayList;
         }
         finally {
             closeConnection();
         }
         return arrayList;
+    }
+
+    public boolean aggiungiFilmAListaPers(String username, String titolo, int idFilm){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "INSERT INTO film_lista_personalizzata (titolo,username,id_film) VALUES (?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, titolo);
+            st.setString(2, username);
+            st.setInt(3,idFilm);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error add to pers","Impossibile aggiungere film alla lista pers");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
     }
 
     public void closeConnection(){
