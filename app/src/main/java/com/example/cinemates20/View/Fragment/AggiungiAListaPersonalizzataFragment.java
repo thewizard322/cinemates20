@@ -12,9 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.cinemates20.Model.Film;
+import com.example.cinemates20.Presenter.Fragment.AggiungiAListaPersonalizzataPresenter;
+import com.example.cinemates20.Presenter.Fragment.InserisciRecensionePresenter;
 import com.example.cinemates20.R;
 
-public class AggiungiAListaPersonalizzata extends Fragment {
+public class AggiungiAListaPersonalizzataFragment extends Fragment {
 
     Spinner spinnerTitoloListaPersAggiungiAListaPers;
     TextView tvDescrizioneListaAggiungiAListaPers;
@@ -33,6 +36,13 @@ public class AggiungiAListaPersonalizzata extends Fragment {
         spinnerTitoloListaPersAggiungiAListaPers = view.findViewById(R.id.spinnerTitoloListaPersAggiungiAListaPers);
         tvDescrizioneListaAggiungiAListaPers = view.findViewById(R.id.tvDescrizioneListaAggiungiAListaPers);
         bAggiungiFilmAListaPers = view.findViewById(R.id.bAggiungiFilmAListaPers);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            Film film = (Film) bundle.getSerializable("film");
+            new AggiungiAListaPersonalizzataPresenter(this,film);
+        }
+
     }
 
     public Spinner getSpinnerTitoloListaPersAggiungiAListaPers() {
@@ -45,6 +55,10 @@ public class AggiungiAListaPersonalizzata extends Fragment {
 
     public Button getbAggiungiFilmAListaPers() {
         return bAggiungiFilmAListaPers;
+    }
+
+    public void setTextDescrizione(String descrizione){
+        tvDescrizioneListaAggiungiAListaPers.setText(descrizione);
     }
 
 }

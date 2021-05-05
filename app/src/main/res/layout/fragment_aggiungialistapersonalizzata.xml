@@ -32,18 +32,32 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvDescrizioneTitoloAggiungiAListaPers"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:background="#CACACA"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:text="DESCRIZIONE" />
+
+        <TextView
             android:id="@+id/tvDescrizioneListaAggiungiAListaPers"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="8dp"
             android:background="#CACACA"
+            android:textStyle="italic"
             android:text="Descrizione" />
 
         <Button
             android:id="@+id/bAggiungiFilmAListaPers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_gravity="center"
             android:text="Aggiungi" />
     </LinearLayout>

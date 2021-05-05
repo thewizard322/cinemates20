@@ -14,6 +14,7 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Recensione;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.AggiungiAListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.InserisciRecensioneFragment;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.Widgets.AdapterMostraFilm;
@@ -66,6 +67,16 @@ public class MostraFilmPresenter {
         Integer idFilm = filmSelezionato.getId();
         AggiungiAiFilmDaVedereTask aggiungiAiPreferitiTask = new AggiungiAiFilmDaVedereTask(username,idFilm);
         aggiungiAiPreferitiTask.execute();
+    }
+
+    public void replaceAggiungiAListaPers(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("film", filmSelezionato);
+        Fragment fg = new AggiungiAListaPersonalizzataFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = mostraFilmFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     public void inserisciRecensione(){
