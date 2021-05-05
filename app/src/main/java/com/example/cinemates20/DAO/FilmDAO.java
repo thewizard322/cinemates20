@@ -5,7 +5,7 @@ import android.util.Log;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+//mannacc a maronn
 public class FilmDAO {
 
     private Connection con;
