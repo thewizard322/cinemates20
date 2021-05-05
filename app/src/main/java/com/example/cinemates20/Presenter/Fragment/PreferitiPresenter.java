@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
