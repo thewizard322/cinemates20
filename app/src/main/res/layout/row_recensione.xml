@@ -49,10 +49,12 @@
 
     <Button
         android:id="@+id/bSegnalaRecenesione"
-        android:layout_width="88dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="32dp"
         android:layout_margin="8dp"
-        android:backgroundTint="#FF0000"
-        android:text="Segnala"
-        android:textSize="10dp" />
+        app:icon="@drawable/segnalazione"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="30dp"
+        app:iconTint="@null" />
 </LinearLayout>
