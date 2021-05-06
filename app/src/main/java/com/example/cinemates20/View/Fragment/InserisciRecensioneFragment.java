@@ -77,8 +77,12 @@ public class InserisciRecensioneFragment extends Fragment {
         alertDialog.show();
     }
 
-    public ProgressDialog getProgressDialogRecensione(){
-        return progressDialogRecensione;
+    public void mostraProgressDialogRecensione(){
+        progressDialogRecensione.show();
+    }
+
+    public void togliProgressDialogRecensione(){
+        progressDialogRecensione.dismiss();
     }
 
     public Spinner getSpinnerVoto() {

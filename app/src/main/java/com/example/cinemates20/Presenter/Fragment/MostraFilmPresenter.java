@@ -123,7 +123,7 @@ public class MostraFilmPresenter {
         }
         @Override
         protected void onPostExecute(Void aVoid) {
-            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
+            mostraFilmFragment.togliProgrssDialogCaricamento();
             initializeListView();
         }
     }
@@ -132,7 +132,7 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPreExecute() {
-            mostraFilmFragment.getProgressDialogCaricamento().show();
+            mostraFilmFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -181,7 +181,7 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPreExecute() {
-            mostraFilmFragment.getProgressDialogCaricamento().show();
+            mostraFilmFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -193,7 +193,7 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPostExecute(Boolean filmAggiunto) {
-            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
+            mostraFilmFragment.togliProgrssDialogCaricamento();
             if(filmAggiunto==false){
                 mostraFilmFragment.mostraAlertDialogOk("ERRORE","Hai già questo film tra i preferiti");
             }
@@ -214,7 +214,7 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPreExecute() {
-            mostraFilmFragment.getProgressDialogCaricamento().show();
+            mostraFilmFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -226,7 +226,7 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPostExecute(Boolean filmAggiunto) {
-            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
+            mostraFilmFragment.togliProgrssDialogCaricamento();
             if(filmAggiunto==false){
                 mostraFilmFragment.mostraAlertDialogOk("ERRORE","Hai già questo film da vedere");
             }
@@ -247,7 +247,7 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPreExecute() {
-            mostraFilmFragment.getProgressDialogCaricamento().show();
+            mostraFilmFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -259,7 +259,7 @@ public class MostraFilmPresenter {
 
         @Override
         protected void onPostExecute(Boolean segnalazioneAvvenuta) {
-            mostraFilmFragment.getProgressDialogCaricamento().dismiss();
+            mostraFilmFragment.togliProgrssDialogCaricamento();
             if(segnalazioneAvvenuta==false){
                 mostraFilmFragment.mostraAlertDialogOk("ERRORE","Hai già segnalato questa recensione " +
                         "e un amministratore ancora non ha preso una decisione");

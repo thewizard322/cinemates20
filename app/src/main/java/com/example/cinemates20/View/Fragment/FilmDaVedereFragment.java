@@ -15,9 +15,11 @@ import com.example.cinemates20.Presenter.Fragment.FilmDaVederePresenter;
 import com.example.cinemates20.R;
 
 public class FilmDaVedereFragment extends Fragment {
+
     private ListView lwFilmDaVedere;
     private ProgressDialog progressDialogCaricamento;
     private TextView tvEmptyFilmDaVedere;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,9 +47,11 @@ public class FilmDaVedereFragment extends Fragment {
     public ListView getLwFilmDaVedere() {
         return lwFilmDaVedere;
     }
+
     public ProgressDialog getProgressDialogRicercaInCorso() {
         return progressDialogCaricamento;
     }
+
     public TextView getTvEmptyFilmDaVedere(){
         return tvEmptyFilmDaVedere;
     }

@@ -69,8 +69,12 @@ public class RicercaFilmFragment extends Fragment {
         return lwRicercaFilm;
     }
 
-    public ProgressDialog getProgressDialogRicercaInCorso(){
-        return progressDialogRicercaInCorso;
+    public void mostraProgressDialogRicercaInCorso(){
+        progressDialogRicercaInCorso.show();
+    }
+
+    public void togliProgressDialogRicercaInCorso(){
+        progressDialogRicercaInCorso.dismiss();
     }
 
     public TextView getTvEmptyRicercaFilm(){

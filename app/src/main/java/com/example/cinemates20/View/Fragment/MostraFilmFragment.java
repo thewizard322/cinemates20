@@ -62,12 +62,16 @@ public class MostraFilmFragment extends Fragment {
         progressDialogCaricamento.setCancelable(false);
     }
 
-    public ProgressDialog getProgressDialogCaricamento(){
-        return progressDialogCaricamento;
-    }
-
     public ListView getLwMostraFilm(){
         return lwMostraFilm;
+    }
+
+    public void mostraProgressDialogCaricamento(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgrssDialogCaricamento(){
+        progressDialogCaricamento.dismiss();
     }
 
     public void mostraToast(String msg){

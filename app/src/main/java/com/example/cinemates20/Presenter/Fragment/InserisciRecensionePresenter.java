@@ -74,7 +74,7 @@ public class InserisciRecensionePresenter {
 
         @Override
         protected void onPreExecute() {
-            inserisciRecensioneFragment.getProgressDialogRecensione().show();
+            inserisciRecensioneFragment.mostraProgressDialogRecensione();
         }
 
         @Override
@@ -90,7 +90,7 @@ public class InserisciRecensionePresenter {
 
         @Override
         protected void onPostExecute(Boolean recensioneInserita) {
-            inserisciRecensioneFragment.getProgressDialogRecensione().dismiss();
+            inserisciRecensioneFragment.togliProgressDialogRecensione();
             if(recensioneInserita == false)
                 inserisciRecensioneFragment.mostraToast("Impossibile inserire la recensione. Controllare il numero " +
                         "di caratteri nel testo");

@@ -15,9 +15,11 @@ import com.example.cinemates20.Presenter.Fragment.PreferitiPresenter;
 import com.example.cinemates20.R;
 
 public class PreferitiFragment extends Fragment {
+
     private ListView lwPreferiti;
     private ProgressDialog progressDialogCaricamento;
     private TextView tvEmptyPreferiti;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,9 +47,11 @@ public class PreferitiFragment extends Fragment {
     public ListView getLwPreferiti() {
         return lwPreferiti;
     }
+
     public ProgressDialog getProgressDialogRicercaInCorso() {
         return progressDialogCaricamento;
     }
+
     public TextView getTvEmptyPreferiti(){
         return tvEmptyPreferiti;
     }
