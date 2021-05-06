@@ -52,7 +52,7 @@ public class PreferitiPresenter {
 
         @Override
         protected void onPreExecute() {
-            preferitiFragment.getProgressDialogRicercaInCorso().show();
+            preferitiFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -84,7 +84,7 @@ public class PreferitiPresenter {
         protected void onPostExecute(Void aVoid) {
             preferitiFragment.getLwPreferiti().setEmptyView(preferitiFragment.getTvEmptyPreferiti());
             riempiListView();
-            preferitiFragment.getProgressDialogRicercaInCorso().dismiss();
+            preferitiFragment.togliProgrssDialogCaricamento();
         }
     }
 
@@ -110,22 +110,19 @@ public class PreferitiPresenter {
 
         @Override
         protected void onPreExecute() {
-            preferitiFragment.getProgressDialogRicercaInCorso().show();
+            preferitiFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
         protected void onPostExecute(Boolean flag) {
+            preferitiFragment.togliProgrssDialogCaricamento();
             if (flag==true) {
                 adapterPreferiti.notifyDataSetChanged();
-                preferitiFragment.getProgressDialogRicercaInCorso().dismiss();
                 preferitiFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
             }
-            if(flag==false)
-            {
-                preferitiFragment.getProgressDialogRicercaInCorso().dismiss();
+            else if(flag==false) {
                 preferitiFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");
             }
-
         }
     }
 }

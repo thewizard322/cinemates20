@@ -61,12 +61,16 @@ public class PreferitiFragment extends Fragment {
         return lwPreferiti;
     }
 
-    public ProgressDialog getProgressDialogRicercaInCorso() {
-        return progressDialogCaricamento;
-    }
-
     public TextView getTvEmptyPreferiti(){
         return tvEmptyPreferiti;
+    }
+
+    public void mostraProgressDialogCaricamento(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgrssDialogCaricamento(){
+        progressDialogCaricamento.dismiss();
     }
 }
 

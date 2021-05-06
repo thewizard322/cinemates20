@@ -61,8 +61,12 @@ public class FilmDaVedereFragment extends Fragment {
         return lwFilmDaVedere;
     }
 
-    public ProgressDialog getProgressDialogRicercaInCorso() {
-        return progressDialogCaricamento;
+    public void mostraProgressDialogCaricamento(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgrssDialogCaricamento(){
+        progressDialogCaricamento.dismiss();
     }
 
     public TextView getTvEmptyFilmDaVedere(){
