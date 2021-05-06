@@ -115,10 +115,17 @@ public class FilmDaVederePresenter {
 
         @Override
         protected void onPostExecute(Boolean flag) {
-            if (flag==true){
+            if (flag==true) {
                 adapterFilmDaVedere.notifyDataSetChanged();
+                filmDaVedereFragment.getProgressDialogRicercaInCorso().dismiss();
+                filmDaVedereFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
             }
-            filmDaVedereFragment.getProgressDialogRicercaInCorso().dismiss();
+            if(flag==false)
+            {
+                filmDaVedereFragment.getProgressDialogRicercaInCorso().dismiss();
+                filmDaVedereFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");
+            }
+
+        }
         }
     }
-}
