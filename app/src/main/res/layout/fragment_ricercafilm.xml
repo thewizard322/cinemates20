@@ -22,10 +22,11 @@
 
         <Button
             android:id="@+id/bRicercaFilm"
-            android:layout_width="29dp"
-            android:layout_height="32dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_margin="4dp"
-            android:background="@drawable/button_transparent"
+            android:background="@drawable/buttontransparent_custom"
+            app:backgroundTint="@null"
             app:icon="@drawable/ricercafilm"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
