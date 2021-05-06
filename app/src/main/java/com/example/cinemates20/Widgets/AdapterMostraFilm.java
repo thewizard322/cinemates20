@@ -106,12 +106,24 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
 
         if(position == 0){
             holderFilm = (ViewHolderFilm) rowView.getTag();
+
             holderFilm.tvTitoloMostraFilm.setText(film.getTitolo());
-            holderFilm.tvData.setText("Data uscita: "+film.getDataUscita());
-            holderFilm.tvGeneriMostraFilm.setText(film.getGenere().toString());
-            holderFilm.tvAttoriMostraFilm.setText(film.getAttori().toString());
-            holderFilm.tvRegistaMostraFilm.setText("Regia di "+film.getRegista());
+
+            if(film.getDataUscita()==null || (!film.getDataUscita().equals("")))
+                holderFilm.tvData.setText("Data uscita: "+film.getDataUscita());
+            else
+                holderFilm.tvData.setText("");
+
+            holderFilm.tvGeneriMostraFilm.setText(film.getStringGeneri());
+            holderFilm.tvAttoriMostraFilm.setText(film.getStringAttori());
+
+            if(film.getRegista()!=null)
+                holderFilm.tvRegistaMostraFilm.setText("Regia di "+film.getRegista());
+            else
+                holderFilm.tvRegistaMostraFilm.setText("");
+
             holderFilm.tvTramaMostraFilm.setText(film.getTrama());
+
             RequestOptions options = new RequestOptions()
                     .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
             Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);

@@ -68,6 +68,28 @@ public class Film implements Serializable {
         return dataUscita;
     }
 
+    public String getStringAttori(){
+        String ret = "";
+        for(String attore : attori){
+            ret = ret + attore + ", ";
+        }
+        if(ret.endsWith(", ")){
+            ret = ret.substring(0,ret.length()-2);
+        }
+        return ret;
+    }
+
+    public String getStringGeneri(){
+        String ret = "";
+        for(String genere : generi){
+            ret = ret + genere + ", ";
+        }
+        if(ret.endsWith(", ")){
+            ret = ret.substring(0,ret.length()-2);
+        }
+        return ret;
+    }
+
     public void setGeneri(List<String> generi){
         this.generi = generi;
     }
