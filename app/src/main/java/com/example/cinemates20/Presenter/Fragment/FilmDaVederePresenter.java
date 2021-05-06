@@ -52,7 +52,7 @@ public class FilmDaVederePresenter {
 
         @Override
         protected void onPreExecute() {
-            filmDaVedereFragment.getProgressDialogRicercaInCorso().show();
+            filmDaVedereFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -84,7 +84,7 @@ public class FilmDaVederePresenter {
         protected void onPostExecute(Void aVoid) {
             filmDaVedereFragment.getLwFilmDaVedere().setEmptyView(filmDaVedereFragment.getTvEmptyFilmDaVedere());
             riempiListView();
-            filmDaVedereFragment.getProgressDialogRicercaInCorso().dismiss();
+            filmDaVedereFragment.togliProgrssDialogCaricamento();
         }
     }
 
@@ -110,22 +110,20 @@ public class FilmDaVederePresenter {
 
         @Override
         protected void onPreExecute() {
-            filmDaVedereFragment.getProgressDialogRicercaInCorso().show();
+            filmDaVedereFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
         protected void onPostExecute(Boolean flag) {
+            filmDaVedereFragment.togliProgrssDialogCaricamento();
             if (flag==true) {
                 adapterFilmDaVedere.notifyDataSetChanged();
-                filmDaVedereFragment.getProgressDialogRicercaInCorso().dismiss();
                 filmDaVedereFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
             }
-            if(flag==false)
-            {
-                filmDaVedereFragment.getProgressDialogRicercaInCorso().dismiss();
+            else if(flag==false) {
                 filmDaVedereFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");
             }
+        }
 
-        }
-        }
     }
+}

@@ -117,7 +117,7 @@ public class RicercaFilmPresenter {
         protected Void doInBackground(String... strings) {
             TmdbApi tmdbApi = new TmdbApi("2bc3bb8279aa7bcc7bd18d60857dc82a");
             MovieResultsPage movieResultsPage = tmdbApi.getSearch().searchMovie(strings[0],null,
-                    "it",true,1);
+                    "it",false,1);
             List<MovieDb> listFilmApi = movieResultsPage.getResults();
 
             for(MovieDb movieDb : listFilmApi){

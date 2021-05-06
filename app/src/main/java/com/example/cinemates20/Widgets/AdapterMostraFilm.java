@@ -115,34 +115,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
             RequestOptions options = new RequestOptions()
                     .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
             Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);
-
-            holderFilm.bPreferitiMostraFilm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostraFilmPresenter.aggiungiAiPreferiti();
-                }
-            });
-
-            holderFilm.bFilmDaVedereMostraFilm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostraFilmPresenter.aggiungiAiFilmDaVedere();
-                }
-            });
-
-            holderFilm.bListePersMostraFilm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostraFilmPresenter.replaceAggiungiAListaPers();
-                }
-            });
-
-            holderFilm.bRecensisciMostraFilm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostraFilmPresenter.inserisciRecensione();
-                }
-            });
+            setListenerFilm(holderFilm);
         }
         else{
             holderRecensione = (ViewHolderRecensione) rowView.getTag();
@@ -163,6 +136,36 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
             }
         }
         return rowView;
+    }
+
+    private void setListenerFilm(ViewHolderFilm holderFilm){
+        holderFilm.bPreferitiMostraFilm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostraFilmPresenter.aggiungiAiPreferiti();
+            }
+        });
+
+        holderFilm.bFilmDaVedereMostraFilm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostraFilmPresenter.aggiungiAiFilmDaVedere();
+            }
+        });
+
+        holderFilm.bListePersMostraFilm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostraFilmPresenter.replaceAggiungiAListaPers();
+            }
+        });
+
+        holderFilm.bRecensisciMostraFilm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostraFilmPresenter.inserisciRecensione();
+            }
+        });
     }
 
     private static class ViewHolderFilm{
