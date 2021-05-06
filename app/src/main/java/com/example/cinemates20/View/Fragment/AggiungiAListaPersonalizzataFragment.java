@@ -21,7 +21,9 @@ import com.example.cinemates20.R;
 
 public class AggiungiAListaPersonalizzataFragment extends Fragment {
 
+    TextView tvTitoloFilmAggiungiAPers;
     Spinner spinnerTitoloListaPersAggiungiAListaPers;
+    TextView tvDescrizioneTitoloAggiungiAListaPers;
     TextView tvDescrizioneListaAggiungiAListaPers;
     Button bAggiungiFilmAListaPers;
     ProgressDialog progressDialogCaricamento;
@@ -36,7 +38,9 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        tvTitoloFilmAggiungiAPers = view.findViewById(R.id.tvTitoloFilmAggiungiAPers);
         spinnerTitoloListaPersAggiungiAListaPers = view.findViewById(R.id.spinnerTitoloListaPersAggiungiAListaPers);
+        tvDescrizioneTitoloAggiungiAListaPers = view.findViewById(R.id.tvDescrizioneTitoloAggiungiAListaPers);
         tvDescrizioneListaAggiungiAListaPers = view.findViewById(R.id.tvDescrizioneListaAggiungiAListaPers);
         bAggiungiFilmAListaPers = view.findViewById(R.id.bAggiungiFilmAListaPers);
         initializeProgressDialog();
@@ -58,10 +62,6 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
 
     public Spinner getSpinnerTitoloListaPersAggiungiAListaPers() {
         return spinnerTitoloListaPersAggiungiAListaPers;
-    }
-
-    public TextView getTvDescrizioneListaAggiungiAListaPers() {
-        return tvDescrizioneListaAggiungiAListaPers;
     }
 
     public Button getbAggiungiFilmAListaPers() {
@@ -91,6 +91,18 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
 
     public void setTextDescrizione(String descrizione){
         tvDescrizioneListaAggiungiAListaPers.setText(descrizione);
+    }
+
+    public void setTextTitoloFilmAggiungiAPers(String titoloFilm){
+        tvTitoloFilmAggiungiAPers.setText("Stai aggiungendo '"+titoloFilm+"'");
+    }
+
+    public void setVisibilityTvDescrizioneTitoloAggiungiAListaPers(int visibility){
+        tvDescrizioneTitoloAggiungiAListaPers.setVisibility(visibility);
+    }
+
+    public void setVisibilityTvDescrizioneListaAggiungiAListaPers(int visibility){
+        tvDescrizioneListaAggiungiAListaPers.setVisibility(visibility);
     }
 
 }

@@ -24,6 +24,7 @@ public class AggiungiAListaPersonalizzataPresenter {
                                                  Film filmSelezionato) {
         this.aggiungiAListaPersonalizzataFragment = aggiungiAListaPersonalizzataFragment;
         this.filmSelezionato = filmSelezionato;
+        aggiungiAListaPersonalizzataFragment.setTextTitoloFilmAggiungiAPers(filmSelezionato.getTitolo());
         prelevaListePersonalizzate();
         initializeListener();
     }
@@ -61,7 +62,16 @@ public class AggiungiAListaPersonalizzataPresenter {
         spinnerTitoloListaPersAggiungiAListaPers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                aggiungiAListaPersonalizzataFragment.setTextDescrizione(listePers.get(position).getDescrizione());
+                String descrizione = listePers.get(position).getDescrizione();
+                if(!descrizione.equals("")){
+                    aggiungiAListaPersonalizzataFragment.setVisibilityTvDescrizioneTitoloAggiungiAListaPers(View.VISIBLE);
+                    aggiungiAListaPersonalizzataFragment.setVisibilityTvDescrizioneListaAggiungiAListaPers(View.VISIBLE);
+                    aggiungiAListaPersonalizzataFragment.setTextDescrizione(listePers.get(position).getDescrizione());
+                }
+                else{
+                    aggiungiAListaPersonalizzataFragment.setVisibilityTvDescrizioneTitoloAggiungiAListaPers(View.GONE);
+                    aggiungiAListaPersonalizzataFragment.setVisibilityTvDescrizioneListaAggiungiAListaPers(View.GONE);
+                }
             }
 
             @Override

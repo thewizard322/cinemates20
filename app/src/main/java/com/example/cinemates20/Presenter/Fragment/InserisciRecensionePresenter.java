@@ -27,9 +27,11 @@ public class InserisciRecensionePresenter {
 
     private void initializeListener(){
         Button bRececensisciInserisciRecensione = inserisciRecensioneFragment.getbRececensisciInserisciRecensione();
+
         bRececensisciInserisciRecensione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                inserisciRecensioneFragment.hideKeyboard();
                 inserisciRecensione();
             }
         });
@@ -90,7 +92,8 @@ public class InserisciRecensionePresenter {
         protected void onPostExecute(Boolean recensioneInserita) {
             inserisciRecensioneFragment.getProgressDialogRecensione().dismiss();
             if(recensioneInserita == false)
-                inserisciRecensioneFragment.mostraToast("Hai già inserito una recensione per questo film");
+                inserisciRecensioneFragment.mostraToast("Impossibile inserire la recensione. Controllare il numero " +
+                        "di caratteri nel testo");
             else
                 onReviewInsertSuccess();
         }

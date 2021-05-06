@@ -41,10 +41,10 @@
                 android:ems="10"
                 android:hint="Testo recensione"
                 android:inputType="textMultiLine"
-                android:lines="8"
-                android:minLines="6"
+                android:lines="5"
                 android:gravity="start"
-                android:maxLines="10"
+                android:minLines="3"
+                android:maxLines="5"
                 android:scrollbars="vertical" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -78,8 +78,10 @@
             android:id="@+id/bRececensisciInserisciRecensione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recensisci"
             android:layout_gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/buttonstandard_custom"
+            android:text="Recensisci" />
     </LinearLayout>
 </LinearLayout>
