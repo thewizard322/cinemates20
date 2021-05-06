@@ -104,7 +104,50 @@ public class FilmDAO {
         }
         return list;
     }
-
+    public ArrayList<Integer> preleva_id_film_da_vedere(String username){
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        boolean isCon = connect();
+        if(isCon==false)
+            return list;
+        String query = "SELECT id_film FROM film_da_vedere WHERE username=?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, username);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                int idF = rs.getInt("id_film");
+                list.add(idF);
+            }
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error prelievo","Impossibile prelevare gli id");
+            return list;
+        }
+        finally {
+            closeConnection();
+        }
+        return list;
+    }
+    public boolean eliminaFilmDaVedere(String username, int idFilm){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "DELETE FROM film_da_vedere WHERE id_film=? AND username=?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, idFilm);
+            st.setString(2, username);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error add pref","Impossibile eliminare film da vedere");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
     public void closeConnection(){
         try {
             con.close();

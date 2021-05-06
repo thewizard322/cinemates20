@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.FilmDaVedereFragment;
 import com.example.cinemates20.View.Fragment.HomeFragment;
 import com.example.cinemates20.View.Fragment.LoginFragment;
 import com.example.cinemates20.View.Fragment.PreferitiFragment;
@@ -29,6 +30,7 @@ public class HomePresenter {
         Button btRicercaFilmHome = homeFragment.getBtRicercaFilmHome();
         Button btLogoutHome = homeFragment.getBtLogoutHome();
         Button btPreferiti = homeFragment.getBtPreferitiHome();
+        Button btFilmDaVedere =homeFragment.getBtFilmDaVedereHome();
         btRicercaFilmHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +48,10 @@ public class HomePresenter {
         btPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { replacePreferitiFragment();}
+        });
+        btFilmDaVedere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { replaceFilmDaVedereFragment();}
         });
     }
 
@@ -71,6 +77,13 @@ public class HomePresenter {
     }
     public void replacePreferitiFragment(){
         Fragment fg= new PreferitiFragment();
+        FragmentManager fm= homeFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+
+    }
+    public void replaceFilmDaVedereFragment(){
+        Fragment fg= new FilmDaVedereFragment();
         FragmentManager fm= homeFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();

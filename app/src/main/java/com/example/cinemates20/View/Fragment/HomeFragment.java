@@ -54,11 +54,11 @@ public class HomeFragment extends Fragment {
     public Button getBtRicercaFilmHome() {
         return btRicercaFilmHome;
     }
-
     public Button getBtLogoutHome(){
         return btLogoutHome;
     }
     public Button getBtPreferitiHome() { return btPreferitiHome; }
+    public Button getBtFilmDaVedereHome() { return btFilmDaVedereHome; }
 
     public void mostraToast(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
