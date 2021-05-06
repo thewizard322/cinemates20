@@ -109,7 +109,7 @@ public class RicercaFilmPresenter {
 
         @Override
         protected void onPreExecute() {
-            ricercaFilmFragment.getProgressDialogRicercaInCorso().show();
+            ricercaFilmFragment.mostraProgressDialogRicercaInCorso();
             arrayListFilm.clear();
         }
 
@@ -133,7 +133,7 @@ public class RicercaFilmPresenter {
             ricercaFilmFragment.getLwRicercaFilm()
                    .setEmptyView(ricercaFilmFragment.getTvEmptyRicercaFilm());
             riempiListView();
-            ricercaFilmFragment.getProgressDialogRicercaInCorso().dismiss();
+            ricercaFilmFragment.togliProgressDialogRicercaInCorso();
         }
     }
 

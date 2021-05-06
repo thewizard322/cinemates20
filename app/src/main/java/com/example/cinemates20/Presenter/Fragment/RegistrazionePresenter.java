@@ -130,7 +130,7 @@ public class RegistrazionePresenter {
 
         @Override
         protected void onPreExecute() {
-            registrazioneFragment.getProgressDialogCaricamento().show();
+            registrazioneFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -159,7 +159,7 @@ public class RegistrazionePresenter {
 
         @Override
         protected void onPostExecute(String s) {
-            registrazioneFragment.getProgressDialogCaricamento().dismiss();
+            registrazioneFragment.togliProgrssDialogCaricamento();
             if(s.equals("ok"))
                 onRegisterSuccess();
             else if(s.equals("noreg"))

@@ -120,7 +120,7 @@ public class LoginPresenter {
 
         @Override
         protected void onPreExecute() {
-            loginFragment.getProgressDialogCaricamento().show();
+            loginFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -135,7 +135,7 @@ public class LoginPresenter {
             if(integer == 0)
                 prelevaDatiUtente();
             else {
-                loginFragment.getProgressDialogCaricamento().dismiss();
+                loginFragment.togliProgrssDialogCaricamento();
                 if (integer == 1)
                     onLoginError();
                 else if (integer == 2)
@@ -157,7 +157,7 @@ public class LoginPresenter {
 
             @Override
             protected void onPostExecute(Utente utenteLoggato) {
-                loginFragment.getProgressDialogCaricamento().dismiss();
+                loginFragment.togliProgrssDialogCaricamento();
                 if(utenteLoggato == null)
                     onLoginErrorDB(4);
                 else

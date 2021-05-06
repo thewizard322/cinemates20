@@ -64,16 +64,20 @@ public class LoginFragment extends Fragment {
         return tilPasswordLgn;
     }
 
-    public ProgressDialog getProgressDialogCaricamento(){
-        return progressDialogCaricamento;
-    }
-
     public String getUserName(){
         return tilUsernameLgn.getEditText().getText().toString();
     }
 
     public String getPassword(){
         return tilPasswordLgn.getEditText().getText().toString();
+    }
+
+    public void mostraProgressDialogCaricamento(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgrssDialogCaricamento(){
+        progressDialogCaricamento.dismiss();
     }
 
     public void mostraToast(String msg){

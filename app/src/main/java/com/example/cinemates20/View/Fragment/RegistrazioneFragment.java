@@ -67,10 +67,6 @@ public class RegistrazioneFragment extends Fragment {
         return btRegistrati;
     }
 
-    public ProgressDialog getProgressDialogCaricamento(){
-        return progressDialogCaricamento;
-    }
-
     public String getUserName(){
         return tilUsernameReg.getEditText().getText().toString();
     }
@@ -81,6 +77,14 @@ public class RegistrazioneFragment extends Fragment {
 
     public String getEmail(){
         return tilEmailReg.getEditText().getText().toString();
+    }
+
+    public void mostraProgressDialogCaricamento(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgrssDialogCaricamento(){
+        progressDialogCaricamento.dismiss();
     }
 
     public void mostraToast(String msg){

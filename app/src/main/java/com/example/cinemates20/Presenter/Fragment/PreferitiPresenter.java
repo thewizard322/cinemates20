@@ -77,9 +77,6 @@ public class PreferitiPresenter {
                 Film film = new Film(id_film,moviedB.getTitle()  ,moviedB.getReleaseDate(),moviedB.getPosterPath());
                 filmPreferiti.add(film);
             }
-            for(Film film:filmPreferiti) {
-                System.out.println(film.getTitolo());
-            }
             return null;
         }
 
