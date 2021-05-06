@@ -118,10 +118,17 @@ public class PreferitiPresenter {
 
         @Override
         protected void onPostExecute(Boolean flag) {
-            if (flag==true){
+            if (flag==true) {
                 adapterPreferiti.notifyDataSetChanged();
+                preferitiFragment.getProgressDialogRicercaInCorso().dismiss();
+                preferitiFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
             }
-            preferitiFragment.getProgressDialogRicercaInCorso().dismiss();
+            if(flag==false)
+            {
+                preferitiFragment.getProgressDialogRicercaInCorso().dismiss();
+                preferitiFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");
+            }
+
         }
     }
 }
