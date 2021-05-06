@@ -37,8 +37,8 @@ public class RicercaFilmPresenter {
 
     public RicercaFilmPresenter(RicercaFilmFragment ricercaFilmFragment){
         this.ricercaFilmFragment = ricercaFilmFragment;
-        initializeListener();
         initializeListView();
+        initializeListener();
     }
 
     private void initializeListView(){
