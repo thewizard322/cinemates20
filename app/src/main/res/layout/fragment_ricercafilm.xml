@@ -22,18 +22,15 @@
 
         <Button
             android:id="@+id/bRicercaFilm"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="0"
-            android:backgroundTint="#00baff"
-            android:gravity="center"
-            app:icon="@android:drawable/ic_search_category_default"
+            android:layout_width="29dp"
+            android:layout_height="32dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/button_transparent"
+            app:icon="@drawable/ricercafilm"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconSize="30dp"
-            app:iconTint="#000000"
+            app:iconTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
