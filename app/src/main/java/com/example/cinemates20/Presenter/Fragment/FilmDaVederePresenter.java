@@ -77,9 +77,6 @@ public class FilmDaVederePresenter {
                 Film film = new Film(id_film,moviedB.getTitle()  ,moviedB.getReleaseDate(),moviedB.getPosterPath());
                 filmDaVedere.add(film);
             }
-            for(Film film:filmDaVedere) {
-                System.out.println(film.getTitolo());
-            }
             return null;
         }
 
