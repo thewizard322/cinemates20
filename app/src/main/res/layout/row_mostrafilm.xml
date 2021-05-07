@@ -100,7 +100,7 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/buttontransparent_custom"
                 app:backgroundTint="@null"
-                app:icon="@android:drawable/presence_away"
+                app:icon="@drawable/guardapiutardi"
                 app:iconTint="@null"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
