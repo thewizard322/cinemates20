@@ -34,9 +34,9 @@ public class VisualizzaListePersonalizzatePresenter {
 
     public VisualizzaListePersonalizzatePresenter(VisualizzaListePersonalizzateFragment visualizzaListePersonalizzateFragment){
         this.visualizzaListePersonalizzateFragment = visualizzaListePersonalizzateFragment;
-        prelevaListePersonalizzate();
         initializeListener();
         initializeListView();
+        prelevaListePersonalizzate();
     }
 
     private void initializeListView() {
@@ -116,7 +116,6 @@ public class VisualizzaListePersonalizzatePresenter {
 
         @Override
         protected void onPostExecute(ArrayList<ListaPersonalizzata> listaPers) {
-            visualizzaListePersonalizzateFragment.togliProgressDialogCaricamento();
             riempiSpinnerListe(listaPers);
         }
     }
@@ -126,7 +125,6 @@ public class VisualizzaListePersonalizzatePresenter {
         @Override
         protected void onPreExecute() {
             filmListaPersonalizzata.clear();
-            visualizzaListePersonalizzateFragment.mostraProgressDialogCaricamento();
         }
 
         @Override

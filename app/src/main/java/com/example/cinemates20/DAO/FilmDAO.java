@@ -151,31 +151,6 @@ public class FilmDAO {
         return list;
     }
 
-    public ArrayList<Integer> preleva_id_film_da_vedere(String username){
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        boolean isCon = connect();
-        if(isCon==false)
-            return list;
-        String query = "SELECT id_film FROM film_da_vedere WHERE username=?";
-        try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, username);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                int idF = rs.getInt("id_film");
-                list.add(idF);
-            }
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error prelievo","Impossibile prelevare gli id");
-            return list;
-        }
-        finally {
-            closeConnection();
-        }
-        return list;
-    }
-
     public boolean eliminaFilmDaVedere(String username, int idFilm){
         boolean isCon = connect();
         if(isCon==false)
@@ -202,7 +177,7 @@ public class FilmDAO {
         boolean isCon = connect();
         if(isCon==false)
             return list;
-        String query = "SELECT id_film,titolo_lista,anno,posterpath FROM film_lista_personalizzata WHERE username=? AND titolo_lista=?";
+        String query = "SELECT id_film,titolo_film,anno,posterpath FROM film_lista_personalizzata WHERE username=? AND titolo_lista=?";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
@@ -210,7 +185,7 @@ public class FilmDAO {
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 int idF = rs.getInt("id_film");
-                String titolo = rs.getString("titolo_lista");
+                String titolo = rs.getString("titolo_film");
                 String data = rs.getString("anno");
                 String posterPath = rs.getString("posterpath");
                 Film film = new Film(idF,titolo,data,posterPath);

@@ -104,6 +104,5 @@ public class HomePresenter {
         FragmentManager fm= homeFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
-
     }
 }
