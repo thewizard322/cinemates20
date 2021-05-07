@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates20.Presenter.Fragment.PreferitiPresenter;
 import com.example.cinemates20.R;
+import com.example.cinemates20.Widgets.AdapterPreferiti;
 
 public class PreferitiFragment extends Fragment {
 
@@ -71,6 +72,14 @@ public class PreferitiFragment extends Fragment {
 
     public void togliProgrssDialogCaricamento(){
         progressDialogCaricamento.dismiss();
+    }
+
+    public void setAdapterLwPreferiti(AdapterPreferiti adapterPreferiti){
+        lwPreferiti.setAdapter(adapterPreferiti);
+    }
+
+    public void aggiornaLwPreferiti(AdapterPreferiti adapterPreferiti){
+        adapterPreferiti.notifyDataSetChanged();
     }
 }
 

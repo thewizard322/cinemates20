@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates20.Presenter.Fragment.FilmDaVederePresenter;
 import com.example.cinemates20.R;
+import com.example.cinemates20.Widgets.AdapterFilmDaVedere;
+import com.example.cinemates20.Widgets.AdapterPreferiti;
 
 public class FilmDaVedereFragment extends Fragment {
 
@@ -71,6 +73,14 @@ public class FilmDaVedereFragment extends Fragment {
 
     public TextView getTvEmptyFilmDaVedere(){
         return tvEmptyFilmDaVedere;
+    }
+
+    public void setAdapterLwDaVedere(AdapterFilmDaVedere adapterFilmDaVedere){
+        lwFilmDaVedere.setAdapter(adapterFilmDaVedere);
+    }
+
+    public void aggiornaLwPreferiti(AdapterFilmDaVedere adapterFilmDaVedere){
+        adapterFilmDaVedere.notifyDataSetChanged();
     }
 }
 

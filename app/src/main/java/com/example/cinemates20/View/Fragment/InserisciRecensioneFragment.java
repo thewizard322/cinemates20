@@ -117,4 +117,5 @@ public class InserisciRecensioneFragment extends Fragment {
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus()
                     .getApplicationWindowToken(),0);
     }
+
 }

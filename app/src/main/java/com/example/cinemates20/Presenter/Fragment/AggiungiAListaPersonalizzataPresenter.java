@@ -57,7 +57,7 @@ public class AggiungiAListaPersonalizzataPresenter {
 
         Spinner spinnerTitoloListaPersAggiungiAListaPers = aggiungiAListaPersonalizzataFragment
                 .getSpinnerTitoloListaPersAggiungiAListaPers();
-        spinnerTitoloListaPersAggiungiAListaPers.setAdapter(adapter);
+        aggiungiAListaPersonalizzataFragment.setAdapterSpinnerTitoloLista(adapter);
 
         spinnerTitoloListaPersAggiungiAListaPers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

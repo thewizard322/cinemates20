@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates20.Presenter.Fragment.RicercaFilmPresenter;
 import com.example.cinemates20.R;
+import com.example.cinemates20.Widgets.AdapterRicercaFilm;
 
 public class RicercaFilmFragment extends Fragment {
 
@@ -91,5 +92,13 @@ public class RicercaFilmFragment extends Fragment {
         if (getActivity().getCurrentFocus() != null)
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus()
                     .getApplicationWindowToken(),0);
+    }
+
+    public void setAdapterLwRicercaFilm(AdapterRicercaFilm adapterRicercaFilm){
+        lwRicercaFilm.setAdapter(adapterRicercaFilm);
+    }
+
+    public void aggiornaLwRicercaFilm(AdapterRicercaFilm adapterRicercaFilm){
+        adapterRicercaFilm.notifyDataSetChanged();
     }
 }

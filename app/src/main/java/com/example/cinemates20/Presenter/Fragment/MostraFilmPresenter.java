@@ -52,7 +52,7 @@ public class MostraFilmPresenter {
         ListView lwRicercaFilm = mostraFilmFragment.getLwMostraFilm();
         adapterMostraFilm = new AdapterMostraFilm(Objects.requireNonNull(mostraFilmFragment.getContext()),mostraFilmFragment
                 ,this,arrayRecensione,filmSelezionato);
-        lwRicercaFilm.setAdapter(adapterMostraFilm);
+        mostraFilmFragment.setAdapterLwMostraFilm(adapterMostraFilm);
     }
 
     public void aggiungiAiPreferiti(){

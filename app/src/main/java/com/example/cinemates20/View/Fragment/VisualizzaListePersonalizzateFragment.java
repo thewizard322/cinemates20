@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -16,6 +17,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates20.Presenter.Fragment.VisualizzaListePersonalizzatePresenter;
 import com.example.cinemates20.R;
+import com.example.cinemates20.Widgets.AdapterPreferiti;
+import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzate;
 
 
 public class VisualizzaListePersonalizzateFragment extends Fragment {
@@ -100,4 +103,17 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
     public void setTextDescrizione(String descrizione) {
         tvDescrizioneVisualizzaListePersonalizzate.setText(descrizione);
     }
+
+    public void setAdapterSpinnerTitoloLista(ArrayAdapter<String> arrayAdapter){
+        spinnerTitoloVisualizzaListePersonalizzate.setAdapter(arrayAdapter);
+    }
+
+    public void setAdapterLvVisualizzaListePersonalizzate(AdapterVisualizzaListePersonalizzate adapterLvVisualizzaListePersonalizzate){
+        lvVisualizzaListePersonalizzate.setAdapter(adapterLvVisualizzaListePersonalizzate);
+    }
+
+    public void aggiornaLvVisualizzaListePersonalizzate(AdapterVisualizzaListePersonalizzate adapterLvVisualizzaListePersonalizzate){
+        adapterLvVisualizzaListePersonalizzate.notifyDataSetChanged();
+    }
+
 }

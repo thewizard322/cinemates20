@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Presenter.Fragment.MostraFilmPresenter;
 import com.example.cinemates20.R;
+import com.example.cinemates20.Widgets.AdapterMostraFilm;
 
 public class MostraFilmFragment extends Fragment {
 
@@ -76,5 +77,9 @@ public class MostraFilmFragment extends Fragment {
 
     public void mostraToast(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+    }
+
+    public void setAdapterLwMostraFilm(AdapterMostraFilm adapterMostraFilm){
+        lwMostraFilm.setAdapter(adapterMostraFilm);
     }
 }

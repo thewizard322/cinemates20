@@ -18,7 +18,7 @@ import info.movito.themoviedbapi.model.MovieDb;
 
 public class PreferitiPresenter {
     private ArrayList <Film> filmPreferiti=new ArrayList<Film>();
-    AdapterPreferiti adapterPreferiti;
+    private AdapterPreferiti adapterPreferiti;
     private PreferitiFragment preferitiFragment;
 
     public PreferitiPresenter(PreferitiFragment preferitiFragment) {
@@ -28,13 +28,8 @@ public class PreferitiPresenter {
     }
 
     private void initializeListView() {
-        ListView lwPreferiti = preferitiFragment.getLwPreferiti();
         adapterPreferiti = new AdapterPreferiti(Objects.requireNonNull(preferitiFragment.getContext()), preferitiFragment, filmPreferiti,this);
-        lwPreferiti.setAdapter(adapterPreferiti);
-    }
-
-    private void riempiListView(){
-        adapterPreferiti.notifyDataSetChanged();
+        preferitiFragment.setAdapterLwPreferiti(adapterPreferiti);
     }
 
     private void prelevaPreferiti(){
@@ -65,7 +60,7 @@ public class PreferitiPresenter {
         @Override
         protected void onPostExecute(Void aVoid) {
             preferitiFragment.getLwPreferiti().setEmptyView(preferitiFragment.getTvEmptyPreferiti());
-            riempiListView();
+            preferitiFragment.aggiornaLwPreferiti(adapterPreferiti);
             preferitiFragment.togliProgrssDialogCaricamento();
         }
     }
@@ -101,7 +96,7 @@ public class PreferitiPresenter {
             preferitiFragment.togliProgrssDialogCaricamento();
             if (flag==true) {
                 preferitiFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
-                adapterPreferiti.notifyDataSetChanged();
+                preferitiFragment.aggiornaLwPreferiti(adapterPreferiti);
             }
             else if(flag==false) {
                 preferitiFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");

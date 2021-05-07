@@ -40,9 +40,8 @@ public class VisualizzaListePersonalizzatePresenter {
     }
 
     private void initializeListView() {
-        ListView lvVisualizzaListePersonalizzate = visualizzaListePersonalizzateFragment.getLvVisualizzaListePersonalizzate();
         adapterVisualizzaListePersonalizzate = new AdapterVisualizzaListePersonalizzate(Objects.requireNonNull(visualizzaListePersonalizzateFragment.getContext()), visualizzaListePersonalizzateFragment, filmListaPersonalizzata, this);
-        lvVisualizzaListePersonalizzate.setAdapter(adapterVisualizzaListePersonalizzate);
+        visualizzaListePersonalizzateFragment.setAdapterLvVisualizzaListePersonalizzate(adapterVisualizzaListePersonalizzate);
     }
 
     private void replaceAggiungiListaPersonalizzataFragment(){
@@ -62,10 +61,6 @@ public class VisualizzaListePersonalizzatePresenter {
         });
     }
 
-    private void riempiListView(){
-        adapterVisualizzaListePersonalizzate.notifyDataSetChanged();
-    }
-
     private void prelevaListePersonalizzate(){
         PrelevaListeTask prelevaListeTask = new PrelevaListeTask();
         prelevaListeTask.execute();
@@ -83,7 +78,7 @@ public class VisualizzaListePersonalizzatePresenter {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         Spinner spinnerTitoloVisualizzaListePersonalizzate = visualizzaListePersonalizzateFragment.getSpinnerTitoloVisualizzaListePersonalizzate();
-        spinnerTitoloVisualizzaListePersonalizzate.setAdapter(adapter);
+        visualizzaListePersonalizzateFragment.setAdapterSpinnerTitoloLista(adapter);
 
         spinnerTitoloVisualizzaListePersonalizzate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -141,7 +136,7 @@ public class VisualizzaListePersonalizzatePresenter {
         @Override
         protected void onPostExecute(Void aVoid) {
             visualizzaListePersonalizzateFragment.getLvVisualizzaListePersonalizzate().setEmptyView(visualizzaListePersonalizzateFragment.getTvEmptyListePersonalizzate());
-            riempiListView();
+            visualizzaListePersonalizzateFragment.aggiornaLvVisualizzaListePersonalizzate(adapterVisualizzaListePersonalizzate);
             visualizzaListePersonalizzateFragment.togliProgressDialogCaricamento();
         }
     }

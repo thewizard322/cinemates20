@@ -44,7 +44,7 @@ public class RicercaFilmPresenter {
     private void initializeListView(){
         ListView lwRicercaFilm = ricercaFilmFragment.getLwRicercaFilm();
         adapterRicercaFilm = new AdapterRicercaFilm(Objects.requireNonNull(ricercaFilmFragment.getContext()),ricercaFilmFragment,arrayListFilm);
-        lwRicercaFilm.setAdapter(adapterRicercaFilm);
+        ricercaFilmFragment.setAdapterLwRicercaFilm(adapterRicercaFilm);
         lwRicercaFilm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,10 +95,6 @@ public class RicercaFilmPresenter {
         }
     }
 
-    private void riempiListView(){
-        adapterRicercaFilm.notifyDataSetChanged();
-    }
-
     private boolean titoloNonVuoto(String titolo){
         if(titolo.equals(""))
             return false;
@@ -132,7 +128,7 @@ public class RicercaFilmPresenter {
         protected void onPostExecute(Void aVoid) {
             ricercaFilmFragment.getLwRicercaFilm()
                    .setEmptyView(ricercaFilmFragment.getTvEmptyRicercaFilm());
-            riempiListView();
+            ricercaFilmFragment.aggiornaLwRicercaFilm(adapterRicercaFilm);
             ricercaFilmFragment.togliProgressDialogRicercaInCorso();
         }
     }

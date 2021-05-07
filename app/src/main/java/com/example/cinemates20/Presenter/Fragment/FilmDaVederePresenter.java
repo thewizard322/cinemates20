@@ -1,7 +1,6 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
-import android.widget.ListView;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.Model.Film;
@@ -24,13 +23,8 @@ public class FilmDaVederePresenter {
     }
 
     private void initializeListView() {
-        ListView lwFilmDaVedere = filmDaVedereFragment.getLwFilmDaVedere();
         adapterFilmDaVedere = new AdapterFilmDaVedere(Objects.requireNonNull(filmDaVedereFragment.getContext()), filmDaVedereFragment, filmDaVedere,this);
-        lwFilmDaVedere.setAdapter(adapterFilmDaVedere);
-    }
-
-    private void riempiListView(){
-        adapterFilmDaVedere.notifyDataSetChanged();
+        filmDaVedereFragment.setAdapterLwDaVedere(adapterFilmDaVedere);
     }
 
     private void prelevaFilmDaVedere(){
@@ -61,7 +55,7 @@ public class FilmDaVederePresenter {
         @Override
         protected void onPostExecute(Void aVoid) {
             filmDaVedereFragment.getLwFilmDaVedere().setEmptyView(filmDaVedereFragment.getTvEmptyFilmDaVedere());
-            riempiListView();
+            filmDaVedereFragment.aggiornaLwPreferiti(adapterFilmDaVedere);
             filmDaVedereFragment.togliProgrssDialogCaricamento();
         }
     }
@@ -97,7 +91,7 @@ public class FilmDaVederePresenter {
             filmDaVedereFragment.togliProgrssDialogCaricamento();
             if (flag==true) {
                 filmDaVedereFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
-                adapterFilmDaVedere.notifyDataSetChanged();
+                filmDaVedereFragment.aggiornaLwPreferiti(adapterFilmDaVedere);
             }
             else if(flag==false) {
                 filmDaVedereFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");
