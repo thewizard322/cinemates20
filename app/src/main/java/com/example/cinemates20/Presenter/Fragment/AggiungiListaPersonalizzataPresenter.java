@@ -51,11 +51,10 @@ public class AggiungiListaPersonalizzataPresenter {
         String descrizioneLista = aggiungiListaPersonalizzataFragment.getDescrizioneLista();
         boolean titoloVuoto = titoloVuoto(titoloLista);
 
-        if(titoloVuoto == true){
+        if(titoloVuoto == true)
             aggiungiListaPersonalizzataFragment.mostraToast("Inserire il titolo della lista");
-        }
         else if(titoloLista.length() > 50)
-                aggiungiListaPersonalizzataFragment.mostraToast("Superata lunghezza massima titolo (50 caratteri)");
+            aggiungiListaPersonalizzataFragment.mostraToast("Superata lunghezza massima titolo (50 caratteri)");
         else if(descrizioneLista.length() > 300)
             aggiungiListaPersonalizzataFragment.mostraToast("Superata lunghezza massima descrizione (300 caratteri)");
         else {
