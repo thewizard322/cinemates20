@@ -54,12 +54,9 @@ public class AdapterFilmDaVedere extends ArrayAdapter {
             holder = (AdapterFilmDaVedere.ViewHolder) rootView.getTag();
         }
 
-        holder.tvTitoloRowFilmDaVedere.setText(arrayList.get(position).getTitolo());
-        holder.tvAnnoRowFilmDaVedere.setText(arrayList.get(position).getDataUscita());
+        Film film = arrayList.get(position);
+        setView(holder,film);
 
-        RequestOptions options = new RequestOptions()
-                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
-        Glide.with(context).load(arrayList.get(position).getPatPosterW92()).apply(options).into(holder.ivRowFilmDaVedere);
         holder.btRimuoviFilmDaVedere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +65,15 @@ public class AdapterFilmDaVedere extends ArrayAdapter {
         });
 
         return rootView;
+    }
+
+    private void setView(ViewHolder holder, Film film){
+        holder.tvTitoloRowFilmDaVedere.setText(film.getTitolo());
+        holder.tvAnnoRowFilmDaVedere.setText(film.getDataUscita());
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(film.getPatPosterW92()).apply(options).into(holder.ivRowFilmDaVedere);
     }
 
     private static class ViewHolder{
