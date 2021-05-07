@@ -54,19 +54,13 @@ public class AggiungiListaPersonalizzataPresenter {
         if(titoloVuoto == true){
             aggiungiListaPersonalizzataFragment.mostraToast("Inserire il titolo della lista");
         }
-        else{
-            if(titoloLista.length() > 50) {
+        else if(titoloLista.length() > 50)
                 aggiungiListaPersonalizzataFragment.mostraToast("Superata lunghezza massima titolo (50 caratteri)");
-            }
-            else {
-                if(descrizioneLista.length() > 300) {
-                    aggiungiListaPersonalizzataFragment.mostraToast("Superata lunghezza massima descrizione (300 caratteri)");
-                }
-                else {
-                    AggiungiListaPersonalizzataPresenter.AggiungiListaPersonalizzataTask aggiungiListaPersonalizzataTask = new AggiungiListaPersonalizzataPresenter.AggiungiListaPersonalizzataTask();
-                    aggiungiListaPersonalizzataTask.execute(titoloLista, descrizioneLista);
-                }
-            }
+        else if(descrizioneLista.length() > 300)
+            aggiungiListaPersonalizzataFragment.mostraToast("Superata lunghezza massima descrizione (300 caratteri)");
+        else {
+            AggiungiListaPersonalizzataPresenter.AggiungiListaPersonalizzataTask aggiungiListaPersonalizzataTask = new AggiungiListaPersonalizzataPresenter.AggiungiListaPersonalizzataTask();
+            aggiungiListaPersonalizzataTask.execute(titoloLista, descrizioneLista);
         }
     }
 
