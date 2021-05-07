@@ -68,6 +68,10 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
         return bAggiungiFilmAListaPers;
     }
 
+    public String getTitoloLista(){
+        return spinnerTitoloListaPersAggiungiAListaPers.getSelectedItem().toString();
+    }
+
     public void mostraProgressDialogCaricamento(){
         progressDialogCaricamento.show();
     }

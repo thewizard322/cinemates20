@@ -89,16 +89,25 @@ public class InserisciRecensioneFragment extends Fragment {
         return spinnerVoto;
     }
 
+    public String getVoto(){
+        return spinnerVoto.getSelectedItem().toString();
+    }
+
     public TextInputLayout getTilTestoRecensioneInserisciRecensione() {
         return tilTestoRecensioneInserisciRecensione;
+    }
+
+    public String getTestoRecensione(){
+        return tilTestoRecensioneInserisciRecensione.getEditText().getText().toString();
     }
 
     public Button getbRececensisciInserisciRecensione() {
         return bRececensisciInserisciRecensione;
     }
 
-    public void setTvFilmInserisciRecensione(String msg){
-        tvFilmInserisciRecensione.setText(msg);
+    public void setTvFilmInserisciRecensione(String titolo){
+        tvFilmInserisciRecensione.setText("Stai recensendo '"+
+                titolo+"'");
     }
 
     public void hideKeyboard(){

@@ -48,7 +48,7 @@ public class RicercaFilmPresenter {
         lwRicercaFilm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                replaceMostraFilmFragment(position);
+                addMostraFilmFragment(position);
             }
         });
     }
@@ -75,14 +75,14 @@ public class RicercaFilmPresenter {
         });
     }
 
-    private void replaceMostraFilmFragment(int i){
+    private void addMostraFilmFragment(int i){
         Bundle bundle = new Bundle();
         bundle.putSerializable("film", arrayListFilm.get(i));
         Fragment fg = new MostraFilmFragment();
         fg.setArguments(bundle);
         FragmentManager fm = ricercaFilmFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void effettuaRicerca(){

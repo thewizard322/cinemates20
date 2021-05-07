@@ -56,20 +56,16 @@ public class MostraFilmPresenter {
     }
 
     public void aggiungiAiPreferiti(){
-        String username = Utente.getUtenteLoggato().getUsername();
-        Integer idFilm = filmSelezionato.getId();
-        AggiungiAiPreferitiTask aggiungiAiPreferitiTask = new AggiungiAiPreferitiTask(username,idFilm);
+        AggiungiAiPreferitiTask aggiungiAiPreferitiTask = new AggiungiAiPreferitiTask();
         aggiungiAiPreferitiTask.execute();
     }
 
     public void aggiungiAiFilmDaVedere(){
-        String username = Utente.getUtenteLoggato().getUsername();
-        Integer idFilm = filmSelezionato.getId();
-        AggiungiAiFilmDaVedereTask aggiungiAiPreferitiTask = new AggiungiAiFilmDaVedereTask(username,idFilm);
+        AggiungiAiFilmDaVedereTask aggiungiAiPreferitiTask = new AggiungiAiFilmDaVedereTask();
         aggiungiAiPreferitiTask.execute();
     }
 
-    public void replaceAggiungiAListaPers(){
+    public void replaceAggiungiAListaPersFragment(){
         Bundle bundle = new Bundle();
         bundle.putSerializable("film", filmSelezionato);
         Fragment fg = new AggiungiAListaPersonalizzataFragment();
@@ -171,14 +167,6 @@ public class MostraFilmPresenter {
 
     private class AggiungiAiPreferitiTask extends AsyncTask<Void,Void,Boolean>{
 
-        private String username;
-        private int idFilm;
-
-        public AggiungiAiPreferitiTask(String username, int idFilm){
-            this.username = username;
-            this.idFilm = idFilm;
-        }
-
         @Override
         protected void onPreExecute() {
             mostraFilmFragment.mostraProgressDialogCaricamento();
@@ -186,8 +174,9 @@ public class MostraFilmPresenter {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
+            String username = Utente.getUtenteLoggato().getUsername();
             FilmDAO filmDAO = new FilmDAO();
-            boolean filmAggiunto = filmDAO.aggiungiAiPreferiti(username,idFilm);
+            boolean filmAggiunto = filmDAO.aggiungiAiPreferiti(username,filmSelezionato);
             return filmAggiunto;
         }
 
@@ -204,14 +193,6 @@ public class MostraFilmPresenter {
 
     private class AggiungiAiFilmDaVedereTask extends AsyncTask<Void,Void,Boolean>{
 
-        private String username;
-        private int idFilm;
-
-        public AggiungiAiFilmDaVedereTask(String username, int idFilm){
-            this.username = username;
-            this.idFilm = idFilm;
-        }
-
         @Override
         protected void onPreExecute() {
             mostraFilmFragment.mostraProgressDialogCaricamento();
@@ -219,8 +200,9 @@ public class MostraFilmPresenter {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
+            String username = Utente.getUtenteLoggato().getUsername();
             FilmDAO filmDAO = new FilmDAO();
-            boolean filmAggiunto = filmDAO.aggiungiAiFilmDaVedere(username,idFilm);
+            boolean filmAggiunto = filmDAO.aggiungiAiFilmDaVedere(username,filmSelezionato);
             return filmAggiunto;
         }
 

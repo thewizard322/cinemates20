@@ -52,6 +52,10 @@ public class Film implements Serializable {
         return generi;
     }
 
+    public String getPathPoster(){
+        return pathPoster;
+    }
+
     public String getPatPosterW92() {
         return "https://image.tmdb.org/t/p/w92"+pathPoster;
     }

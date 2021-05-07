@@ -20,8 +20,7 @@ public class InserisciRecensionePresenter {
     public InserisciRecensionePresenter(InserisciRecensioneFragment inserisciRecensioneFragment, Film filmSelezionato){
         this.inserisciRecensioneFragment = inserisciRecensioneFragment;
         this.filmSelezionato = filmSelezionato;
-        inserisciRecensioneFragment.setTvFilmInserisciRecensione("Stai recensendo '"+
-                filmSelezionato.getTitolo()+"'");
+        inserisciRecensioneFragment.setTvFilmInserisciRecensione(filmSelezionato.getTitolo());
         initializeListener();
     }
 
@@ -38,9 +37,8 @@ public class InserisciRecensionePresenter {
     }
 
     private void inserisciRecensione(){
-        String testoRecensione = inserisciRecensioneFragment.getTilTestoRecensioneInserisciRecensione()
-                .getEditText().getText().toString();
-        String votoRecensione = inserisciRecensioneFragment.getSpinnerVoto().getSelectedItem().toString();
+        String testoRecensione = inserisciRecensioneFragment.getTestoRecensione();
+        String votoRecensione = inserisciRecensioneFragment.getVoto();
         boolean campiNonVuoti = campiNonVuoti(testoRecensione,votoRecensione);
         if(campiNonVuoti == false){
             inserisciRecensioneFragment.mostraToast("Compilare tutti i campi richiesti");

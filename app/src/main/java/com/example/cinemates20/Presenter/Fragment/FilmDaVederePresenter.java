@@ -24,8 +24,7 @@ public class FilmDaVederePresenter {
     public FilmDaVederePresenter(FilmDaVedereFragment filmDaVedereFragment) {
         this.filmDaVedereFragment = filmDaVedereFragment;
         initializeListView();
-        PrelievoIdTask prelievoIdTask = new PrelievoIdTask();
-        prelievoIdTask.execute();
+        prelevaFilmDaVedere();
     }
 
     private void initializeListView() {
@@ -38,9 +37,9 @@ public class FilmDaVederePresenter {
         adapterFilmDaVedere.notifyDataSetChanged();
     }
 
-    private void prelevaFilmDaVedere(ArrayList<Integer> listId){
+    private void prelevaFilmDaVedere(){
         PrelievoFilmDaVedereTask prelievoFilmDaVedereTask=new PrelievoFilmDaVedereTask();
-        prelievoFilmDaVedereTask.execute(listId);
+        prelievoFilmDaVedereTask.execute();
     }
 
     public void rimuoviFilmDaVedere(int id_film){
@@ -48,7 +47,7 @@ public class FilmDaVederePresenter {
         rimozioneFilmDaVedereTask.execute(id_film);
     }
 
-    private class PrelievoIdTask extends AsyncTask<Void,Void,ArrayList<Integer>>{
+    private class PrelievoFilmDaVedereTask extends AsyncTask<Void,Void,Void> {
 
         @Override
         protected void onPreExecute() {
@@ -56,27 +55,10 @@ public class FilmDaVederePresenter {
         }
 
         @Override
-        protected ArrayList<Integer> doInBackground(Void... voids){
+        protected Void doInBackground(Void... voids) {
+            String username = Utente.getUtenteLoggato().getUsername();
             FilmDAO filmDAO = new FilmDAO();
-            ArrayList<Integer> list=filmDAO.preleva_id_film_da_vedere(Utente.getUtenteLoggato().getUsername());
-            return list;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Integer> list) {
-            prelevaFilmDaVedere(list);
-        }
-    }
-
-    private class PrelievoFilmDaVedereTask extends AsyncTask<ArrayList<Integer>,Void,Void> {
-        @Override
-        protected Void doInBackground(ArrayList<Integer>... arrayLists) {
-            TmdbApi tmdbApi = new TmdbApi("2bc3bb8279aa7bcc7bd18d60857dc82a");
-            for(Integer id_film:arrayLists[0]) {
-                MovieDb moviedB = tmdbApi.getMovies().getMovie(id_film,"it");
-                Film film = new Film(id_film,moviedB.getTitle()  ,moviedB.getReleaseDate(),moviedB.getPosterPath());
-                filmDaVedere.add(film);
-            }
+            filmDaVedere.addAll(filmDAO.prelevaFilmDaVedere(username));
             return null;
         }
 
@@ -89,6 +71,12 @@ public class FilmDaVederePresenter {
     }
 
     private class RimozioneFilmDaVedereTask extends AsyncTask<Integer,Void,Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            filmDaVedereFragment.mostraProgressDialogCaricamento();
+        }
+
         @Override
         protected Boolean doInBackground(Integer... integers) {
             int id_film=integers[0];
@@ -109,16 +97,11 @@ public class FilmDaVederePresenter {
         }
 
         @Override
-        protected void onPreExecute() {
-            filmDaVedereFragment.mostraProgressDialogCaricamento();
-        }
-
-        @Override
         protected void onPostExecute(Boolean flag) {
             filmDaVedereFragment.togliProgrssDialogCaricamento();
             if (flag==true) {
-                adapterFilmDaVedere.notifyDataSetChanged();
                 filmDaVedereFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
+                adapterFilmDaVedere.notifyDataSetChanged();
             }
             else if(flag==false) {
                 filmDaVedereFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");

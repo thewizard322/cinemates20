@@ -24,8 +24,7 @@ public class PreferitiPresenter {
     public PreferitiPresenter(PreferitiFragment preferitiFragment) {
         this.preferitiFragment = preferitiFragment;
         initializeListView();
-        PrelievoIdTask prelievoIdTask = new PrelievoIdTask();
-        prelievoIdTask.execute();
+        prelevaPreferiti();
     }
 
     private void initializeListView() {
@@ -38,9 +37,9 @@ public class PreferitiPresenter {
         adapterPreferiti.notifyDataSetChanged();
     }
 
-    private void prelevaPreferiti(ArrayList<Integer> listId){
+    private void prelevaPreferiti(){
         PrelievoPreferitiTask prelievoPreferitiTask=new PrelievoPreferitiTask();
-        prelievoPreferitiTask.execute(listId);
+        prelievoPreferitiTask.execute();
     }
 
     public void rimuoviDaPreferiti(int id_film){
@@ -48,7 +47,7 @@ public class PreferitiPresenter {
         rimozionePreferitiTask.execute(id_film);
     }
 
-     private class PrelievoIdTask extends AsyncTask<Void,Void,ArrayList<Integer>>{
+    private class PrelievoPreferitiTask extends AsyncTask<Void,Void,Void> {
 
         @Override
         protected void onPreExecute() {
@@ -56,27 +55,10 @@ public class PreferitiPresenter {
         }
 
         @Override
-        protected ArrayList<Integer> doInBackground(Void... voids){
+        protected Void doInBackground(Void... voids) {
+            String username = Utente.getUtenteLoggato().getUsername();
             FilmDAO filmDAO = new FilmDAO();
-            ArrayList<Integer> list=filmDAO.preleva_id_preferiti(Utente.getUtenteLoggato().getUsername());
-             return list;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Integer> list) {
-            prelevaPreferiti(list);
-        }
-    }
-
-    private class PrelievoPreferitiTask extends AsyncTask<ArrayList<Integer>,Void,Void> {
-        @Override
-        protected Void doInBackground(ArrayList<Integer>... arrayLists) {
-            TmdbApi tmdbApi = new TmdbApi("2bc3bb8279aa7bcc7bd18d60857dc82a");
-            for(Integer id_film:arrayLists[0]) {
-                MovieDb moviedB = tmdbApi.getMovies().getMovie(id_film,"it");
-                Film film = new Film(id_film,moviedB.getTitle()  ,moviedB.getReleaseDate(),moviedB.getPosterPath());
-                filmPreferiti.add(film);
-            }
+            filmPreferiti.addAll(filmDAO.prelevaPreferiti(username));
             return null;
         }
 
@@ -89,6 +71,12 @@ public class PreferitiPresenter {
     }
 
     private class RimozionePreferitiTask extends AsyncTask<Integer,Void,Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            preferitiFragment.mostraProgressDialogCaricamento();
+        }
+
         @Override
         protected Boolean doInBackground(Integer... integers) {
             int id_film=integers[0];
@@ -109,16 +97,11 @@ public class PreferitiPresenter {
         }
 
         @Override
-        protected void onPreExecute() {
-            preferitiFragment.mostraProgressDialogCaricamento();
-        }
-
-        @Override
         protected void onPostExecute(Boolean flag) {
             preferitiFragment.togliProgrssDialogCaricamento();
             if (flag==true) {
-                adapterPreferiti.notifyDataSetChanged();
                 preferitiFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
+                adapterPreferiti.notifyDataSetChanged();
             }
             else if(flag==false) {
                 preferitiFragment.mostraAlertDialogOk("Azione fallita","Eliminazione fallita");

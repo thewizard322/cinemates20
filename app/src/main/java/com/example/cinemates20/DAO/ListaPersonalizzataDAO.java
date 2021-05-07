@@ -2,6 +2,7 @@ package com.example.cinemates20.DAO;
 
 import android.util.Log;
 
+import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
 
 import java.sql.Connection;
@@ -49,16 +50,20 @@ public class ListaPersonalizzataDAO {
         return arrayList;
     }
 
-    public boolean aggiungiFilmAListaPers(String username, String titolo, int idFilm){
+    public boolean aggiungiFilmAListaPers(String username, String titolo, Film film){
         boolean isCon = connect();
         if(isCon==false)
             return false;
-        String query = "INSERT INTO film_lista_personalizzata (titolo,username,id_film) VALUES (?,?,?)";
+        String query = "INSERT INTO film_lista_personalizzata (titolo_lista,username,id_film,titolo_film,anno,posterpath)" +
+                " VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, titolo);
             st.setString(2, username);
-            st.setInt(3,idFilm);
+            st.setInt(3,film.getId());
+            st.setString(4,film.getTitolo());
+            st.setString(5,film.getDataUscita());
+            st.setString(6,film.getPathPoster());
             st.executeUpdate();
             st.close();
         } catch (SQLException throwables) {

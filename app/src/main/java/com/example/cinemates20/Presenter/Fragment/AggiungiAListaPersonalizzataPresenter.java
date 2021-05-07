@@ -24,8 +24,8 @@ public class AggiungiAListaPersonalizzataPresenter {
                                                  Film filmSelezionato) {
         this.aggiungiAListaPersonalizzataFragment = aggiungiAListaPersonalizzataFragment;
         this.filmSelezionato = filmSelezionato;
-        aggiungiAListaPersonalizzataFragment.setTextTitoloFilmAggiungiAPers(filmSelezionato.getTitolo());
         prelevaListePersonalizzate();
+        aggiungiAListaPersonalizzataFragment.setTextTitoloFilmAggiungiAPers(filmSelezionato.getTitolo());
         initializeListener();
     }
 
@@ -63,7 +63,7 @@ public class AggiungiAListaPersonalizzataPresenter {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String descrizione = listePers.get(position).getDescrizione();
-                if(!descrizione.equals("")){
+                if(descrizione!=null && !descrizione.equals("")){
                     aggiungiAListaPersonalizzataFragment.setVisibilityTvDescrizioneTitoloAggiungiAListaPers(View.VISIBLE);
                     aggiungiAListaPersonalizzataFragment.setVisibilityTvDescrizioneListaAggiungiAListaPers(View.VISIBLE);
                     aggiungiAListaPersonalizzataFragment.setTextDescrizione(listePers.get(position).getDescrizione());
@@ -116,11 +116,9 @@ public class AggiungiAListaPersonalizzataPresenter {
         @Override
         protected Boolean doInBackground(Void... aVoid) {
             String username = Utente.getUtenteLoggato().getUsername();
-            String titoloLista = aggiungiAListaPersonalizzataFragment.getSpinnerTitoloListaPersAggiungiAListaPers()
-                    .getSelectedItem().toString();
-            int idFilm = filmSelezionato.getId();
+            String titoloLista = aggiungiAListaPersonalizzataFragment.getTitoloLista();
             ListaPersonalizzataDAO listaPersonalizzataDAO = new ListaPersonalizzataDAO();
-            return listaPersonalizzataDAO.aggiungiFilmAListaPers(username,titoloLista,idFilm);
+            return listaPersonalizzataDAO.aggiungiFilmAListaPers(username,titoloLista,filmSelezionato);
         }
 
         @Override
