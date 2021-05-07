@@ -64,7 +64,7 @@
             android:layout_width="29dp"
             android:layout_height="32dp"
             android:layout_margin="4dp"
-            android:background="@drawable/button_circle_preferiti"
+            android:background="@drawable/button_transparent"
             android:backgroundTint="#FAF9F9"
             app:backgroundTint="@null"
             app:icon="@drawable/rimuovi"
