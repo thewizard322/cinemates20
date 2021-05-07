@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,7 +70,9 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
     }
 
     public String getTitoloLista(){
-        return spinnerTitoloListaPersAggiungiAListaPers.getSelectedItem().toString();
+        if(spinnerTitoloListaPersAggiungiAListaPers.getSelectedItem()!=null)
+            return spinnerTitoloListaPersAggiungiAListaPers.getSelectedItem().toString();
+        return "";
     }
 
     public void mostraProgressDialogCaricamento(){
@@ -91,6 +94,10 @@ public class AggiungiAListaPersonalizzataFragment extends Fragment {
                     }
                 });
         alertDialog.show();
+    }
+
+    public void mostraToast(String msg){
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
     public void setTextDescrizione(String descrizione){

@@ -54,8 +54,8 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
             holder = (AdapterPreferiti.ViewHolder) rootView.getTag();
         }
 
-        holder.tvTitoloRowPreferiti.setText(arrayList.get(position).getTitolo());
-        holder.tvAnnoRowPreferiti.setText(arrayList.get(position).getDataUscita());
+        Film film = arrayList.get(position);
+        setView(holder,film);
 
         RequestOptions options = new RequestOptions()
                 .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
@@ -68,6 +68,15 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
         });
 
         return rootView;
+    }
+
+    private void setView(ViewHolder holder, Film film){
+        holder.tvTitoloRowPreferiti.setText(film.getTitolo());
+        holder.tvAnnoRowPreferiti.setText(film.getDataUscita());
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(film.getPatPosterW92()).apply(options).into(holder.ivRowPreferiti);
     }
 
     private static class ViewHolder{
