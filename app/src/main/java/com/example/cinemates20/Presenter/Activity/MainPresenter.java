@@ -14,11 +14,11 @@ import com.example.cinemates20.View.Fragment.HomeFragment;
 import com.example.cinemates20.View.Fragment.LoginFragment;
 import com.google.gson.Gson;
 
-public class MainController {
+public class MainPresenter {
 
     private MainActivity mainActivity;
 
-    public MainController(MainActivity mainActivity){
+    public MainPresenter(MainActivity mainActivity){
         this.mainActivity = mainActivity;
         checkUserLoggedIn();
     }
