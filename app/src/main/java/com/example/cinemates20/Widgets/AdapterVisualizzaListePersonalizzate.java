@@ -49,7 +49,7 @@ public class AdapterVisualizzaListePersonalizzate extends ArrayAdapter<Film> {
             rootView.setTag(holder);
         }
         else{
-            holder = (AdapterVisualizzaListePersonalizzate.ViewHolder) rootView.getTag();
+            holder = (ViewHolder) rootView.getTag();
         }
 
         holder.tvTitoloRowVisualizzaListePersonalizzate.setText(arrayList.get(position).getTitolo());

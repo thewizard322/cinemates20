@@ -14,26 +14,24 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tvTitoloListaAggiungiListaPersonalizzata"
+            android:id="@+id/tilTitoloListaAggiungiListaPersonalizzata"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:boxBackgroundColor="#FFFFFF"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            app:counterMaxLength="50"
+            app:counterEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
                 android:gravity="start"
                 android:hint="Titolo lista"
-                android:inputType="textMultiLine"
-                android:lines="8"
-                android:maxLines="10"
-                android:minLines="6"
-                android:scrollbars="vertical" />
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -43,7 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:boxBackgroundColor="#FFFFFF"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            app:counterMaxLength="300"
+            app:counterEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

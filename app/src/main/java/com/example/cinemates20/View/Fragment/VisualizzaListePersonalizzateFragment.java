@@ -73,6 +73,10 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
         return spinnerTitoloVisualizzaListePersonalizzate;
     }
 
+    public String getTitoloLista(){
+        return spinnerTitoloVisualizzaListePersonalizzate.getSelectedItem().toString();
+    }
+
     public TextView getTvDescrizioneVisualizzaListePersonalizzate() {
         return tvDescrizioneVisualizzaListePersonalizzate;
     }
