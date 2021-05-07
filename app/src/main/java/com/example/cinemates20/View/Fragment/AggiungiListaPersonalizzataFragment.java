@@ -19,7 +19,7 @@ import com.example.cinemates20.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class AggiungiListaPersonalizzataFragment extends Fragment {
-    TextInputLayout tvTitoloListaAggiungiListaPersonalizzata;
+    TextInputLayout tilTitoloListaAggiungiListaPersonalizzata;
     TextInputLayout tilTestoDescrizioneAggiungiListaPersonalizzata;
     Button bCreaListaAggiungiListaPersonalizzata;
     private ProgressDialog progressDialogCaricamento;
@@ -34,7 +34,7 @@ public class AggiungiListaPersonalizzataFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tvTitoloListaAggiungiListaPersonalizzata = view.findViewById(R.id.tvTitoloListaAggiungiListaPersonalizzata);
+        tilTitoloListaAggiungiListaPersonalizzata = view.findViewById(R.id.tilTitoloListaAggiungiListaPersonalizzata);
         tilTestoDescrizioneAggiungiListaPersonalizzata = view.findViewById(R.id.tilTestoDescrizioneAggiungiListaPersonalizzata);
         bCreaListaAggiungiListaPersonalizzata = view.findViewById(R.id.bCreaListaAggiungiListaPersonalizzata);
         initializeProgressDialog();
@@ -66,12 +66,20 @@ public class AggiungiListaPersonalizzataFragment extends Fragment {
         alertDialog.show();
     }
 
-    public TextInputLayout getTvTitoloListaAggiungiListaPersonalizzata() {
-        return tvTitoloListaAggiungiListaPersonalizzata;
+    public TextInputLayout getTilTitoloListaAggiungiListaPersonalizzata() {
+        return tilTitoloListaAggiungiListaPersonalizzata;
     }
 
     public TextInputLayout getTilTestoDescrizioneAggiungiListaPersonalizzata() {
         return tilTestoDescrizioneAggiungiListaPersonalizzata;
+    }
+
+    public String getTitoloLista(){
+        return tilTitoloListaAggiungiListaPersonalizzata.getEditText().getText().toString();
+    }
+
+    public String getDescrizioneLista(){
+        return tilTestoDescrizioneAggiungiListaPersonalizzata.getEditText().getText().toString();
     }
 
     public Button getbCreaListaAggiungiListaPersonalizzata() {

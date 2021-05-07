@@ -130,8 +130,7 @@ public class VisualizzaListePersonalizzatePresenter {
         @Override
         protected Void doInBackground(Void... voids) {
             String username = Utente.getUtenteLoggato().getUsername();
-            String titoloLista = visualizzaListePersonalizzateFragment.getSpinnerTitoloVisualizzaListePersonalizzate()
-                    .getSelectedItem().toString();
+            String titoloLista = visualizzaListePersonalizzateFragment.getTitoloLista();
             FilmDAO filmDAO = new FilmDAO();
             filmListaPersonalizzata.addAll(filmDAO.prelevafilmListaPersonalizzata(username, titoloLista));
             return null;

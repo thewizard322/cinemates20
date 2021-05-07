@@ -47,8 +47,8 @@ public class AggiungiListaPersonalizzataPresenter {
     }
 
     private void aggiungiListaPersonalizzata(){
-        String titoloLista = aggiungiListaPersonalizzataFragment.getTvTitoloListaAggiungiListaPersonalizzata().getEditText().getText().toString();
-        String descrizioneLista = aggiungiListaPersonalizzataFragment.getTilTestoDescrizioneAggiungiListaPersonalizzata().getEditText().getText().toString();
+        String titoloLista = aggiungiListaPersonalizzataFragment.getTitoloLista();
+        String descrizioneLista = aggiungiListaPersonalizzataFragment.getDescrizioneLista();
         boolean titoloVuoto = titoloVuoto(titoloLista);
 
         if(titoloVuoto == true){
@@ -67,8 +67,7 @@ public class AggiungiListaPersonalizzataPresenter {
             String username = Utente.getUtenteLoggato().getUsername();
             String titoloLista = strings[0];
             String descrizioneLista = strings[1];
-            boolean listaPersonalizzataInserita = listaPersonalizzataDAO.creaListaPers(titoloLista, username, descrizioneLista);
-            return listaPersonalizzataInserita;
+            return listaPersonalizzataDAO.creaListaPers(titoloLista, username, descrizioneLista);
         }
 
         @Override
