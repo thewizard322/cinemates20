@@ -21,7 +21,7 @@ import com.example.cinemates20.View.Fragment.FilmDaVedereFragment;
 
 import java.util.ArrayList;
 
-public class AdapterFilmDaVedere extends ArrayAdapter {
+public class AdapterFilmDaVedere extends ArrayAdapter<Film> {
     private Context context;
     private FilmDaVedereFragment filmDaVedereFragment;
     private ArrayList<Film> arrayList;

@@ -21,7 +21,7 @@ import com.example.cinemates20.View.Fragment.PreferitiFragment;
 
 import java.util.ArrayList;
 
-public class AdapterPreferiti extends ArrayAdapter {
+public class AdapterPreferiti extends ArrayAdapter<Film> {
     private Context context;
     private PreferitiFragment preferitiFragment;
     private ArrayList<Film> arrayList;
