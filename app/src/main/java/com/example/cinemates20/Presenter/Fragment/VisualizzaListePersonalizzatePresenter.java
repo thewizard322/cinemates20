@@ -42,7 +42,7 @@ public class VisualizzaListePersonalizzatePresenter {
     private void initializeListView() {
         ListView lvVisualizzaListePersonalizzate = visualizzaListePersonalizzateFragment.getLvVisualizzaListePersonalizzate();
         adapterVisualizzaListePersonalizzate = new AdapterVisualizzaListePersonalizzate(Objects.requireNonNull(visualizzaListePersonalizzateFragment.getContext()), visualizzaListePersonalizzateFragment, filmListaPersonalizzata, this);
-        lvVisualizzaListePersonalizzate.setAdapter((ListAdapter) adapterVisualizzaListePersonalizzate);
+        lvVisualizzaListePersonalizzate.setAdapter(adapterVisualizzaListePersonalizzate);
     }
 
     private void replaceAggiungiListaPersonalizzataFragment(){
@@ -125,6 +125,7 @@ public class VisualizzaListePersonalizzatePresenter {
 
         @Override
         protected void onPreExecute() {
+            filmListaPersonalizzata.clear();
             visualizzaListePersonalizzateFragment.mostraProgressDialogCaricamento();
         }
 
