@@ -76,6 +76,28 @@ public class ListaPersonalizzataDAO {
         return true;
     }
 
+    public boolean creaListaPers(String titolo, String username, String descrizione){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "INSERT INTO lista_personalizzata (titolo,username,descrizione) VALUES (?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, titolo);
+            st.setString(2, username);
+            st.setString(3, descrizione);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error insert lista_pers","Impossibile inserire lista personalizzata");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
+
     public void closeConnection(){
         try {
             con.close();

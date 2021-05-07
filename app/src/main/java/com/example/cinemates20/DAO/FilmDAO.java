@@ -196,6 +196,38 @@ public class FilmDAO {
         }
         return true;
     }
+
+    public ArrayList<Film> prelevafilmListaPersonalizzata(String username, String titoloLista){
+        ArrayList<Film> list = new ArrayList<>();
+        boolean isCon = connect();
+        if(isCon==false)
+            return list;
+        String query = "SELECT id_film,titolo_lista,anno,posterpath FROM film_lista_personalizzata WHERE username=? AND titolo_lista=?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, username);
+            st.setString(2, titoloLista);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                int idF = rs.getInt("id_film");
+                String titolo = rs.getString("titolo_lista");
+                String data = rs.getString("anno");
+                String posterPath = rs.getString("posterpath");
+                Film film = new Film(idF,titolo,data,posterPath);
+                list.add(film);
+            }
+            st.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Log.e("Error prelievo listPers","Impossibile prelevare film dalla lista personalizzata");
+            return list;
+        }
+        finally {
+            closeConnection();
+        }
+        return list;
+    }
+
     public void closeConnection(){
         try {
             con.close();
