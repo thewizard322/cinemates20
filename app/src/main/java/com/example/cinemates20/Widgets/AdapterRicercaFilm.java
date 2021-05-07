@@ -50,14 +50,20 @@ public class AdapterRicercaFilm extends ArrayAdapter<Film> {
             holder = (ViewHolder) rootView.getTag();
         }
 
-        holder.tvTitoloRowRicercaFilm.setText(arrayList.get(position).getTitolo());
-        holder.tvAnnoRowRicercaFilm.setText(arrayList.get(position).getDataUscita());
+        Film film = arrayList.get(position);
+        setView(holder,film);
+
+        return rootView;
+    }
+
+    private void setView(ViewHolder holder, Film film){
+        holder.tvTitoloRowRicercaFilm.setText(film.getTitolo());
+        holder.tvAnnoRowRicercaFilm.setText(film.getDataUscita());
+
 
         RequestOptions options = new RequestOptions()
                 .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
-        Glide.with(context).load(arrayList.get(position).getPatPosterW92()).apply(options).into(holder.ivRowRicercaFilm);
-
-        return rootView;
+        Glide.with(context).load(film.getPatPosterW92()).apply(options).into(holder.ivRowRicercaFilm);
     }
 
     private static class ViewHolder{

@@ -116,6 +116,7 @@ public class VisualizzaListePersonalizzatePresenter {
 
         @Override
         protected void onPostExecute(ArrayList<ListaPersonalizzata> listaPers) {
+            visualizzaListePersonalizzateFragment.togliProgressDialogCaricamento();
             riempiSpinnerListe(listaPers);
         }
     }
@@ -125,6 +126,7 @@ public class VisualizzaListePersonalizzatePresenter {
         @Override
         protected void onPreExecute() {
             filmListaPersonalizzata.clear();
+            visualizzaListePersonalizzateFragment.mostraProgressDialogCaricamento();
         }
 
         @Override

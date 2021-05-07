@@ -52,14 +52,19 @@ public class AdapterVisualizzaListePersonalizzate extends ArrayAdapter<Film> {
             holder = (ViewHolder) rootView.getTag();
         }
 
-        holder.tvTitoloRowVisualizzaListePersonalizzate.setText(arrayList.get(position).getTitolo());
-        holder.tvAnnoRowVisualizzaListePersonalizzate.setText(arrayList.get(position).getDataUscita());
+        Film film = arrayList.get(position);
+        setView(holder,film);
+        return rootView;
+    }
+
+    private void setView(ViewHolder holder, Film film){
+        holder.tvTitoloRowVisualizzaListePersonalizzate.setText(film.getTitolo());
+        holder.tvAnnoRowVisualizzaListePersonalizzate.setText(film.getDataUscita());
 
         RequestOptions options = new RequestOptions()
                 .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
-        Glide.with(context).load(arrayList.get(position).getPatPosterW92()).apply(options).into(holder.ivRowListePersonalizzate);
+        Glide.with(context).load(film.getPatPosterW92()).apply(options).into(holder.ivRowListePersonalizzate);
 
-        return rootView;
     }
 
     private static class ViewHolder{

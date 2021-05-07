@@ -106,48 +106,50 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
 
         if(position == 0){
             holderFilm = (ViewHolderFilm) rowView.getTag();
-
-            holderFilm.tvTitoloMostraFilm.setText(film.getTitolo());
-
-            if(film.getDataUscita()==null || (!film.getDataUscita().equals("")))
-                holderFilm.tvData.setText("Data uscita: "+film.getDataUscita());
-            else
-                holderFilm.tvData.setText("");
-
-            holderFilm.tvGeneriMostraFilm.setText(film.getStringGeneri());
-            holderFilm.tvAttoriMostraFilm.setText(film.getStringAttori());
-
-            if(film.getRegista()!=null)
-                holderFilm.tvRegistaMostraFilm.setText("Regia di "+film.getRegista());
-            else
-                holderFilm.tvRegistaMostraFilm.setText("");
-
-            holderFilm.tvTramaMostraFilm.setText(film.getTrama());
-
-            RequestOptions options = new RequestOptions()
-                    .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
-            Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);
+            setViewFilm(holderFilm);
             setListenerFilm(holderFilm);
         }
         else{
             holderRecensione = (ViewHolderRecensione) rowView.getTag();
-            holderRecensione.tvUtenteRecensione.setText(arrayList.get(position-1).getUsername());
-            holderRecensione.tvTestoRecensione.setText(arrayList.get(position-1).getTesto());
-            holderRecensione.tvValutazioneRecensione.setText("Voto: "+ arrayList.get(position-1).getValutazione());
 
-            if(Utente.getUtenteLoggato().getUsername().equals(arrayList.get(position-1).getUsername()))
-                holderRecensione.bSegnalaRecenesione.setVisibility(View.GONE);
-            else {
-                holderRecensione.bSegnalaRecenesione.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int idRecensione = arrayList.get(position - 1).getIdRecenesione();
-                        mostraFilmPresenter.segnalaRecensione(idRecensione);
-                    }
-                });
-            }
+            Recensione recensione = arrayList.get(position-1);
+            setViewRecensione(holderRecensione,recensione);
+            setListenerRecensione(holderRecensione,recensione);
+
         }
         return rowView;
+    }
+
+    private void setViewFilm(ViewHolderFilm holderFilm){
+        holderFilm.tvTitoloMostraFilm.setText(film.getTitolo());
+
+        if(film.getDataUscita()==null || (!film.getDataUscita().equals("")))
+            holderFilm.tvData.setText("Data uscita: "+film.getDataUscita());
+        else
+            holderFilm.tvData.setText("");
+
+        holderFilm.tvGeneriMostraFilm.setText(film.getStringGeneri());
+        holderFilm.tvAttoriMostraFilm.setText(film.getStringAttori());
+
+        if(film.getRegista()!=null)
+            holderFilm.tvRegistaMostraFilm.setText("Regia di "+film.getRegista());
+        else
+            holderFilm.tvRegistaMostraFilm.setText("");
+
+        holderFilm.tvTramaMostraFilm.setText(film.getTrama());
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);
+    }
+
+    private void setViewRecensione(ViewHolderRecensione holderRecensione, Recensione recensione){
+        holderRecensione.tvUtenteRecensione.setText(recensione.getUsername());
+        holderRecensione.tvTestoRecensione.setText(recensione.getTesto());
+        holderRecensione.tvValutazioneRecensione.setText("Voto: "+ recensione.getValutazione());
+
+        if(Utente.getUtenteLoggato().getUsername().equals(recensione.getUsername()))
+            holderRecensione.bSegnalaRecenesione.setVisibility(View.GONE);
     }
 
     private void setListenerFilm(ViewHolderFilm holderFilm){
@@ -176,6 +178,16 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
             @Override
             public void onClick(View v) {
                 mostraFilmPresenter.inserisciRecensione();
+            }
+        });
+    }
+
+    private void setListenerRecensione(ViewHolderRecensione holderRecensione, Recensione recensione){
+        holderRecensione.bSegnalaRecenesione.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int idRecensione = recensione.getIdRecenesione();
+                mostraFilmPresenter.segnalaRecensione(idRecensione);
             }
         });
     }

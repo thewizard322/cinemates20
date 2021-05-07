@@ -82,8 +82,19 @@ public class AggiungiAListaPersonalizzataPresenter {
     }
 
     private void aggiungiFilmAListaPers() {
-        AggiungiFilmAListaTask aggiungiFilmAListaTask = new AggiungiFilmAListaTask();
-        aggiungiFilmAListaTask.execute();
+        String titoloLista = aggiungiAListaPersonalizzataFragment.getTitoloLista();
+        if(campiNonVuoti(titoloLista)==false)
+            aggiungiAListaPersonalizzataFragment.mostraToast("Selezonare una lista");
+        else {
+            AggiungiFilmAListaTask aggiungiFilmAListaTask = new AggiungiFilmAListaTask();
+            aggiungiFilmAListaTask.execute();
+        }
+    }
+
+    private boolean campiNonVuoti(String titoloLista){
+        if(titoloLista.equals(""))
+            return false;
+        return true;
     }
 
     private class PrelevaListeTask extends AsyncTask<Void, Void, ArrayList<ListaPersonalizzata>> {

@@ -21,7 +21,7 @@ import com.example.cinemates20.View.Fragment.PreferitiFragment;
 
 import java.util.ArrayList;
 
-public class AdapterPreferiti extends ArrayAdapter {
+public class AdapterPreferiti extends ArrayAdapter<Film> {
     private Context context;
     private PreferitiFragment preferitiFragment;
     private ArrayList<Film> arrayList;
@@ -54,8 +54,8 @@ public class AdapterPreferiti extends ArrayAdapter {
             holder = (AdapterPreferiti.ViewHolder) rootView.getTag();
         }
 
-        holder.tvTitoloRowPreferiti.setText(arrayList.get(position).getTitolo());
-        holder.tvAnnoRowPreferiti.setText(arrayList.get(position).getDataUscita());
+        Film film = arrayList.get(position);
+        setView(holder,film);
 
         RequestOptions options = new RequestOptions()
                 .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
@@ -68,6 +68,15 @@ public class AdapterPreferiti extends ArrayAdapter {
         });
 
         return rootView;
+    }
+
+    private void setView(ViewHolder holder, Film film){
+        holder.tvTitoloRowPreferiti.setText(film.getTitolo());
+        holder.tvAnnoRowPreferiti.setText(film.getDataUscita());
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(film.getPatPosterW92()).apply(options).into(holder.ivRowPreferiti);
     }
 
     private static class ViewHolder{

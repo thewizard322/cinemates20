@@ -30,7 +30,7 @@ public class PreferitiPresenter {
     private void initializeListView() {
         ListView lwPreferiti = preferitiFragment.getLwPreferiti();
         adapterPreferiti = new AdapterPreferiti(Objects.requireNonNull(preferitiFragment.getContext()), preferitiFragment, filmPreferiti,this);
-        lwPreferiti.setAdapter((ListAdapter) adapterPreferiti);
+        lwPreferiti.setAdapter(adapterPreferiti);
     }
 
     private void riempiListView(){
