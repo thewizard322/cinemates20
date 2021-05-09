@@ -24,6 +24,7 @@ public class AggiungiListaPersonalizzataPresenter {
         bCreaListaAggiungiListaPersonalizzata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aggiungiListaPersonalizzataFragment.hideKeyboard();
                 aggiungiListaPersonalizzata();
             }
         });
@@ -64,6 +65,12 @@ public class AggiungiListaPersonalizzataPresenter {
     }
 
     private class AggiungiListaPersonalizzataTask extends AsyncTask<String,Void,Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            aggiungiListaPersonalizzataFragment.mostraProgressDialog();
+        }
+
         @Override
         protected Boolean doInBackground(String... strings) {
             ListaPersonalizzataDAO listaPersonalizzataDAO = new ListaPersonalizzataDAO();
@@ -75,6 +82,7 @@ public class AggiungiListaPersonalizzataPresenter {
 
         @Override
         protected void onPostExecute(Boolean listaPersonalizzataInserita) {
+            aggiungiListaPersonalizzataFragment.togliProgressDialog();
             if(listaPersonalizzataInserita == false)
                 aggiungiListaPersonalizzataFragment.mostraToast("Hai già creato una lista con questo titolo");
             else
