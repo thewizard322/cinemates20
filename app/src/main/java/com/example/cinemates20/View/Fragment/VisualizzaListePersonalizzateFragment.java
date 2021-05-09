@@ -17,9 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates20.Presenter.Fragment.VisualizzaListePersonalizzatePresenter;
 import com.example.cinemates20.R;
-import com.example.cinemates20.Widgets.AdapterPreferiti;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzate;
-
 
 public class VisualizzaListePersonalizzateFragment extends Fragment {
 
