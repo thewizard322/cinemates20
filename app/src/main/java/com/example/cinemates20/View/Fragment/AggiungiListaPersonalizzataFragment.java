@@ -2,11 +2,13 @@ package com.example.cinemates20.View.Fragment;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -49,6 +51,14 @@ public class AggiungiListaPersonalizzataFragment extends Fragment {
         progressDialogCaricamento.setCancelable(false);
     }
 
+    public void mostraProgressDialog(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgressDialog(){
+        progressDialogCaricamento.dismiss();
+    }
+
     public void mostraToast(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
@@ -64,6 +74,14 @@ public class AggiungiListaPersonalizzataFragment extends Fragment {
                     }
                 });
         alertDialog.show();
+    }
+
+    public void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager) getActivity()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (getActivity().getCurrentFocus() != null)
+            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus()
+                    .getApplicationWindowToken(),0);
     }
 
     public TextInputLayout getTilTitoloListaAggiungiListaPersonalizzata() {
