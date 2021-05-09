@@ -40,9 +40,10 @@ public class InserisciRecensionePresenter {
         String testoRecensione = inserisciRecensioneFragment.getTestoRecensione();
         String votoRecensione = inserisciRecensioneFragment.getVoto();
         boolean campiNonVuoti = campiNonVuoti(testoRecensione,votoRecensione);
-        if(campiNonVuoti == false){
+        if(campiNonVuoti == false)
             inserisciRecensioneFragment.mostraToast("Compilare tutti i campi richiesti");
-        }
+        else if (testoRecensione.length()>300)
+            inserisciRecensioneFragment.mostraToast("La recensione può essere massimo di 300 caratteri");
         else{
             InserisciRecensioneTask inserisciRecensioneTask = new InserisciRecensioneTask();
             inserisciRecensioneTask.execute(testoRecensione,votoRecensione);
@@ -90,8 +91,7 @@ public class InserisciRecensionePresenter {
         protected void onPostExecute(Boolean recensioneInserita) {
             inserisciRecensioneFragment.togliProgressDialogRecensione();
             if(recensioneInserita == false)
-                inserisciRecensioneFragment.mostraToast("Impossibile inserire la recensione. Controllare il numero " +
-                        "di caratteri nel testo");
+                inserisciRecensioneFragment.mostraToast("Impossibile inserire la recensione");
             else
                 onReviewInsertSuccess();
         }
