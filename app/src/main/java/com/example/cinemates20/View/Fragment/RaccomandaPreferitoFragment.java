@@ -97,4 +97,8 @@ public class RaccomandaPreferitoFragment extends Fragment {
         spinnerAmicoRaccomandaPreferito.setAdapter(arrayAdapter);
     }
 
+    public void setTvTitoloRaccomandaPreferito(String titoloFilm){
+        tvTitoloRaccomandaPreferito.setText("Condividi '"+titoloFilm+"' ai tuoi amici");
+    }
+
 }
