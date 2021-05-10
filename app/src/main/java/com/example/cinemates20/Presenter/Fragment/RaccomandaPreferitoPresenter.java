@@ -22,6 +22,7 @@ public class RaccomandaPreferitoPresenter {
     public RaccomandaPreferitoPresenter(RaccomandaPreferitoFragment raccomandaPreferitoFragment, Film film){
         this.raccomandaPreferitoFragment = raccomandaPreferitoFragment;
         this.filmSelezionato = film;
+        raccomandaPreferitoFragment.setTvTitoloRaccomandaPreferito(filmSelezionato.getTitolo());
         prelevaAmici();
         initializeListener();
     }

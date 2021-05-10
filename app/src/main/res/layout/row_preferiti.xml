@@ -2,6 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="vertical">
@@ -28,11 +29,11 @@
 
         <TextView
             android:id="@+id/tvTitoloRowPreferiti"
-            android:layout_width="160dp"
-            android:layout_height="21dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="110dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="100dp"
             android:text="Titolo"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,10 +45,10 @@
 
         <TextView
             android:id="@+id/tvAnnoRowPreferiti"
-            android:layout_width="162dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="110dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="8dp"
             android:text="Anno"
             android:textStyle="bold"
@@ -60,10 +61,12 @@
 
         <Button
             android:id="@+id/btRimuoviDaPreferiti"
-            android:layout_width="29dp"
-            android:layout_height="32dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="4dp"
-            android:background="@drawable/button_transparent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/buttontransparent_custom"
             app:backgroundTint="@null"
             app:icon="@drawable/rimuovi"
             app:iconGravity="textStart"
@@ -72,16 +75,19 @@
             app:iconTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toEndOf="@+id/tvTitoloRowPreferiti"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.495" />
 
         <Button
             android:id="@+id/btCondividiPreferiti"
-            android:layout_width="29dp"
-            android:layout_height="32dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="4dp"
-            android:background="@drawable/button_transparent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/buttontransparent_custom"
             app:backgroundTint="@null"
             app:icon="@android:drawable/ic_menu_share"
             app:iconGravity="textStart"
@@ -89,8 +95,8 @@
             app:iconSize="30dp"
             app:iconTint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.857"
+            app:layout_constraintEnd_toStartOf="@+id/btRimuoviDaPreferiti"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/tvTitoloRowPreferiti"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
