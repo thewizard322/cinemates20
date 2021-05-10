@@ -75,6 +75,24 @@
             app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toEndOf="@+id/tvTitoloRowPreferiti"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btCondividiPreferiti"
+            android:layout_width="29dp"
+            android:layout_height="32dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/button_transparent"
+            app:backgroundTint="@null"
+            app:icon="@android:drawable/ic_menu_share"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="30dp"
+            app:iconTint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.857"
+            app:layout_constraintStart_toEndOf="@+id/tvTitoloRowPreferiti"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

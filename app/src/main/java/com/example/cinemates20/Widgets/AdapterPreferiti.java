@@ -47,7 +47,8 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
             holder.ivRowPreferiti = rootView.findViewById(R.id.ivRowPreferiti);
             holder.tvTitoloRowPreferiti= rootView.findViewById(R.id.tvTitoloRowPreferiti);
             holder.tvAnnoRowPreferiti = rootView.findViewById(R.id.tvAnnoRowPreferiti);
-            holder.btRimuoviDaPreferiti=rootView.findViewById(R.id.btRimuoviDaPreferiti);
+            holder.btRimuoviDaPreferiti = rootView.findViewById(R.id.btRimuoviDaPreferiti);
+            holder.btCondividiPreferiti = rootView.findViewById(R.id.btCondividiPreferiti);
             rootView.setTag(holder);
         }
         else{
@@ -63,7 +64,13 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
         holder.btRimuoviDaPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            preferitiPresenter.rimuoviDaPreferiti(arrayList.get(position).getId());
+                preferitiPresenter.rimuoviDaPreferiti(arrayList.get(position).getId());
+            }
+        });
+        holder.btCondividiPreferiti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -84,6 +91,7 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
         TextView tvTitoloRowPreferiti;
         TextView tvAnnoRowPreferiti;
         Button btRimuoviDaPreferiti;
+        Button btCondividiPreferiti;
     }
 }
 
