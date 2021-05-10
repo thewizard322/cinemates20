@@ -1,12 +1,8 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
-import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.UtenteDAO;
-import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.View.Fragment.AmiciFragment;
 import com.example.cinemates20.Widgets.AdapterAmici;
@@ -14,11 +10,8 @@ import com.example.cinemates20.Widgets.AdapterAmici;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.model.MovieDb;
-
 public class AmiciPresenter {
-    private ArrayList amici=new ArrayList<String>();
+    private ArrayList<String> amici=new ArrayList<String>();
     private AdapterAmici adapterAmici;
     private AmiciFragment amiciFragment;
 
