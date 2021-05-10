@@ -61,7 +61,9 @@ public class RaccomandaPreferitoFragment extends Fragment {
     }
 
     public String getUsernameAmico(){
-        return spinnerAmicoRaccomandaPreferito.getSelectedItem().toString();
+        if(spinnerAmicoRaccomandaPreferito.getSelectedItem()!=null)
+            return spinnerAmicoRaccomandaPreferito.getSelectedItem().toString();
+        return "";
     }
 
     public Spinner getSpinnerAmicoRaccomandaPreferito(){
