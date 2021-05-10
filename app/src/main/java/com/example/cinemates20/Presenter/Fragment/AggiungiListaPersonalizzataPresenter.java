@@ -37,10 +37,10 @@ public class AggiungiListaPersonalizzataPresenter {
     private void onReviewInsertSuccess(){
         aggiungiListaPersonalizzataFragment.mostraAlertDialogOk("LISTA PERSONALIZZATA CREATA"
                 ,"Lista creata con successo");
-        backToMostraFilmFragment();
+        backToVisualizzaListePersonalizzateFragment();
     }
 
-    private void backToMostraFilmFragment(){
+    private void backToVisualizzaListePersonalizzateFragment(){
         FragmentManager fm = aggiungiListaPersonalizzataFragment.getActivity().getSupportFragmentManager();
         fm.popBackStack();
         FragmentTransaction ft = fm.beginTransaction();
