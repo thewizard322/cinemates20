@@ -148,7 +148,7 @@ public class UtenteDAO {
         boolean isCon = connect();
         if(isCon==false)
             return null;
-        String query = "SELECT username2 FROM amicizia WHERE username1=?";
+        String query = "SELECT username2 FROM amicizia WHERE username1=? ORDER BY username2 ASC";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);

@@ -26,7 +26,8 @@ public class RecensioneDAO {
         boolean isCon = connect();
         if(isCon==false)
             return null;
-        String query = "SELECT id_recensione, id_film, username, testo, valutazione FROM recensione WHERE id_film = ?";
+        String query = "SELECT id_recensione, id_film, username, testo, valutazione FROM recensione WHERE id_film = ? " +
+                "ORDER BY id_recensione DESC";
         ArrayList<Recensione> recensioneList = new ArrayList<>();
         try {
             PreparedStatement st = con.prepareStatement(query);
