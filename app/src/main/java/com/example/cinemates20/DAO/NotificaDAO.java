@@ -24,12 +24,12 @@ public class NotificaDAO {
         if(isCon==false)
             return false;
         String query = "SELECT COUNT(*) AS count FROM notifica WHERE username_mittente=? AND " +
-                "username_destinatario=? AND id_film_preferito=? AND tipologia=RFP";
+                "username_destinatario=? AND id_film_preferito=? AND tipologia='RFP'";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, usernameMittente);
-            st.setString(1, usernameDestinatario);
-            st.setInt(1, idFilm);
+            st.setString(2, usernameDestinatario);
+            st.setInt(3, idFilm);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 int count = rs.getInt("count");
@@ -65,7 +65,6 @@ public class NotificaDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
             Log.e("Error racc pref","Impossibile raccomandare film preferito");
             return false;
         }
