@@ -70,7 +70,7 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
         holder.btCondividiPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                preferitiPresenter.replaceRaccomandaPreferitoFragment(arrayList.get(position));
             }
         });
 

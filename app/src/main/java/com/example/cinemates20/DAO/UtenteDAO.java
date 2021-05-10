@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UtenteDAO {
 
@@ -140,6 +141,31 @@ public class UtenteDAO {
             closeConnection();
         }
         return 0;
+    }
+
+    public ArrayList<String> prelevaUsernameAmici(String username){
+        ArrayList<String> arrayList = new ArrayList<>();
+        boolean isCon = connect();
+        if(isCon==false)
+            return null;
+        String query = "SELECT username2 FROM amicizia WHERE username1=?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, username);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                String usernameAmico = rs.getString("username2");
+                arrayList.add(usernameAmico);
+            }
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error get user","Impossibile prelevare l'username");
+            return null;
+        }
+        finally {
+            closeConnection();
+        }
+        return arrayList;
     }
 
     public void closeConnection(){

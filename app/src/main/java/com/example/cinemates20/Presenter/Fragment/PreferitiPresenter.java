@@ -1,13 +1,21 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
+import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.AggiungiAListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.PreferitiFragment;
+import com.example.cinemates20.View.Fragment.RaccomandaPreferitoFragment;
 import com.example.cinemates20.Widgets.AdapterPreferiti;
 
 import java.util.ArrayList;
@@ -40,6 +48,16 @@ public class PreferitiPresenter {
     public void rimuoviDaPreferiti(int id_film){
         RimozionePreferitiTask rimozionePreferitiTask=new RimozionePreferitiTask();
         rimozionePreferitiTask.execute(id_film);
+    }
+
+    public void replaceRaccomandaPreferitoFragment(Film filmSelezionato){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("film", filmSelezionato);
+        Fragment fg = new RaccomandaPreferitoFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = preferitiFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private class PrelievoPreferitiTask extends AsyncTask<Void,Void,Void> {

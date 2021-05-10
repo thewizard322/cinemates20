@@ -1,10 +1,17 @@
 package com.example.cinemates20.Presenter.Fragment;
 
+import android.os.AsyncTask;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import com.example.cinemates20.DAO.NotificaDAO;
+import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Film;
+import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.View.Fragment.RaccomandaPreferitoFragment;
+
+import java.util.ArrayList;
 
 public class RaccomandaPreferitoPresenter {
 
@@ -15,6 +22,7 @@ public class RaccomandaPreferitoPresenter {
     public RaccomandaPreferitoPresenter(RaccomandaPreferitoFragment raccomandaPreferitoFragment, Film film){
         this.raccomandaPreferitoFragment = raccomandaPreferitoFragment;
         this.filmSelezionato = film;
+        prelevaAmici();
         initializeListener();
     }
 
@@ -23,13 +31,112 @@ public class RaccomandaPreferitoPresenter {
         bInviaRaccomandaPreferito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                checkPrefertoGiaRaccomandato();
             }
         });
     }
 
-    private void raccomandaFilmPreferito(){
+    private void riempiSpinnerAmici(ArrayList<String> listAmici){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(raccomandaPreferitoFragment.getActivity()
+                , android.R.layout.simple_spinner_dropdown_item, listAmici);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        raccomandaPreferitoFragment.setAdapterSpinnerTitoloLista(adapter);
+    }
 
+    private void prelevaAmici(){
+        PrelevaAmiciTask prelevaAmiciTask = new PrelevaAmiciTask();
+        prelevaAmiciTask.execute();
+    }
+
+    private void checkPrefertoGiaRaccomandato(){
+        CheckPreferitoRaccomandatoTask checkPreferitoRaccomandatoTask = new CheckPreferitoRaccomandatoTask();
+        checkPreferitoRaccomandatoTask.execute();
+    }
+
+    private void raccomandaFilmPreferito(){
+        String usernameAmico = raccomandaPreferitoFragment.getUsernameAmico();
+        if(usernameAmico.equals(""))
+            raccomandaPreferitoFragment.mostraToast("Selezionare un amico");
+        else{
+            RaccomandaPreferitoTask raccomandaPreferitoTask = new RaccomandaPreferitoTask();
+            raccomandaPreferitoTask.execute();
+        }
+    }
+
+    private class PrelevaAmiciTask extends AsyncTask<Void,Void, ArrayList<String>>{
+
+        @Override
+        protected void onPreExecute() {
+            raccomandaPreferitoFragment.mostraProgressDialogCaricamento();
+        }
+
+        @Override
+        protected ArrayList<String> doInBackground(Void... voids) {
+            String username = Utente.getUtenteLoggato().getUsername();
+            UtenteDAO utenteDAO = new UtenteDAO();
+            return utenteDAO.prelevaUsernameAmici(username);
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<String> arrayList) {
+            raccomandaPreferitoFragment.togliProgrssDialogCaricamento();
+            riempiSpinnerAmici(arrayList);
+        }
+    }
+
+    private class CheckPreferitoRaccomandatoTask extends AsyncTask<Void,Void,Boolean>{
+
+        @Override
+        protected void onPreExecute() {
+            raccomandaPreferitoFragment.mostraProgressDialogCaricamento();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            String usernameMittente = Utente.getUtenteLoggato().getUsername();
+            String usernameDestinatario = raccomandaPreferitoFragment.getUsernameAmico();
+            int idFilm = filmSelezionato.getId();
+            NotificaDAO notificaDAO = new NotificaDAO();
+            return notificaDAO.checkPreferitoGiaRaccomandato(usernameMittente,usernameDestinatario,idFilm);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean filmNonCondiviso) {
+            if(filmNonCondiviso == true)
+                raccomandaFilmPreferito();
+            else{
+                raccomandaPreferitoFragment.togliProgrssDialogCaricamento();
+                raccomandaPreferitoFragment.mostraAlertDialogOk("ERRORE","Hai già raccomandato questo film" +
+                        " a questo amico");
+            }
+        }
+    }
+
+    private class RaccomandaPreferitoTask extends AsyncTask<Void,Void,Boolean>{
+
+        @Override
+        protected void onPreExecute() {
+            raccomandaPreferitoFragment.mostraProgressDialogCaricamento();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            String usernameMittente = Utente.getUtenteLoggato().getUsername();
+            String usernameDestinatario = raccomandaPreferitoFragment.getUsernameAmico();
+            int idFilm = filmSelezionato.getId();
+            String titoloFilm = filmSelezionato.getTitolo();
+            NotificaDAO notificaDAO = new NotificaDAO();
+            return notificaDAO.RaccomdandaPreferito(usernameMittente,usernameDestinatario,idFilm,titoloFilm);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean filmRaccomandato) {
+            raccomandaPreferitoFragment.togliProgrssDialogCaricamento();
+            if(filmRaccomandato == true)
+                raccomandaPreferitoFragment.mostraAlertDialogOk("FILM CONDIVISO", "Film condiviso con successo");
+            else
+                raccomandaPreferitoFragment.mostraAlertDialogOk("ERRORE", "Impossibile raccomandare il film");
+        }
     }
 
 }
