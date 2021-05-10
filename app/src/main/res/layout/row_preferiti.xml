@@ -89,7 +89,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/buttontransparent_custom"
             app:backgroundTint="@null"
-            app:icon="@android:drawable/ic_menu_share"
+            app:icon="@drawable/share"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconSize="30dp"
