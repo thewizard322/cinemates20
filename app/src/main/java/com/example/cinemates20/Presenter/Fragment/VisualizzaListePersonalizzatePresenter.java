@@ -85,8 +85,8 @@ public class VisualizzaListePersonalizzatePresenter {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 visualizzaListePersonalizzateFragment.setTextDescrizione(listePers.get(position).getDescrizione());
 
-                PrelievoFilmListePersonalizzateTask prelievoIdTask = new PrelievoFilmListePersonalizzateTask();
-                prelievoIdTask.execute();
+                PrelievoFilmListePersonalizzateTask prelievoFilmTask = new PrelievoFilmListePersonalizzateTask();
+                prelievoFilmTask.execute();
             }
 
             @Override

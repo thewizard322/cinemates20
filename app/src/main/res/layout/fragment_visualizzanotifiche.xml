@@ -14,7 +14,18 @@
         android:textStyle="bold"/>
 
     <ListView
-        android:id="@+id/lvvisualizzaNotifiche"
+        android:id="@+id/lvVisualizzaNotifiche"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tvEmptyVisualizzaNotifiche"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:visibility="gone"
+        android:text="NESSUNA NOTIFICA" />
 </LinearLayout>
