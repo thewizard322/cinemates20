@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Testo notifica"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_margin="0dp"
+            android:background="@drawable/buttontransparent_custom"
+            app:backgroundTint="@null"
+            app:icon="@android:drawable/checkbox_on_background"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="30dp"
+            app:iconTint="@null" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
