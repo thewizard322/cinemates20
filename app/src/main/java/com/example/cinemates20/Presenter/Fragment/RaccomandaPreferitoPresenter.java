@@ -50,18 +50,18 @@ public class RaccomandaPreferitoPresenter {
     }
 
     private void checkPrefertoGiaRaccomandato(){
-        CheckPreferitoRaccomandatoTask checkPreferitoRaccomandatoTask = new CheckPreferitoRaccomandatoTask();
-        checkPreferitoRaccomandatoTask.execute();
-    }
-
-    private void raccomandaFilmPreferito(){
         String usernameAmico = raccomandaPreferitoFragment.getUsernameAmico();
         if(usernameAmico.equals(""))
             raccomandaPreferitoFragment.mostraToast("Selezionare un amico");
-        else{
-            RaccomandaPreferitoTask raccomandaPreferitoTask = new RaccomandaPreferitoTask();
-            raccomandaPreferitoTask.execute();
+        else {
+            CheckPreferitoRaccomandatoTask checkPreferitoRaccomandatoTask = new CheckPreferitoRaccomandatoTask();
+            checkPreferitoRaccomandatoTask.execute();
         }
+    }
+
+    private void raccomandaFilmPreferito(){
+        RaccomandaPreferitoTask raccomandaPreferitoTask = new RaccomandaPreferitoTask();
+        raccomandaPreferitoTask.execute();
     }
 
     private class PrelevaAmiciTask extends AsyncTask<Void,Void, ArrayList<String>>{
