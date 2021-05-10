@@ -79,7 +79,7 @@ public class PreferitiPresenter {
         protected void onPostExecute(Void aVoid) {
             preferitiFragment.getLwPreferiti().setEmptyView(preferitiFragment.getTvEmptyPreferiti());
             preferitiFragment.aggiornaLwPreferiti(adapterPreferiti);
-            preferitiFragment.togliProgrssDialogCaricamento();
+            preferitiFragment.togliProgressDialogCaricamento();
         }
     }
 
@@ -111,7 +111,7 @@ public class PreferitiPresenter {
 
         @Override
         protected void onPostExecute(Boolean flag) {
-            preferitiFragment.togliProgrssDialogCaricamento();
+            preferitiFragment.togliProgressDialogCaricamento();
             if (flag==true) {
                 preferitiFragment.mostraAlertDialogOk("Azione completata", "Film eliminato con successo");
                 preferitiFragment.aggiornaLwPreferiti(adapterPreferiti);

@@ -13,30 +13,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.cinemates20.Presenter.Fragment.PreferitiPresenter;
+import com.example.cinemates20.Presenter.Fragment.AmiciPresenter;
 import com.example.cinemates20.R;
+import com.example.cinemates20.Widgets.AdapterAmici;
 import com.example.cinemates20.Widgets.AdapterPreferiti;
 
-public class PreferitiFragment extends Fragment {
+public class AmiciFragment extends Fragment {
 
-    private ListView lwPreferiti;
+    private ListView lwAmici;
     private ProgressDialog progressDialogCaricamento;
-    private TextView tvEmptyPreferiti;
+    private TextView tvEmptyAmici;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_preferiti, container, false);
+        View view = inflater.inflate(R.layout.fragment_amici, container, false);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lwPreferiti = view.findViewById(R.id.lwPreferiti);
-        tvEmptyPreferiti=view.findViewById(R.id.tvEmptyPreferiti);
+        lwAmici = view.findViewById(R.id.lwAmici);
+        tvEmptyAmici=view.findViewById(R.id.tvEmptyAmici);
         initializeProgressDialog();
-        new PreferitiPresenter(this);
+        new AmiciPresenter(this);
     }
     public void mostraAlertDialogOk(String titolo, String msg){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity())
@@ -58,12 +59,12 @@ public class PreferitiFragment extends Fragment {
     }
 
 
-    public ListView getLwPreferiti() {
-        return lwPreferiti;
+    public ListView getLwAmici() {
+        return lwAmici;
     }
 
-    public TextView getTvEmptyPreferiti(){
-        return tvEmptyPreferiti;
+    public TextView getTvEmptyAmici(){
+        return tvEmptyAmici;
     }
 
     public void mostraProgressDialogCaricamento(){
@@ -74,12 +75,11 @@ public class PreferitiFragment extends Fragment {
         progressDialogCaricamento.dismiss();
     }
 
-    public void setAdapterLwPreferiti(AdapterPreferiti adapterPreferiti){
-        lwPreferiti.setAdapter(adapterPreferiti);
+    public void setAdapterLwAmici(AdapterAmici adapterAmici){
+        lwAmici.setAdapter(adapterAmici);
     }
-
-    public void aggiornaLwPreferiti(AdapterPreferiti adapterPreferiti){
-        adapterPreferiti.notifyDataSetChanged();
+    public void aggiornaLwAmici(AdapterAmici adapterAmici){
+        adapterAmici.notifyDataSetChanged();
     }
 }
 

@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment {
     public Button getBtFilmDaVedereHome() { return btFilmDaVedereHome; }
 
     public Button getBtListePersonalizzateHome() { return btListePersonalizzateHome; }
+    public Button getBtAmiciHome(){return btAmiciHome;}
 
     public void mostraToast(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
