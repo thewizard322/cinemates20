@@ -2,7 +2,6 @@ package com.example.cinemates20.DAO;
 
 import android.util.Log;
 
-import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Notifica;
 
 import java.sql.Connection;
