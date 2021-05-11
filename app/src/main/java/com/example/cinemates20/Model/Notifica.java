@@ -12,8 +12,10 @@ public class Notifica {
     private String tipo;
 
     //non vuoti se notifica raccomandazione film preferito
-    private String idFilmPreferito;
+    private int idFilmPreferito;
     private String titoloFilmPreferito;
+    private String dataUscitaPreferito;
+    private String posterPathPreferito;
 
     //non vuoti se raccomandazione lista personalizzata o valutazione lista personalizzata
     private String titoloLista;
@@ -29,7 +31,7 @@ public class Notifica {
         this.tipo = tipo;
     }
 
-    public void setIdFilmPreferito(String idFilmPreferito) {
+    public void setIdFilmPreferito(int idFilmPreferito) {
         this.idFilmPreferito = idFilmPreferito;
     }
 
@@ -49,6 +51,14 @@ public class Notifica {
         this.commento = commento;
     }
 
+    public void setDataUscitaPreferito(String dataUscitaPreferito) {
+        this.dataUscitaPreferito = dataUscitaPreferito;
+    }
+
+    public void setPosterPathPreferito(String posterPathPreferito) {
+        this.posterPathPreferito = posterPathPreferito;
+    }
+
     public String getUsernameMittente() {
         return usernameMittente;
     }
@@ -63,5 +73,17 @@ public class Notifica {
 
     public String getTitoloLista() {
         return titoloLista;
+    }
+
+    public int getIdFilmPreferito() {
+        return idFilmPreferito;
+    }
+
+    public String getDataUscitaPreferito() {
+        return dataUscitaPreferito;
+    }
+
+    public String getPosterPathPreferito() {
+        return posterPathPreferito;
     }
 }

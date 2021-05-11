@@ -126,8 +126,10 @@ public class RaccomandaPreferitoPresenter {
             String usernameDestinatario = raccomandaPreferitoFragment.getUsernameAmico();
             int idFilm = filmSelezionato.getId();
             String titoloFilm = filmSelezionato.getTitolo();
+            String dataUscita = filmSelezionato.getDataUscita();
+            String posterPath = filmSelezionato.getPathPoster();
             NotificaDAO notificaDAO = new NotificaDAO();
-            return notificaDAO.RaccomdandaPreferito(usernameMittente,usernameDestinatario,idFilm,titoloFilm);
+            return notificaDAO.RaccomdandaPreferito(usernameMittente,usernameDestinatario,idFilm,titoloFilm,dataUscita,posterPath);
         }
 
         @Override
