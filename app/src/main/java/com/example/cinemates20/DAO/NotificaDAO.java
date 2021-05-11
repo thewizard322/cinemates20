@@ -141,7 +141,7 @@ public class NotificaDAO {
         if(isCon==false)
             return list;
         String query = "SELECT id_notifica,username_mittente,username_destinatario,tipologia," +
-                "id_film_preferito,titolo_film_preferito,titolo_lista,username_lista,like_dislike," +
+                "id_film_preferito,titolo_film_preferito,data_film_preferito,posterpath_film_preferto,titolo_lista,username_lista,like_dislike," +
                 "commento FROM notifica WHERE username_destinatario=?";
         try {
             PreparedStatement st = con.prepareStatement(query);
@@ -152,8 +152,10 @@ public class NotificaDAO {
                 String usernameMittente = rs.getString("username_mittente");
                 String usernameDestinatario = rs.getString("username_destinatario");
                 String tipo = rs.getString("tipologia");
-                String idFilmPreferito = rs.getString("id_film_preferito");
+                int idFilmPreferito = rs.getInt("id_film_preferito");
                 String titoloFilmPreferito = rs.getString("titolo_film_preferito");
+                String dataUscitaPreferito = rs.getString("data_film_preferito");
+                String posterPathPreferito = rs.getString("posterpath_film_preferto");
                 String titoloLista = rs.getString("titolo_lista");
                 String usernamelista = rs.getString("username_lista");
                 int likeOrDislike = rs.getInt("like_dislike");
@@ -161,8 +163,12 @@ public class NotificaDAO {
 
                 Notifica notifica = new Notifica(idNotifica,usernameMittente,usernameDestinatario,tipo);
                 notifica.setIdFilmPreferito(idFilmPreferito);
+                notifica.setDataUscitaPreferito(dataUscitaPreferito);
+                notifica.setPosterPathPreferito(posterPathPreferito);
                 notifica.setTitoloFilmPreferito(titoloFilmPreferito);
                 notifica.setTitoloLista(titoloLista);
+                notifica.setCommento(commento);
+                notifica.setLikeOrDislike(likeOrDislike);
 
                 list.add(notifica);
             }
