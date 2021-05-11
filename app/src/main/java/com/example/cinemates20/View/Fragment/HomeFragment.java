@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,15 +16,12 @@ import com.example.cinemates20.R;
 
 public class HomeFragment extends Fragment {
 
-    private TextView txtBenvenuto;
     private Button btRicercaFilmHome;
     private Button btAmiciHome;
     private Button btPreferitiHome;
     private Button btListePersonalizzateHome;
     private Button btFilmDaVedereHome;
     private Button btNotificheHome;
-    private Button btCondividiFilmPreferitoHome;
-    private Button btCondividiListaPersonalizzataHome;
     private Button btLogoutHome;
 
     @Nullable
@@ -44,8 +40,6 @@ public class HomeFragment extends Fragment {
         btListePersonalizzateHome = view.findViewById(R.id.btListePersonalizzateHome);
         btFilmDaVedereHome = view.findViewById(R.id.btFilmDaVedereHome);
         btNotificheHome = view.findViewById(R.id.btNotificheHome);
-        btCondividiFilmPreferitoHome = view.findViewById(R.id.btCondividiFilmPreferitoHome);
-        btCondividiListaPersonalizzataHome = view.findViewById(R.id.btCondividiListaPersonalizzataHome);
         btLogoutHome = view.findViewById(R.id.btLogoutHome);
 
         new HomePresenter(this);

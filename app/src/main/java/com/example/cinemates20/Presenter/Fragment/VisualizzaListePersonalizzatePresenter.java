@@ -1,9 +1,11 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -19,7 +21,9 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.AggiungiAListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.AggiungiListaPersonalizzataFragment;
+import com.example.cinemates20.View.Fragment.RaccomandaListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzate;
 
@@ -53,12 +57,29 @@ public class VisualizzaListePersonalizzatePresenter {
 
     private void initializeListener(){
         ImageButton bAggiungiVisualizzaListePersonalizzate = visualizzaListePersonalizzateFragment.getbAggiungiVisualizzaListePersonalizzate();
+        Button btRaccomandaListaPersonalizzata = visualizzaListePersonalizzateFragment.getBtRaccomandaListaPersonalizzata();
         bAggiungiVisualizzaListePersonalizzate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 replaceAggiungiListaPersonalizzataFragment();
             }
         });
+        btRaccomandaListaPersonalizzata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceRaccomandaLstaPersonalizzataFragment();
+            }
+        });
+    }
+
+    private void replaceRaccomandaLstaPersonalizzataFragment(){
+        Bundle bundle = new Bundle();
+        bundle.putString("titoloLista", visualizzaListePersonalizzateFragment.getTitoloLista());
+        Fragment fg = new RaccomandaListaPersonalizzataFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = visualizzaListePersonalizzateFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void prelevaListePersonalizzate(){

@@ -48,6 +48,36 @@ public class NotificaDAO {
         return true;
     }
 
+    public boolean checkListaGiaRaccomandata(String usernameMittente, String usernameDestinatario
+            , String titoloLista){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "SELECT COUNT(*) AS count FROM notifica WHERE username_mittente=? AND " +
+                "username_destinatario=? AND titolo_lista=? AND tipologia='RLP'";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, usernameMittente);
+            st.setString(2, usernameDestinatario);
+            st.setString(3, titoloLista);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                int count = rs.getInt("count");
+                if(count!=0)
+                    return false;
+            }
+            st.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Log.e("Error check list","Impossibile Verificare lista raccomandata");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
+
     public boolean RaccomdandaPreferito(String usernameMittente, String usernameDestinatario
             , int idFilm, String titoloFilm){
         boolean isCon = connect();
@@ -66,6 +96,32 @@ public class NotificaDAO {
             st.close();
         } catch (SQLException throwables) {
             Log.e("Error racc pref","Impossibile raccomandare film preferito");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
+
+    public boolean raccomandaLista(String usernameMittente, String usernameDestinatario
+            , String titoloLista){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "INSERT INTO notifica (username_mittente,username_destinatario,titolo_lista," +
+                "username_lista,tipologia) VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, usernameMittente);
+            st.setString(2, usernameDestinatario);
+            st.setString(3,titoloLista);
+            st.setString(4,usernameMittente);
+            st.setString(5,"RLP");
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error racc list","Impossibile raccomandare lista personalizzata");
             return false;
         }
         finally {

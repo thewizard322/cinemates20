@@ -103,38 +103,6 @@
             app:backgroundTint="@null" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btCondividiFilmPreferitoHome"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/buttoncustom_home"
-            android:text="Condividi Film Preferito"
-            android:textColor="#F4F3F3"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            app:backgroundTint="@null" />
-
-        <Button
-            android:id="@+id/btCondividiListaPersonalizzataHome"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/buttoncustom_home"
-            android:text="Condividi My List"
-            android:textColor="#F8F7F7"
-            android:textSize="11dp"
-            android:textStyle="bold"
-            app:backgroundTint="@null" />
-    </LinearLayout>
-
     <Button
         android:id="@+id/btLogoutHome"
         android:layout_width="150dp"

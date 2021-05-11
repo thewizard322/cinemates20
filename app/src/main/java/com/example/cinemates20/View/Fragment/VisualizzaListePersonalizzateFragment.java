@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -22,6 +23,7 @@ import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzate;
 public class VisualizzaListePersonalizzateFragment extends Fragment {
 
     private ImageButton bAggiungiVisualizzaListePersonalizzate;
+    private Button btRaccomandaListaPersonalizzata;
     private TextView tvTitoloVisualizzaListaPers;
     private Spinner spinnerTitoloVisualizzaListePersonalizzate;
     private TextView tvDescrizioneVisualizzaListaPers;
@@ -41,6 +43,7 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         bAggiungiVisualizzaListePersonalizzate = view.findViewById(R.id.bAggiungiVisualizzaListePersonalizzate);
+        btRaccomandaListaPersonalizzata = view.findViewById(R.id.btRaccomandaListaPersonalizzata);
         tvTitoloVisualizzaListaPers = view.findViewById(R.id.tvTitoloVisualizzaListaPers);
         spinnerTitoloVisualizzaListePersonalizzate = view.findViewById(R.id.spinnerTitoloVisualizzaListePersonalizzate);
         tvDescrizioneVisualizzaListaPers = view.findViewById(R.id.tvDescrizioneVisualizzaListaPers);
@@ -68,6 +71,10 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
 
     public ImageButton getbAggiungiVisualizzaListePersonalizzate() {
         return bAggiungiVisualizzaListePersonalizzate;
+    }
+
+    public Button getBtRaccomandaListaPersonalizzata(){
+        return btRaccomandaListaPersonalizzata;
     }
 
     public Spinner getSpinnerTitoloVisualizzaListePersonalizzate() {
