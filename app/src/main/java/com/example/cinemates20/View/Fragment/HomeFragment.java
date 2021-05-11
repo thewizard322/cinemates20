@@ -58,6 +58,11 @@ public class HomeFragment extends Fragment {
     public Button getBtFilmDaVedereHome() { return btFilmDaVedereHome; }
 
     public Button getBtListePersonalizzateHome() { return btListePersonalizzateHome; }
+
+    public Button getBtNotificheHome() {
+        return btNotificheHome;
+    }
+
     public Button getBtAmiciHome(){return btAmiciHome;}
 
     public void mostraToast(String msg){

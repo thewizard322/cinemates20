@@ -2,10 +2,14 @@ package com.example.cinemates20.DAO;
 
 import android.util.Log;
 
+import com.example.cinemates20.Model.Film;
+import com.example.cinemates20.Model.Notifica;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class NotificaDAO {
 
@@ -128,6 +132,36 @@ public class NotificaDAO {
             closeConnection();
         }
         return true;
+    }
+
+    public ArrayList<Notifica> prelevaNotifiche(String username) {
+        ArrayList<Notifica> list = new ArrayList<>();
+        boolean isCon = connect();
+        if(isCon==false)
+            return list;
+        String query = "SELECT id_notifica,username_mittente,username_destinatario,tipologia FROM notifica WHERE username_destinatario=?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, username);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                int idNotifica = rs.getInt("id_notifica");
+                String usernameMittente = rs.getString("username_mittente");
+                String usernameDestinatario = rs.getString("username_destinatario");
+                String tipo = rs.getString("tipologia");
+                Notifica notifica = new Notifica(idNotifica,usernameMittente,usernameDestinatario,tipo);
+                list.add(notifica);
+            }
+            st.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Log.e("Error prelievo notif","Impossibile prelevare le notifiche");
+            return list;
+        }
+        finally {
+            closeConnection();
+        }
+        return list;
     }
 
     public void closeConnection(){

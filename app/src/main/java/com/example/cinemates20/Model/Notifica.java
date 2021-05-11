@@ -48,4 +48,20 @@ public class Notifica {
     public void setCommento(String commento) {
         this.commento = commento;
     }
+
+    public String getUsernameMittente() {
+        return usernameMittente;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getTitoloFilmPreferito() {
+        return titoloFilmPreferito;
+    }
+
+    public String getTitoloLista() {
+        return titoloLista;
+    }
 }

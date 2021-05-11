@@ -18,9 +18,9 @@ import com.example.cinemates20.View.Fragment.LoginFragment;
 import com.example.cinemates20.View.Fragment.PreferitiFragment;
 import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateFragment;
+import com.example.cinemates20.View.Fragment.VisualizzaNotificheFragment;
 
 public class HomePresenter {
-
     private HomeFragment homeFragment;
 
     public HomePresenter(HomeFragment homeFragment){
@@ -34,7 +34,8 @@ public class HomePresenter {
         Button btPreferiti = homeFragment.getBtPreferitiHome();
         Button btFilmDaVedere = homeFragment.getBtFilmDaVedereHome();
         Button btListePersonalizzateHome = homeFragment.getBtListePersonalizzateHome();
-        Button btAmici= homeFragment.getBtAmiciHome();
+        Button btAmici = homeFragment.getBtAmiciHome();
+        Button btNotificheHome = homeFragment.getBtNotificheHome();
 
         btRicercaFilmHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +67,10 @@ public class HomePresenter {
             @Override
             public void onClick(View v) { replaceAmiciFragment(); }
         });
+        btNotificheHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { replaceVisualizzaNotificheFragment(); }
+        });
     }
 
     public void removeUserLoggedIn(){
@@ -90,31 +95,40 @@ public class HomePresenter {
     }
 
     public void replacePreferitiFragment(){
-        Fragment fg= new PreferitiFragment();
-        FragmentManager fm= homeFragment.getActivity().getSupportFragmentManager();
+        Fragment fg = new PreferitiFragment();
+        FragmentManager fm = homeFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
 
     }
 
     public void replaceFilmDaVedereFragment(){
-        Fragment fg= new FilmDaVedereFragment();
-        FragmentManager fm= homeFragment.getActivity().getSupportFragmentManager();
+        Fragment fg = new FilmDaVedereFragment();
+        FragmentManager fm = homeFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
 
     }
 
     public void replaceVisualizzaListePersonalizzateFragment(){
-        Fragment fg= new VisualizzaListePersonalizzateFragment();
-        FragmentManager fm= homeFragment.getActivity().getSupportFragmentManager();
+        Fragment fg = new VisualizzaListePersonalizzateFragment();
+        FragmentManager fm = homeFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
+
     public void replaceAmiciFragment(){
         Fragment fg= new AmiciFragment();
-        FragmentManager fm= homeFragment.getActivity().getSupportFragmentManager();
+        FragmentManager fm = homeFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
+
+    public void replaceVisualizzaNotificheFragment(){
+        Fragment fg= new VisualizzaNotificheFragment();
+        FragmentManager fm = homeFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+    }
+
 }
