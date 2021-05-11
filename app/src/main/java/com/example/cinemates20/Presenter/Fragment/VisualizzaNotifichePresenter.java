@@ -16,6 +16,7 @@ import com.example.cinemates20.Model.Notifica;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
+import com.example.cinemates20.View.Fragment.VisualizzaListaPersonalizzataRaccomandataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaNotificheFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaNotifiche;
 
@@ -51,17 +52,29 @@ public class VisualizzaNotifichePresenter {
                     addMostraFilmFragment(filmPreferitoRaccomandato);
                 }
                 else if(notificaCliccata.getTipo().equals("RLP")) {
-                    //addVisualizzaListaPersonalizzateFragment(position);
+                    String titoloLista = notificaCliccata.getTitoloLista();
+                    String usernameMittente = notificaCliccata.getUsernameMittente();
+                    addVisualizzaListaPersonalizzateFragment(titoloLista, usernameMittente);
                 }
             }
         });
     }
 
     private void addMostraFilmFragment(Film filmPreferitoRaccomandato){
-        System.out.println("---------------------------------------------P--------------------------------------");
         Bundle bundle = new Bundle();
         bundle.putSerializable("film", filmPreferitoRaccomandato);
         Fragment fg = new MostraFilmFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = visualizzaNotificheFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+    }
+
+    private void addVisualizzaListaPersonalizzateFragment(String titoloLista, String usernameMittente){
+        Bundle bundle = new Bundle();
+        bundle.putString("titoloLista", titoloLista);
+        bundle.putString("usernameMittente", usernameMittente);
+        Fragment fg = new VisualizzaListaPersonalizzataRaccomandataFragment();
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaNotificheFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
