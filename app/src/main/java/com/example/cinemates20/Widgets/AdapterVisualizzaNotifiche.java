@@ -6,15 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Notifica;
 import com.example.cinemates20.Presenter.Fragment.VisualizzaNotifichePresenter;
 import com.example.cinemates20.R;
@@ -69,7 +66,6 @@ public class AdapterVisualizzaNotifiche extends ArrayAdapter<Notifica>  {
 
     private void setView(AdapterVisualizzaNotifiche.ViewHolder holder, Notifica notifica){
         // RAR RAA RFP RLP VLP ARSS AASS ARSP AASP
-        // continuare
         if(!(notifica.getTipo().equals("RAR"))) {
             holder.bAggiungiAmicoNotifica.setVisibility(View.GONE);
         }
@@ -83,7 +79,7 @@ public class AdapterVisualizzaNotifiche extends ArrayAdapter<Notifica>  {
             holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha raccomandato un suo film preferito: " + notifica.getTitoloFilmPreferito());
         }
         else if(notifica.getTipo().equals("RLP")) {
-            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha raccomandato una sua lista personalizzata");
+            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha raccomandato una sua lista personalizzata: " + notifica.getTitoloLista());
         }
         else if(notifica.getTipo().equals("VLP")) {
             holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ha valutato la tua lista personalizzata: " + notifica.getTitoloLista());

@@ -138,7 +138,9 @@ public class NotificaDAO {
         boolean isCon = connect();
         if(isCon==false)
             return list;
-        String query = "SELECT id_notifica,username_mittente,username_destinatario,tipologia FROM notifica WHERE username_destinatario=?";
+        String query = "SELECT id_notifica,username_mittente,username_destinatario,tipologia," +
+                "id_film_preferito,titolo_film_preferito,titolo_lista,username_lista,like_dislike," +
+                "commento FROM notifica WHERE username_destinatario=?";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
@@ -148,7 +150,18 @@ public class NotificaDAO {
                 String usernameMittente = rs.getString("username_mittente");
                 String usernameDestinatario = rs.getString("username_destinatario");
                 String tipo = rs.getString("tipologia");
+                String idFilmPreferito = rs.getString("id_film_preferito");
+                String titoloFilmPreferito = rs.getString("titolo_film_preferito");
+                String titoloLista = rs.getString("titolo_lista");
+                String usernamelista = rs.getString("username_lista");
+                int likeOrDislike = rs.getInt("like_dislike");
+                String commento = rs.getString("commento");
+
                 Notifica notifica = new Notifica(idNotifica,usernameMittente,usernameDestinatario,tipo);
+                notifica.setIdFilmPreferito(idFilmPreferito);
+                notifica.setTitoloFilmPreferito(titoloFilmPreferito);
+                notifica.setTitoloLista(titoloLista);
+
                 list.add(notifica);
             }
             st.close();

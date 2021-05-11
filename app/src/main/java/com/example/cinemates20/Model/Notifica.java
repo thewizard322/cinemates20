@@ -12,7 +12,7 @@ public class Notifica {
     private String tipo;
 
     //non vuoti se notifica raccomandazione film preferito
-    private int idFilmPreferito;
+    private String idFilmPreferito;
     private String titoloFilmPreferito;
 
     //non vuoti se raccomandazione lista personalizzata o valutazione lista personalizzata
@@ -29,7 +29,7 @@ public class Notifica {
         this.tipo = tipo;
     }
 
-    public void setIdFilmPreferito(int idFilmPreferito) {
+    public void setIdFilmPreferito(String idFilmPreferito) {
         this.idFilmPreferito = idFilmPreferito;
     }
 
