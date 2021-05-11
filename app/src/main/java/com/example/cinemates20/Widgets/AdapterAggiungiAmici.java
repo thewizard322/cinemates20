@@ -1,0 +1,65 @@
+package com.example.cinemates20.Widgets;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.request.RequestOptions;
+import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.AggiungiAmicoFragment;
+
+import java.util.ArrayList;
+
+public class AdapterAggiungiAmici extends ArrayAdapter<String> {
+
+    private Context context;
+    private AggiungiAmicoFragment aggiungiAmicoFragment;
+    private ArrayList<String> arrayList;
+
+    public AdapterAggiungiAmici(@NonNull Context context, AggiungiAmicoFragment aggiungiAmicoFragment, ArrayList<String> arrayList) {
+        super(context, R.layout.row_aggiungiamico, arrayList);
+        this.arrayList = arrayList;
+        this.aggiungiAmicoFragment = aggiungiAmicoFragment;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View rootView = convertView;
+        ViewHolder holder;
+        if(rootView == null){
+            LayoutInflater inflater = aggiungiAmicoFragment.getActivity().getLayoutInflater();
+            rootView = inflater.inflate(R.layout.row_aggiungiamico,null,true);
+            holder = new ViewHolder();
+            holder.tvUsername = rootView.findViewById(R.id.tvUsername);
+            holder.btRichiestaAmicizia= rootView.findViewById(R.id.btRichiestaAmicizia);
+            rootView.setTag(holder);
+        }
+        else{
+            holder = (ViewHolder) rootView.getTag();
+        }
+
+        String username = arrayList.get(position);
+        setView(holder,username);
+
+        return rootView;
+    }
+
+    private void setView(ViewHolder holder, String username){
+        holder.tvUsername.setText(username);
+        RequestOptions options = new RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+    }
+
+    private static class ViewHolder{
+        TextView tvUsername;
+        Button btRichiestaAmicizia;
+    }
+}

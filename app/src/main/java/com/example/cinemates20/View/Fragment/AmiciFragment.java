@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;import android.widget.ListView;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ public class AmiciFragment extends Fragment {
     private ListView lwAmici;
     private ProgressDialog progressDialogCaricamento;
     private TextView tvEmptyAmici;
+    private Button btAggiungiAmico;
 
     @Nullable
     @Override
@@ -36,6 +39,7 @@ public class AmiciFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         lwAmici = view.findViewById(R.id.lwAmici);
         tvEmptyAmici=view.findViewById(R.id.tvEmptyAmici);
+        btAggiungiAmico=view.findViewById(R.id.btAggiungiAmico);
         initializeProgressDialog();
         new AmiciPresenter(this);
     }
@@ -66,6 +70,7 @@ public class AmiciFragment extends Fragment {
     public TextView getTvEmptyAmici(){
         return tvEmptyAmici;
     }
+    public Button getBtAggiungiAmico(){return btAggiungiAmico;}
 
     public void mostraProgressDialogCaricamento(){
         progressDialogCaricamento.show();

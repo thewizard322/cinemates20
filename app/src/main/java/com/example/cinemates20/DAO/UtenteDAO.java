@@ -167,7 +167,30 @@ public class UtenteDAO {
         }
         return arrayList;
     }
-
+    public ArrayList<String> prelevaUsername(String username){
+        ArrayList<String> arrayList = new ArrayList<>();
+        boolean isCon = connect();
+        if(isCon==false)
+            return null;
+        String query = "SELECT username FROM utente WHERE username LIKE ?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, username);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                String usernameAmico = rs.getString("username");
+                arrayList.add(usernameAmico);
+            }
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error get user","Impossibile prelevare l'username");
+            return null;
+        }
+        finally {
+            closeConnection();
+        }
+        return arrayList;
+    }
     public void closeConnection(){
         try {
             con.close();
