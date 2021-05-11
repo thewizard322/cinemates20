@@ -14,6 +14,9 @@ public class Notifica {
     //non vuoti se notifica raccomandazione film preferito
     private String idFilmPreferito;
     private String titoloFilmPreferito;
+    private String dataUscitaPreferito;
+
+    private String posterPathPreferito;
 
     //non vuoti se raccomandazione lista personalizzata o valutazione lista personalizzata
     private String titoloLista;
@@ -47,6 +50,14 @@ public class Notifica {
 
     public void setCommento(String commento) {
         this.commento = commento;
+    }
+
+    public void setDataUscitaPreferito(String dataUscitaPreferito) {
+        this.dataUscitaPreferito = dataUscitaPreferito;
+    }
+
+    public void setPosterPathPreferito(String posterPathPreferito) {
+        this.posterPathPreferito = posterPathPreferito;
     }
 
     public String getUsernameMittente() {

@@ -82,19 +82,21 @@ public class NotificaDAO {
     }
 
     public boolean RaccomdandaPreferito(String usernameMittente, String usernameDestinatario
-            , int idFilm, String titoloFilm){
+            , int idFilm, String titoloFilm, String dataUscita, String posterPath){
         boolean isCon = connect();
         if(isCon==false)
             return false;
         String query = "INSERT INTO notifica (username_mittente,username_destinatario,id_film_preferito," +
-                "titolo_film_preferito,tipologia) VALUES (?,?,?,?,?)";
+                "titolo_film_preferito,data_film_preferito,posterpath_film_preferto,tipologia) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, usernameMittente);
             st.setString(2, usernameDestinatario);
             st.setInt(3,idFilm);
             st.setString(4,titoloFilm);
-            st.setString(5,"RFP");
+            st.setString(5,dataUscita);
+            st.setString(6,posterPath);
+            st.setString(7,"RFP");
             st.executeUpdate();
             st.close();
         } catch (SQLException throwables) {
