@@ -2,9 +2,6 @@ package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,7 +13,6 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.AggiungiListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.RaccomandaListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListaPersonalizzataRaccomandataFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListaPersonalizzataRaccomandata;

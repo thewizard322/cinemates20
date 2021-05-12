@@ -63,6 +63,10 @@ public class Notifica {
         return usernameMittente;
     }
 
+    public String getUsernameDestinatario() {
+        return usernameDestinatario;
+    }
+
     public String getTipo() {
         return tipo;
     }

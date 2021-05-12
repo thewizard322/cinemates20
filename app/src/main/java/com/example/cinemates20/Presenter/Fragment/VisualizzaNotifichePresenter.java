@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.cinemates20.DAO.AmiciziaDAO;
 import com.example.cinemates20.DAO.NotificaDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Notifica;
@@ -42,7 +43,11 @@ public class VisualizzaNotifichePresenter {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Notifica notificaCliccata = (Notifica)parent.getItemAtPosition(position);
-                if(notificaCliccata.getTipo().equals("RFP")) {
+
+                if(notificaCliccata.getTipo().equals("RAR")) {
+
+                }
+                else if(notificaCliccata.getTipo().equals("RFP")) {
                     int idF = notificaCliccata.getIdFilmPreferito();
                     String titoloFilmPref = notificaCliccata.getTitoloFilmPreferito();
                     String dataUscita = notificaCliccata.getDataUscitaPreferito();
@@ -55,6 +60,9 @@ public class VisualizzaNotifichePresenter {
                     String titoloLista = notificaCliccata.getTitoloLista();
                     String usernameMittente = notificaCliccata.getUsernameMittente();
                     addVisualizzaListaPersonalizzateFragment(titoloLista, usernameMittente);
+                }
+                else if(notificaCliccata.getTipo().equals("VLP")) {
+                    // mostrare la valutazione della lista
                 }
             }
         });
@@ -86,6 +94,11 @@ public class VisualizzaNotifichePresenter {
         prelievoNotificheTask.execute();
     }
 
+    public void accettaRichiestaAmicizia(String usernameMittente, String usernameDestinatario){
+        VisualizzaNotifichePresenter.AccettaRichiestaAmiciziaTask accettaRichiestaAmiciziaTask = new VisualizzaNotifichePresenter.AccettaRichiestaAmiciziaTask();
+        accettaRichiestaAmiciziaTask.execute(usernameMittente, usernameDestinatario);
+    }
+
     private class PrelievoNotificheTask extends AsyncTask<Void,Void,Void> {
         @Override
         protected void onPreExecute() {
@@ -105,6 +118,33 @@ public class VisualizzaNotifichePresenter {
             visualizzaNotificheFragment.getLvVisualizzaNotifiche().setEmptyView(visualizzaNotificheFragment.getTvEmptyVisualizzaNotifiche());
             visualizzaNotificheFragment.aggiornaLvVisualizzaNotifiche(adapterVisualizzaNotifiche);
             visualizzaNotificheFragment.togliProgressDialogCaricamento();
+        }
+    }
+
+    private class AccettaRichiestaAmiciziaTask extends AsyncTask<String, Void, Boolean> {
+        @Override
+        protected void onPreExecute() {
+            visualizzaNotificheFragment.mostraProgressDialogCaricamento();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            String usernameMittente = strings[0];
+            String usernameDestinatario = strings[1];
+            AmiciziaDAO amiciziaDAO = new AmiciziaDAO();
+            boolean amiciAggiunti = amiciziaDAO.aggiungiCoppiaAmici(usernameMittente, usernameDestinatario);
+            return amiciAggiunti;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean amiciAggiunti) {
+            visualizzaNotificheFragment.togliProgressDialogCaricamento();
+            if(amiciAggiunti==false){
+                visualizzaNotificheFragment.mostraAlertDialogOk("ERRORE","Non è possibile accettare la richiesta");
+            }
+            else {
+                visualizzaNotificheFragment.mostraAlertDialogOk("AMICO AGGIUNTO", "Utente aggiunto agli amici");
+            }
         }
     }
 
