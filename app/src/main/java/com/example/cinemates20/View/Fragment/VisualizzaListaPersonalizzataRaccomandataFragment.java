@@ -20,8 +20,6 @@ import com.example.cinemates20.R;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListaPersonalizzataRaccomandata;
 
 public class VisualizzaListaPersonalizzataRaccomandataFragment extends Fragment  {
-    private ImageButton bAggiungiVisualizzaListePersonalizzate;
-    private Button btRaccomandaListaPersonalizzata;
     private TextView tvTitoloLabelVisualizzaListaPers;
     private TextView tvTitoloVisualizzaListaPers;
     private TextView tvDescrizioneVisualizzaListaPers;
@@ -40,8 +38,6 @@ public class VisualizzaListaPersonalizzataRaccomandataFragment extends Fragment 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        bAggiungiVisualizzaListePersonalizzate = view.findViewById(R.id.bAggiungiVisualizzaListePersonalizzate);
-        btRaccomandaListaPersonalizzata = view.findViewById(R.id.btRaccomandaListaPersonalizzata);
         tvTitoloLabelVisualizzaListaPers = view.findViewById(R.id.tvTitoloLabelVisualizzaListaPers);
         tvTitoloVisualizzaListaPers = view.findViewById(R.id.tvTitoloVisualizzaListaPers);
         tvDescrizioneVisualizzaListaPers = view.findViewById(R.id.tvDescrizioneVisualizzaListaPers);
@@ -70,14 +66,6 @@ public class VisualizzaListaPersonalizzataRaccomandataFragment extends Fragment 
 
     public void togliProgressDialogCaricamento(){
         progressDialogCaricamento.dismiss();
-    }
-
-    public ImageButton getbAggiungiVisualizzaListePersonalizzate() {
-        return bAggiungiVisualizzaListePersonalizzate;
-    }
-
-    public Button getBtRaccomandaListaPersonalizzata(){
-        return btRaccomandaListaPersonalizzata;
     }
 
     public String getTitoloLista(){

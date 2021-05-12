@@ -35,7 +35,6 @@ public class VisualizzaListaPersonalizzataRaccomandataPresenter {
         this.visualizzaListaPersonalizzataRaccomandataFragment = visualizzaListaPersonalizzataRaccomandataFragment;
         this.titoloListaNotificaSelezionata = titoloLista;
         this.usernameMittenteListaNotificaSelezionata = usernameMittente;
-        initializeListener();
         initializeListView();
         prelevaListePersonalizzate();
     }
@@ -43,32 +42,6 @@ public class VisualizzaListaPersonalizzataRaccomandataPresenter {
     private void initializeListView() {
         adapterVisualizzaListaPersonalizzataRaccomandata = new AdapterVisualizzaListaPersonalizzataRaccomandata(Objects.requireNonNull(visualizzaListaPersonalizzataRaccomandataFragment.getContext()), visualizzaListaPersonalizzataRaccomandataFragment, filmListaPersonalizzata, this);
         visualizzaListaPersonalizzataRaccomandataFragment.setAdapterLvAdapterVisualizzaListaPersonalizzataRaccomandata(adapterVisualizzaListaPersonalizzataRaccomandata);
-    }
-
-    /*
-    private void replaceAggiungiListaPersonalizzataFragment(){
-        Fragment fg = new AggiungiListaPersonalizzataFragment();
-        FragmentManager fm = visualizzaListaPersonalizzataRaccomandataFragment.getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
-    }
-     */
-
-    private void initializeListener(){
-        ImageButton bAggiungiVisualizzaListePersonalizzate = visualizzaListaPersonalizzataRaccomandataFragment.getbAggiungiVisualizzaListePersonalizzate();
-        Button btRaccomandaListaPersonalizzata = visualizzaListaPersonalizzataRaccomandataFragment.getBtRaccomandaListaPersonalizzata();
-        bAggiungiVisualizzaListePersonalizzate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //replaceAggiungiListaPersonalizzataFragment();
-            }
-        });
-        btRaccomandaListaPersonalizzata.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceRaccomandaLstaPersonalizzataFragment();
-            }
-        });
     }
 
     private void replaceRaccomandaLstaPersonalizzataFragment(){
