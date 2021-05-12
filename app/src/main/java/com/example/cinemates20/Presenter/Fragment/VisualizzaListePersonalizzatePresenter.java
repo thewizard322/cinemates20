@@ -7,8 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
@@ -21,7 +19,6 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.AggiungiAListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.AggiungiListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.RaccomandaListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateFragment;

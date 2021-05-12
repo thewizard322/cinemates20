@@ -12,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.example.cinemates20.Model.Amicizia;
 import com.example.cinemates20.Model.Notifica;
-import com.example.cinemates20.Presenter.Fragment.MostraFilmPresenter;
 import com.example.cinemates20.Presenter.Fragment.VisualizzaNotifichePresenter;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.VisualizzaNotificheFragment;

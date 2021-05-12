@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import com.example.cinemates20.Widgets.AdapterVisualizzaNotifiche;
 public class VisualizzaNotificheFragment extends Fragment {
 
     private TextView tvNotifiche;
+    private Button bAggiornaNotifiche;
     private ListView lvVisualizzaNotifiche;
     private ProgressDialog progressDialogCaricamento;
     private TextView tvEmptyVisualizzaNotifiche;
@@ -36,6 +38,7 @@ public class VisualizzaNotificheFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvNotifiche = view.findViewById(R.id.tvNotifiche);
+        bAggiornaNotifiche = view.findViewById(R.id.bAggiornaNotifiche);
         lvVisualizzaNotifiche = view.findViewById(R.id.lvVisualizzaNotifiche);
         tvEmptyVisualizzaNotifiche = view.findViewById(R.id.tvEmptyVisualizzaNotifiche);
         initializeProgressDialog();
@@ -84,5 +87,9 @@ public class VisualizzaNotificheFragment extends Fragment {
 
     public TextView getTvEmptyVisualizzaNotifiche() {
         return tvEmptyVisualizzaNotifiche;
+    }
+
+    public Button getbAggiornaNotifiche() {
+        return bAggiornaNotifiche;
     }
 }

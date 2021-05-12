@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,7 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Notifica;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.AggiungiListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListaPersonalizzataRaccomandataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaNotificheFragment;
@@ -31,8 +34,19 @@ public class VisualizzaNotifichePresenter {
 
     public VisualizzaNotifichePresenter(VisualizzaNotificheFragment visualizzaNotificheFragment) {
         this.visualizzaNotificheFragment = visualizzaNotificheFragment;
+        initializeListener();
         initializeListView();
         prelevaNotifiche();
+    }
+
+    private void initializeListener(){
+        Button bAggiornaNotifiche = visualizzaNotificheFragment.getbAggiornaNotifiche();
+        bAggiornaNotifiche.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prelevaNotifiche();
+            }
+        });
     }
 
     private void initializeListView() {
@@ -44,10 +58,7 @@ public class VisualizzaNotifichePresenter {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Notifica notificaCliccata = (Notifica)parent.getItemAtPosition(position);
 
-                if(notificaCliccata.getTipo().equals("RAR")) {
-
-                }
-                else if(notificaCliccata.getTipo().equals("RFP")) {
+                if(notificaCliccata.getTipo().equals("RFP")) {
                     int idF = notificaCliccata.getIdFilmPreferito();
                     String titoloFilmPref = notificaCliccata.getTitoloFilmPreferito();
                     String dataUscita = notificaCliccata.getDataUscitaPreferito();
