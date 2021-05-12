@@ -167,15 +167,17 @@ public class UtenteDAO {
         }
         return arrayList;
     }
-    public ArrayList<String> prelevaUsername(String username){
+    public ArrayList<String> prelevaUsername(String username,String utenteCollegato){
         ArrayList<String> arrayList = new ArrayList<>();
         boolean isCon = connect();
         if(isCon==false)
             return null;
-        String query = "SELECT username FROM utente WHERE username LIKE ?";
+        String query = "SELECT username FROM utente WHERE username NOT IN (SELECT username FROM utente WHERE username=?) AND username LIKE ? AND username NOT IN (SELECT username1 FROM amicizia WHERE username2=?)";
         try {
             PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, username);
+            st.setString(1, utenteCollegato);
+            st.setString(2,username);
+            st.setString(3,utenteCollegato);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 String usernameAmico = rs.getString("username");

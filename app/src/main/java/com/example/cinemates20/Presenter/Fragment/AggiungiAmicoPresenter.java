@@ -84,9 +84,10 @@ public class AggiungiAmicoPresenter {
         @Override
         protected Void doInBackground(String... strings) {
             String s1="%";
+            String utenteConnesso=Utente.getUtenteLoggato().getUsername();
             s1=strings[0].concat(s1);
             UtenteDAO utenteDAO=new UtenteDAO();
-            arrayList.addAll(utenteDAO.prelevaUsername(s1));
+            arrayList.addAll(utenteDAO.prelevaUsername(s1,utenteConnesso));
             return null;
         }
 
