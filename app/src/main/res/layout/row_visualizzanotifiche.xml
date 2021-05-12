@@ -27,7 +27,7 @@
             android:layout_margin="0dp"
             android:background="@drawable/buttontransparent_custom"
             app:backgroundTint="@null"
-            app:icon="@android:drawable/checkbox_on_background"
+            app:icon="@drawable/accettarichiesta"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconSize="30dp"
