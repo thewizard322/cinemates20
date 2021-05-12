@@ -183,7 +183,27 @@ public class NotificaDAO {
         }
         return list;
     }
-
+    public boolean InviaNotifica(String usernameCollegato,String usernameDestinatario)
+    {
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "INSERT INTO notifica (username_mittente,username_destinatario,tipologia) VALUES (?,?,'RAR')";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, usernameCollegato);
+            st.setString(2, usernameDestinatario);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error invia rich","Impossibile inviare richiesta amicizia");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
     public void closeConnection(){
         try {
             con.close();

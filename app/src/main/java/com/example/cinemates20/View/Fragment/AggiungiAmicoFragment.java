@@ -1,7 +1,9 @@
 package com.example.cinemates20.View.Fragment;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +56,18 @@ public class AggiungiAmicoFragment extends Fragment {
         progressDialogRicercaInCorso.setCancelable(false);
     }
 
-
+    public void mostraAlertDialogOk(String titolo, String msg){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity())
+                .setTitle(titolo)
+                .setMessage(msg)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
     public EditText getEtUsername() { return etUsername; }
     public String getUsername(){ return etUsername.getText().toString(); }
     public Button getbRicercaUtenti() {

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.example.cinemates20.Presenter.Fragment.AggiungiAmicoPresenter;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiAmicoFragment;
 
@@ -22,12 +23,14 @@ public class AdapterAggiungiAmici extends ArrayAdapter<String> {
     private Context context;
     private AggiungiAmicoFragment aggiungiAmicoFragment;
     private ArrayList<String> arrayList;
+    private AggiungiAmicoPresenter aggiungiAmicoPresenter;
 
-    public AdapterAggiungiAmici(@NonNull Context context, AggiungiAmicoFragment aggiungiAmicoFragment, ArrayList<String> arrayList) {
+    public AdapterAggiungiAmici(@NonNull Context context, AggiungiAmicoFragment aggiungiAmicoFragment, ArrayList<String> arrayList,AggiungiAmicoPresenter aggiungiAmicoPresenter) {
         super(context, R.layout.row_aggiungiamico, arrayList);
         this.arrayList = arrayList;
         this.aggiungiAmicoFragment = aggiungiAmicoFragment;
         this.context = context;
+        this.aggiungiAmicoPresenter=aggiungiAmicoPresenter;
     }
 
     @NonNull
@@ -49,7 +52,12 @@ public class AdapterAggiungiAmici extends ArrayAdapter<String> {
 
         String username = arrayList.get(position);
         setView(holder,username);
-
+holder.btRichiestaAmicizia.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        aggiungiAmicoPresenter.inviaRichiestaAmicizia(arrayList.get(position));
+    }
+});
         return rootView;
     }
 

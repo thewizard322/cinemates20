@@ -1,5 +1,7 @@
 package com.example.cinemates20.Presenter.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.cinemates20.DAO.NotificaDAO;
 import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
@@ -38,7 +41,7 @@ public class AggiungiAmicoPresenter {
 
     private void initializeListView(){
         ListView lwUtenti=aggiungiAmicoFragment.getLwUtenti();
-        adapterAggiungiAmici = new AdapterAggiungiAmici(Objects.requireNonNull(aggiungiAmicoFragment.getContext()),aggiungiAmicoFragment,arrayList);
+        adapterAggiungiAmici = new AdapterAggiungiAmici(Objects.requireNonNull(aggiungiAmicoFragment.getContext()),aggiungiAmicoFragment,arrayList,this);
         aggiungiAmicoFragment.setAdapterLwRicercaUtente(adapterAggiungiAmici);
 
     }
@@ -65,6 +68,10 @@ public class AggiungiAmicoPresenter {
             System.out.print(usernameInserita);
             ricercaTask.execute(usernameInserita);
         }
+    }
+    public void inviaRichiestaAmicizia(String username){
+        InviaRichiestaAmiciziaTask inviaRichiestaAmiciziaTask=new InviaRichiestaAmiciziaTask();
+        inviaRichiestaAmiciziaTask.execute(username);
     }
 
     private boolean usernameNonVuoto(String titolo){
@@ -96,6 +103,35 @@ public class AggiungiAmicoPresenter {
             aggiungiAmicoFragment.getLwUtenti().setEmptyView(aggiungiAmicoFragment.getTvEmptyRicercaUtente());
             aggiungiAmicoFragment.aggiornaLwUtenti(adapterAggiungiAmici);
             aggiungiAmicoFragment.togliProgressDialogRicercaInCorso();
+        }
+    }
+    private class InviaRichiestaAmiciziaTask extends AsyncTask<String,Void,Boolean>{
+        @Override
+        protected void onPreExecute() {
+            aggiungiAmicoFragment.mostraProgressDialogRicercaInCorso();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+           String utenteCollegato=Utente.getUtenteLoggato().getUsername();
+           NotificaDAO notificaDao=new NotificaDAO();
+           boolean flag=notificaDao.InviaNotifica(utenteCollegato,strings[0]);
+            return flag;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean flag) {
+            if(flag==true)
+            {
+                effettuaRicerca();
+                aggiungiAmicoFragment.mostraAlertDialogOk("Richiesta di amicizia inviata","Operazione effettuata con successo");
+                aggiungiAmicoFragment.togliProgressDialogRicercaInCorso();
+            }
+            if(flag==false)
+            {
+                aggiungiAmicoFragment.mostraAlertDialogOk("Errore","Richiesta di amicizia non inviata");
+                aggiungiAmicoFragment.togliProgressDialogRicercaInCorso();
+            }
         }
     }
 
