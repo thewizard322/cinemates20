@@ -60,7 +60,7 @@ public class AdapterVisualizzaNotifiche extends ArrayAdapter<Notifica>  {
         holder.bAggiungiAmicoNotifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                visualizzaNotifichePresenter.accettaRichiestaAmicizia(notifica.getUsernameMittente(), notifica.getUsernameDestinatario());
+                visualizzaNotifichePresenter.accettaRichiestaAmicizia(notifica.getUsernameMittente(), notifica.getUsernameDestinatario(), notifica.getTipo());
             }
         });
         return rootView;

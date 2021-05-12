@@ -94,14 +94,15 @@ public class VisualizzaNotifichePresenter {
         prelievoNotificheTask.execute();
     }
 
-    public void accettaRichiestaAmicizia(String usernameMittente, String usernameDestinatario){
+    public void accettaRichiestaAmicizia(String usernameMittente, String usernameDestinatario, String tipo){
         VisualizzaNotifichePresenter.AccettaRichiestaAmiciziaTask accettaRichiestaAmiciziaTask = new VisualizzaNotifichePresenter.AccettaRichiestaAmiciziaTask();
-        accettaRichiestaAmiciziaTask.execute(usernameMittente, usernameDestinatario);
+        accettaRichiestaAmiciziaTask.execute(usernameMittente, usernameDestinatario, tipo);
     }
 
     private class PrelievoNotificheTask extends AsyncTask<Void,Void,Void> {
         @Override
         protected void onPreExecute() {
+            notificheArrayList.clear();
             visualizzaNotificheFragment.mostraProgressDialogCaricamento();
         }
 
@@ -131,9 +132,15 @@ public class VisualizzaNotifichePresenter {
         protected Boolean doInBackground(String... strings) {
             String usernameMittente = strings[0];
             String usernameDestinatario = strings[1];
+            String tipo = strings[2];
             AmiciziaDAO amiciziaDAO = new AmiciziaDAO();
-            boolean amiciAggiunti = amiciziaDAO.aggiungiCoppiaAmici(usernameMittente, usernameDestinatario);
-            return amiciAggiunti;
+            boolean amiciAggiunti1 = amiciziaDAO.aggiungiCoppiaAmici(usernameMittente, usernameDestinatario);
+            boolean amiciAggiunti2 = amiciziaDAO.aggiungiCoppiaAmici(usernameDestinatario, usernameMittente);
+
+            NotificaDAO notificaDAO = new NotificaDAO();
+            notificaDAO.rimuoviNotifica(usernameMittente, usernameDestinatario, tipo);
+            notificaDAO.rimuoviNotifica(usernameDestinatario, usernameMittente, tipo);
+            return (amiciAggiunti1 && amiciAggiunti2);
         }
 
         @Override
@@ -143,6 +150,7 @@ public class VisualizzaNotifichePresenter {
                 visualizzaNotificheFragment.mostraAlertDialogOk("ERRORE","Non è possibile accettare la richiesta");
             }
             else {
+                prelevaNotifiche();
                 visualizzaNotificheFragment.mostraAlertDialogOk("AMICO AGGIUNTO", "Utente aggiunto agli amici");
             }
         }

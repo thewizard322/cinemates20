@@ -213,4 +213,26 @@ public class NotificaDAO {
         }
     }
 
+    public boolean rimuoviNotifica(String usernameMittente, String usernameDestinatario, String tipo){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "DELETE FROM notifica WHERE username_mittente=? AND username_destinatario=? AND tipologia=?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, usernameMittente);
+            st.setString(2, usernameDestinatario);
+            st.setString(3, tipo);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error rimuovi notifica","Impossibile eliminare la notifica");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
+
 }
