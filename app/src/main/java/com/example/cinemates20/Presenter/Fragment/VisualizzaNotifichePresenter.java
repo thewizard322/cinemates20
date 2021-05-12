@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -42,7 +43,11 @@ public class VisualizzaNotifichePresenter {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Notifica notificaCliccata = (Notifica)parent.getItemAtPosition(position);
-                if(notificaCliccata.getTipo().equals("RFP")) {
+
+                if(notificaCliccata.getTipo().equals("RAR")) {
+
+                }
+                else if(notificaCliccata.getTipo().equals("RFP")) {
                     int idF = notificaCliccata.getIdFilmPreferito();
                     String titoloFilmPref = notificaCliccata.getTitoloFilmPreferito();
                     String dataUscita = notificaCliccata.getDataUscitaPreferito();
@@ -55,6 +60,9 @@ public class VisualizzaNotifichePresenter {
                     String titoloLista = notificaCliccata.getTitoloLista();
                     String usernameMittente = notificaCliccata.getUsernameMittente();
                     addVisualizzaListaPersonalizzateFragment(titoloLista, usernameMittente);
+                }
+                else if(notificaCliccata.getTipo().equals("VLP")) {
+                    // mostrare la valutazione della lista
                 }
             }
         });
