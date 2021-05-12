@@ -12,7 +12,7 @@
         android:layout_gravity="right"
         android:background="@drawable/buttontransparent_custom"
         app:backgroundTint="@null"
-        app:icon="@drawable/addfriend"
+        app:icon="@drawable/aggiungiamici"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconSize="40dp"
