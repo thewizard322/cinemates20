@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,7 +83,9 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
     }
 
     public String getTitoloLista(){
-        return spinnerTitoloVisualizzaListePersonalizzate.getSelectedItem().toString();
+        if(spinnerTitoloVisualizzaListePersonalizzate.getSelectedItem()!=null)
+            return spinnerTitoloVisualizzaListePersonalizzate.getSelectedItem().toString();
+        return "";
     }
 
     public TextView getTvDescrizioneVisualizzaListePersonalizzate() {
@@ -119,6 +122,10 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
 
     public void aggiornaLvVisualizzaListePersonalizzate(AdapterVisualizzaListePersonalizzate adapterLvVisualizzaListePersonalizzate){
         adapterLvVisualizzaListePersonalizzate.notifyDataSetChanged();
+    }
+
+    public void mostraToast(String msg){
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
 }

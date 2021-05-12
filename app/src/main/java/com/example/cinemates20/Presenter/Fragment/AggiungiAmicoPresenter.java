@@ -1,25 +1,14 @@
 package com.example.cinemates20.Presenter.Fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.NotificaDAO;
 import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Utente;
-import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiAmicoFragment;
 import com.example.cinemates20.Widgets.AdapterAggiungiAmici;
 
@@ -39,8 +28,7 @@ public class AggiungiAmicoPresenter {
         initializeListener();
     }
 
-    private void initializeListView(){
-        ListView lwUtenti=aggiungiAmicoFragment.getLwUtenti();
+    private void initializeListView(){ ;
         adapterAggiungiAmici = new AdapterAggiungiAmici(Objects.requireNonNull(aggiungiAmicoFragment.getContext()),aggiungiAmicoFragment,arrayList,this);
         aggiungiAmicoFragment.setAdapterLwRicercaUtente(adapterAggiungiAmici);
 
@@ -55,7 +43,6 @@ public class AggiungiAmicoPresenter {
                 effettuaRicerca();
             }
         });
-        EditText etUsername = aggiungiAmicoFragment.getEtUsername();
     }
 
 
@@ -65,7 +52,6 @@ public class AggiungiAmicoPresenter {
             aggiungiAmicoFragment.mostraToast("Inserire un username");
         else {
             RicercaTask ricercaTask = new RicercaTask();
-            System.out.print(usernameInserita);
             ricercaTask.execute(usernameInserita);
         }
     }
@@ -105,10 +91,11 @@ public class AggiungiAmicoPresenter {
             aggiungiAmicoFragment.togliProgressDialogRicercaInCorso();
         }
     }
+
     private class InviaRichiestaAmiciziaTask extends AsyncTask<String,Void,Boolean>{
         @Override
         protected void onPreExecute() {
-            aggiungiAmicoFragment.mostraProgressDialogRicercaInCorso();
+            aggiungiAmicoFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
@@ -116,21 +103,18 @@ public class AggiungiAmicoPresenter {
            String utenteCollegato=Utente.getUtenteLoggato().getUsername();
            NotificaDAO notificaDao=new NotificaDAO();
            boolean flag=notificaDao.InviaNotifica(utenteCollegato,strings[0]);
-            return flag;
+           return flag;
         }
 
         @Override
         protected void onPostExecute(Boolean flag) {
-            if(flag==true)
-            {
+            aggiungiAmicoFragment.togliProgressDialogCaricamento();
+            if(flag==true) {
                 effettuaRicerca();
                 aggiungiAmicoFragment.mostraAlertDialogOk("Richiesta di amicizia inviata","Operazione effettuata con successo");
-                aggiungiAmicoFragment.togliProgressDialogRicercaInCorso();
             }
-            if(flag==false)
-            {
+            if(flag==false) {
                 aggiungiAmicoFragment.mostraAlertDialogOk("Errore","Richiesta di amicizia non inviata");
-                aggiungiAmicoFragment.togliProgressDialogRicercaInCorso();
             }
         }
     }

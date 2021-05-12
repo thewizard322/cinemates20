@@ -64,7 +64,11 @@ public class VisualizzaListePersonalizzatePresenter {
         btRaccomandaListaPersonalizzata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceRaccomandaLstaPersonalizzataFragment();
+                String titoloLista = visualizzaListePersonalizzateFragment.getTitoloLista();
+                if(!titoloLista.equals(""))
+                    replaceRaccomandaLstaPersonalizzataFragment();
+                else
+                    visualizzaListePersonalizzateFragment.mostraToast("Seleziona una lista");
             }
         });
     }

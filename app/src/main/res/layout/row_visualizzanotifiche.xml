@@ -11,8 +11,10 @@
 
         <TextView
             android:id="@+id/tvTestoNotifica"
-            android:layout_width="330dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="330dp"
             android:layout_margin="10dp"
             android:text="Testo notifica"
             android:textColor="@color/black" />

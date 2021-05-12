@@ -142,7 +142,7 @@ public class NotificaDAO {
             return list;
         String query = "SELECT id_notifica,username_mittente,username_destinatario,tipologia," +
                 "id_film_preferito,titolo_film_preferito,data_film_preferito,posterpath_film_preferto,titolo_lista,username_lista,like_dislike," +
-                "commento FROM notifica WHERE username_destinatario=?";
+                "commento FROM notifica WHERE username_destinatario=? ORDER BY id_notifica DESC";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);

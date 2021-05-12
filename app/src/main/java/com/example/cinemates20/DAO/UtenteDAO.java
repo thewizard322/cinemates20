@@ -167,12 +167,16 @@ public class UtenteDAO {
         }
         return arrayList;
     }
+
     public ArrayList<String> prelevaUsername(String username,String utenteCollegato){
         ArrayList<String> arrayList = new ArrayList<>();
         boolean isCon = connect();
         if(isCon==false)
             return null;
-        String query = "SELECT username FROM utente WHERE username NOT IN (SELECT username FROM utente WHERE username=?) AND username LIKE ? AND username NOT IN (SELECT username1 FROM amicizia WHERE username2=?) AND username NOT IN (SELECT username_destinatario FROM notifica WHERE username_mittente=? AND tipologia='RAR')";
+        String query = "SELECT username FROM utente WHERE username NOT IN (SELECT username FROM utente WHERE username=?) " +
+                "AND username LIKE ? " +
+                "AND username NOT IN (SELECT username1 FROM amicizia WHERE username2=?) " +
+                "AND username NOT IN (SELECT username_destinatario FROM notifica WHERE username_mittente=? AND tipologia='RAR')";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, utenteCollegato);
@@ -187,7 +191,6 @@ public class UtenteDAO {
             st.close();
         } catch (SQLException throwables) {
             Log.e("Error get user","Impossibile prelevare l'username");
-            throwables.printStackTrace();
             return null;
         }
         finally {
@@ -195,6 +198,7 @@ public class UtenteDAO {
         }
         return arrayList;
     }
+
     public void closeConnection(){
         try {
             con.close();

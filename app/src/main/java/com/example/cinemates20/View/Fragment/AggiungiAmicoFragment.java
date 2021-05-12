@@ -25,10 +25,11 @@ import com.example.cinemates20.Widgets.AdapterAggiungiAmici;
 
 public class AggiungiAmicoFragment extends Fragment {
 
-        private EditText etUsername;
+    private EditText etUsername;
     private Button btRicercaUtente;
     private ListView lwUtenti;
     private ProgressDialog progressDialogRicercaInCorso;
+    private ProgressDialog progressDialogCaricamento;
     private TextView tvEmptyRicercaUtente;
 
     @Nullable
@@ -54,6 +55,11 @@ public class AggiungiAmicoFragment extends Fragment {
         progressDialogRicercaInCorso.setTitle("");
         progressDialogRicercaInCorso.setMessage("Ricerca in corso");
         progressDialogRicercaInCorso.setCancelable(false);
+
+        progressDialogCaricamento = new ProgressDialog(getActivity());
+        progressDialogCaricamento.setTitle("");
+        progressDialogCaricamento.setMessage("Caricamento");
+        progressDialogCaricamento.setCancelable(false);
     }
 
     public void mostraAlertDialogOk(String titolo, String msg){
@@ -84,6 +90,14 @@ public class AggiungiAmicoFragment extends Fragment {
 
     public void togliProgressDialogRicercaInCorso(){
         progressDialogRicercaInCorso.dismiss();
+    }
+
+    public void mostraProgressDialogCaricamento(){
+        progressDialogCaricamento.show();
+    }
+
+    public void togliProgressDialogCaricamento(){
+        progressDialogCaricamento.dismiss();
     }
 
     public TextView getTvEmptyRicercaUtente(){
