@@ -102,7 +102,7 @@ public class AggiungiAmicoPresenter {
         protected Boolean doInBackground(String... strings) {
            String utenteCollegato=Utente.getUtenteLoggato().getUsername();
            NotificaDAO notificaDao=new NotificaDAO();
-           boolean flag=notificaDao.InviaNotifica(utenteCollegato,strings[0]);
+           boolean flag=notificaDao.inviaNotificaAmicizia(utenteCollegato, strings[0], "RAR");
            return flag;
         }
 
