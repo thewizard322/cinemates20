@@ -53,8 +53,6 @@ public class AdapterVisualizzaNotifiche extends ArrayAdapter<Notifica>  {
         Notifica notifica = notificheArrayList.get(position);
         setView(holder, notifica);
 
-        RequestOptions options = new RequestOptions()
-                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
         holder.bAggiungiAmicoNotifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,11 +63,10 @@ public class AdapterVisualizzaNotifiche extends ArrayAdapter<Notifica>  {
     }
 
     private void setView(AdapterVisualizzaNotifiche.ViewHolder holder, Notifica notifica){
-        // RAR RAA RFP RLP VLP ARSS AASS ARSP AASP
-        if(!(notifica.getTipo().equals("RAR"))) {
-            holder.bAggiungiAmicoNotifica.setVisibility(View.GONE);
-        }
+        //RAR RAA RFP RLP VLP ARSS AASS ARSP AASP
+        holder.bAggiungiAmicoNotifica.setVisibility(View.GONE);
         if(notifica.getTipo().equals("RAR")) {
+            holder.bAggiungiAmicoNotifica.setVisibility(View.VISIBLE);
             holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha inviato una richiesta di amicizia");
         }
         else if(notifica.getTipo().equals("RAA")) {
