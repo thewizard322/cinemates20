@@ -48,7 +48,8 @@ public class RicercaFilmPresenter {
         lwRicercaFilm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                addMostraFilmFragment(position);
+                Film filmSelezionato = arrayListFilm.get(position);
+                addMostraFilmFragment(filmSelezionato);
             }
         });
     }
@@ -75,9 +76,9 @@ public class RicercaFilmPresenter {
         });
     }
 
-    private void addMostraFilmFragment(int i){
+    private void addMostraFilmFragment(Film filmSelezionato){
         Bundle bundle = new Bundle();
-        bundle.putSerializable("film", arrayListFilm.get(i));
+        bundle.putSerializable("film", filmSelezionato);
         Fragment fg = new MostraFilmFragment();
         fg.setArguments(bundle);
         FragmentManager fm = ricercaFilmFragment.getActivity().getSupportFragmentManager();

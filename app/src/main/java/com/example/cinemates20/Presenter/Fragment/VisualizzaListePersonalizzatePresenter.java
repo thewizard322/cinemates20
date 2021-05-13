@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import com.example.cinemates20.Model.ListaPersonalizzata;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiListaPersonalizzataFragment;
+import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.RaccomandaListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzate;
@@ -41,8 +43,26 @@ public class VisualizzaListePersonalizzatePresenter {
     }
 
     private void initializeListView() {
+        ListView lvVisualizzaListePersonalizzate = visualizzaListePersonalizzateFragment.getLvVisualizzaListePersonalizzate();
         adapterVisualizzaListePersonalizzate = new AdapterVisualizzaListePersonalizzate(Objects.requireNonNull(visualizzaListePersonalizzateFragment.getContext()), visualizzaListePersonalizzateFragment, filmListaPersonalizzata, this);
         visualizzaListePersonalizzateFragment.setAdapterLvVisualizzaListePersonalizzate(adapterVisualizzaListePersonalizzate);
+        lvVisualizzaListePersonalizzate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Film filmSelezionato = filmListaPersonalizzata.get(position);
+                addMostraFilmFragment(filmSelezionato);
+            }
+        });
+    }
+
+    private void addMostraFilmFragment(Film filmSelezionato){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("film", filmSelezionato);
+        Fragment fg = new MostraFilmFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = visualizzaListePersonalizzateFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void replaceAggiungiListaPersonalizzataFragment(){

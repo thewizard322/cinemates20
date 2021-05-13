@@ -2,6 +2,8 @@ package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -14,6 +16,7 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiAListaPersonalizzataFragment;
+import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.PreferitiFragment;
 import com.example.cinemates20.View.Fragment.RaccomandaPreferitoFragment;
 import com.example.cinemates20.Widgets.AdapterPreferiti;
@@ -36,8 +39,16 @@ public class PreferitiPresenter {
     }
 
     private void initializeListView() {
+        ListView lwPreferiti = preferitiFragment.getLwPreferiti();
         adapterPreferiti = new AdapterPreferiti(Objects.requireNonNull(preferitiFragment.getContext()), preferitiFragment, filmPreferiti,this);
         preferitiFragment.setAdapterLwPreferiti(adapterPreferiti);
+        lwPreferiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Film filmSelezionato = filmPreferiti.get(position);
+                addMostraFilmFragment(filmSelezionato);
+            }
+        });
     }
 
     private void prelevaPreferiti(){
@@ -48,6 +59,16 @@ public class PreferitiPresenter {
     public void rimuoviDaPreferiti(int id_film){
         RimozionePreferitiTask rimozionePreferitiTask=new RimozionePreferitiTask();
         rimozionePreferitiTask.execute(id_film);
+    }
+
+    private void addMostraFilmFragment(Film filmSelezionato){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("film", filmSelezionato);
+        Fragment fg = new MostraFilmFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = preferitiFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     public void replaceRaccomandaPreferitoFragment(Film filmSelezionato){

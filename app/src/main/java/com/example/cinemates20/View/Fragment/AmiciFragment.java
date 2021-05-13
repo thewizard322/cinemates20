@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import com.example.cinemates20.Presenter.Fragment.AmiciPresenter;
 import com.example.cinemates20.R;
 import com.example.cinemates20.Widgets.AdapterAmici;
-import com.example.cinemates20.Widgets.AdapterPreferiti;
 
 public class AmiciFragment extends Fragment {
 

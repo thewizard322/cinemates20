@@ -14,7 +14,6 @@ import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiAmicoFragment;
 import com.example.cinemates20.View.Fragment.AmiciFragment;
-import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateAmiciFragment;
 import com.example.cinemates20.Widgets.AdapterAmici;
 
@@ -37,6 +36,7 @@ public class AmiciPresenter {
         adapterAmici = new AdapterAmici(Objects.requireNonNull(amiciFragment.getContext()), amiciFragment, amici,this);
         amiciFragment.setAdapterLwAmici(adapterAmici);
     }
+
   private void initializeListener(){
       Button btAggiungiAmico=amiciFragment.getBtAggiungiAmico();
       btAggiungiAmico.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +46,7 @@ public class AmiciPresenter {
           }
       });
   }
+
     public void replaceVisualizzaListePersonalizzateAmiciFragment(String amico){
         Bundle bundle = new Bundle();
         bundle.putString("amico",amico);
@@ -55,10 +56,12 @@ public class AmiciPresenter {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
+
     private void prelevaAmici(){
         PrelievoAmiciTask prelievoAmiciTask=new PrelievoAmiciTask();
         prelievoAmiciTask.execute();
     }
+
     private void replaceAggiungiAmicoFragment(){
         Fragment fg = new AggiungiAmicoFragment();
         FragmentManager fm = amiciFragment.getActivity().getSupportFragmentManager();

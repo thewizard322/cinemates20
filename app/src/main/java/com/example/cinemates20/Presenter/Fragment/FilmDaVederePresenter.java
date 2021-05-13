@@ -1,11 +1,21 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
+import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.FilmDaVedereFragment;
+import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.Widgets.AdapterFilmDaVedere;
 
 import java.util.ArrayList;
@@ -23,8 +33,26 @@ public class FilmDaVederePresenter {
     }
 
     private void initializeListView() {
+        ListView lwFilmDaVedere = filmDaVedereFragment.getLwFilmDaVedere();
         adapterFilmDaVedere = new AdapterFilmDaVedere(Objects.requireNonNull(filmDaVedereFragment.getContext()), filmDaVedereFragment, filmDaVedere,this);
         filmDaVedereFragment.setAdapterLwDaVedere(adapterFilmDaVedere);
+        lwFilmDaVedere.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Film filmSelezionato = filmDaVedere.get(position);
+                addMostraFilmFragment(filmSelezionato);
+            }
+        });
+    }
+
+    private void addMostraFilmFragment(Film filmSelezionato){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("film", filmSelezionato);
+        Fragment fg = new MostraFilmFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = filmDaVedereFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void prelevaFilmDaVedere(){
