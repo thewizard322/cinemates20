@@ -73,7 +73,16 @@ public class VisualizzaListePersonalizzateAmiciPresenter {
         spinnerTitoloVisualizzaListePersonalizzate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                visualizzaListePersonalizzateAmiciFragment.setTextDescrizione(listePers.get(position).getDescrizione());
+                String descrizione = listePers.get(position).getDescrizione();
+                if(descrizione!=null && !descrizione.equals("")){
+                    visualizzaListePersonalizzateAmiciFragment.setVisibilityTvDescrizione(View.VISIBLE);
+                    visualizzaListePersonalizzateAmiciFragment.setVisibilityTvDescrizioneVisualizzaListePersonalizzateAmici(View.VISIBLE);
+                    visualizzaListePersonalizzateAmiciFragment.setTextDescrizione(listePers.get(position).getDescrizione());
+                }
+                else {
+                    visualizzaListePersonalizzateAmiciFragment.setVisibilityTvDescrizione(View.GONE);
+                    visualizzaListePersonalizzateAmiciFragment.setVisibilityTvDescrizioneVisualizzaListePersonalizzateAmici(View.GONE);
+                }
 
                 PrelievoFilmListePersonalizzateTask prelievoFilmTask = new PrelievoFilmListePersonalizzateTask();
                 prelievoFilmTask.execute();

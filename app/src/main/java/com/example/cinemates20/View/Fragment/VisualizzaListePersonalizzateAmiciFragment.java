@@ -107,7 +107,7 @@ public class VisualizzaListePersonalizzateAmiciFragment extends Fragment {
     }
 
     public void setTextDescrizione(String descrizione) {
-        tvDescrizione.setText(descrizione);
+        tvDescrizioneVisualizzaListePersonalizzateAmici.setText(descrizione);
     }
 
     public void setAdapterSpinnerTitoloLista(ArrayAdapter<String> arrayAdapter){
@@ -124,6 +124,14 @@ public class VisualizzaListePersonalizzateAmiciFragment extends Fragment {
 
     public void mostraToast(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+    }
+
+    public void setVisibilityTvDescrizione(int visibility){
+        tvDescrizione.setVisibility(visibility);
+    }
+
+    public void setVisibilityTvDescrizioneVisualizzaListePersonalizzateAmici(int visibility){
+        tvDescrizioneVisualizzaListePersonalizzateAmici.setVisibility(visibility);
     }
 
 }
