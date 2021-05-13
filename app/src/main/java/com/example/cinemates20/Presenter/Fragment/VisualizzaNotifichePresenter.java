@@ -5,20 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.cinemates20.DAO.AmiciziaDAO;
+import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.DAO.NotificaDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Notifica;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.AggiungiListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListaPersonalizzataRaccomandataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaNotificheFragment;
@@ -144,9 +142,9 @@ public class VisualizzaNotifichePresenter {
             String usernameMittente = strings[0];
             String usernameDestinatario = strings[1];
             String tipo = strings[2];
-            AmiciziaDAO amiciziaDAO = new AmiciziaDAO();
-            boolean amiciAggiunti1 = amiciziaDAO.aggiungiCoppiaAmici(usernameMittente, usernameDestinatario);
-            boolean amiciAggiunti2 = amiciziaDAO.aggiungiCoppiaAmici(usernameDestinatario, usernameMittente);
+            UtenteDAO utenteDAO = new UtenteDAO();
+            boolean amiciAggiunti1 = utenteDAO.aggiungiCoppiaAmici(usernameMittente, usernameDestinatario);
+            boolean amiciAggiunti2 = utenteDAO.aggiungiCoppiaAmici(usernameDestinatario, usernameMittente);
 
             NotificaDAO notificaDAO = new NotificaDAO();
             notificaDAO.rimuoviNotifica(usernameMittente, usernameDestinatario, tipo);
