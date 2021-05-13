@@ -1,26 +1,15 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Spinner;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.ListaPersonalizzataDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
-import com.example.cinemates20.Model.Utente;
-import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.AggiungiAmicoFragment;
-import com.example.cinemates20.View.Fragment.InserisciRecensioneFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateAmiciFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzateAmici;
 
@@ -29,6 +18,7 @@ import java.util.Objects;
 
 
 public class VisualizzaListePersonalizzateAmiciPresenter {
+
     private AdapterVisualizzaListePersonalizzateAmici adapterVisualizzaListePersonalizzateAmici;
     private ArrayList<Film> filmListaPersonalizzata = new ArrayList<>();
     private VisualizzaListePersonalizzateAmiciFragment visualizzaListePersonalizzateAmiciFragment;
@@ -96,6 +86,7 @@ public class VisualizzaListePersonalizzateAmiciPresenter {
     }
 
     private class PrelevaListeTask extends AsyncTask<Void, Void, ArrayList<ListaPersonalizzata>> {
+
         @Override
         protected void onPreExecute() {
             visualizzaListePersonalizzateAmiciFragment.mostraProgressDialogCaricamento();
