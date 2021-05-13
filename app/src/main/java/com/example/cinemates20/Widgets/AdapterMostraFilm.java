@@ -147,6 +147,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
         holderRecensione.tvUtenteRecensione.setText(recensione.getUsername());
         holderRecensione.tvTestoRecensione.setText(recensione.getTesto());
         holderRecensione.tvValutazioneRecensione.setText("Voto: "+ recensione.getValutazione());
+        holderRecensione.bSegnalaRecenesione.setVisibility(View.VISIBLE);
 
         if(Utente.getUtenteLoggato().getUsername().equals(recensione.getUsername()))
             holderRecensione.bSegnalaRecenesione.setVisibility(View.GONE);

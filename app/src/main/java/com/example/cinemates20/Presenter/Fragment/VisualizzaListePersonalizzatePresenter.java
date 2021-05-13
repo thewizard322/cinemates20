@@ -105,7 +105,16 @@ public class VisualizzaListePersonalizzatePresenter {
         spinnerTitoloVisualizzaListePersonalizzate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                visualizzaListePersonalizzateFragment.setTextDescrizione(listePers.get(position).getDescrizione());
+                String descrizione = listePers.get(position).getDescrizione();
+                if(descrizione!=null && !descrizione.equals("")){
+                    visualizzaListePersonalizzateFragment.setVisibilityTvDescrizioneVisualizzaListaPers(View.VISIBLE);
+                    visualizzaListePersonalizzateFragment.setVisibilityTvDescrizioneVisualizzaListePersonalizzate(View.VISIBLE);
+                    visualizzaListePersonalizzateFragment.setTextDescrizione(listePers.get(position).getDescrizione());
+                }
+                else {
+                    visualizzaListePersonalizzateFragment.setVisibilityTvDescrizioneVisualizzaListaPers(View.GONE);
+                    visualizzaListePersonalizzateFragment.setVisibilityTvDescrizioneVisualizzaListePersonalizzate(View.GONE);
+                }
 
                 PrelievoFilmListePersonalizzateTask prelievoFilmTask = new PrelievoFilmListePersonalizzateTask();
                 prelievoFilmTask.execute();
