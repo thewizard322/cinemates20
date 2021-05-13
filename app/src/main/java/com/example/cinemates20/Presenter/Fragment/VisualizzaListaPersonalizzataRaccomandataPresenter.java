@@ -1,19 +1,12 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.ListaPersonalizzataDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
 import com.example.cinemates20.Model.Utente;
-import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.RaccomandaListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListaPersonalizzataRaccomandataFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListaPersonalizzataRaccomandata;
 
@@ -38,16 +31,6 @@ public class VisualizzaListaPersonalizzataRaccomandataPresenter {
     private void initializeListView() {
         adapterVisualizzaListaPersonalizzataRaccomandata = new AdapterVisualizzaListaPersonalizzataRaccomandata(Objects.requireNonNull(visualizzaListaPersonalizzataRaccomandataFragment.getContext()), visualizzaListaPersonalizzataRaccomandataFragment, filmListaPersonalizzata, this);
         visualizzaListaPersonalizzataRaccomandataFragment.setAdapterLvAdapterVisualizzaListaPersonalizzataRaccomandata(adapterVisualizzaListaPersonalizzataRaccomandata);
-    }
-
-    private void replaceRaccomandaLstaPersonalizzataFragment(){
-        Bundle bundle = new Bundle();
-        bundle.putString("titoloLista", visualizzaListaPersonalizzataRaccomandataFragment.getTitoloLista());
-        Fragment fg = new RaccomandaListaPersonalizzataFragment();
-        fg.setArguments(bundle);
-        FragmentManager fm = visualizzaListaPersonalizzataRaccomandataFragment.getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void prelevaListePersonalizzate(){

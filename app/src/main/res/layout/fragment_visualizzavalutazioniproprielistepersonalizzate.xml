@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvIntestazioneVisualizzaValutazioniProprieListePersonalizzate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="Valutazione lista 'Titolo lista'"/>
+
+        <TextView
+            android:id="@+id/tvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="20dp"
+            android:text="Testo valutazione"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Testo valutazione"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tvLabelRapidaValutazioneVisualizzaValutazioniProprieListePersonalizzate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:text="Reazione rapida"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvRapidaValutazioneVisualizzaValutazioniProprieListePersonalizzate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Like o Dislike"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+</LinearLayout>

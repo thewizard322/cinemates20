@@ -90,4 +90,12 @@ public class Notifica {
     public String getPosterPathPreferito() {
         return posterPathPreferito;
     }
+
+    public int getLikeOrDislike() {
+        return likeOrDislike;
+    }
+
+    public String getCommento() {
+        return commento;
+    }
 }

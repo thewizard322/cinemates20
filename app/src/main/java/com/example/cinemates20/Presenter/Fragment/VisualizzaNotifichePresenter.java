@@ -20,6 +20,7 @@ import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListaPersonalizzataRaccomandataFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaNotificheFragment;
+import com.example.cinemates20.View.Fragment.VisualizzaValutazioniProprieListePersonalizzateFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaNotifiche;
 
 import java.util.ArrayList;
@@ -71,7 +72,11 @@ public class VisualizzaNotifichePresenter {
                     addVisualizzaListaPersonalizzateFragment(titoloLista, usernameMittente);
                 }
                 else if(notificaCliccata.getTipo().equals("VLP")) {
-                    // mostrare la valutazione della lista
+                    String titoloLista = notificaCliccata.getTitoloLista();
+                    String usernameMittente = notificaCliccata.getUsernameMittente();
+                    int likeOrDislike = notificaCliccata.getLikeOrDislike();
+                    String commento = notificaCliccata.getCommento();
+                    addVisualizzaValutazioniProprieListePersonalizzateFragment(titoloLista, usernameMittente, likeOrDislike, commento);
                 }
             }
         });
@@ -92,6 +97,19 @@ public class VisualizzaNotifichePresenter {
         bundle.putString("titoloLista", titoloLista);
         bundle.putString("usernameMittente", usernameMittente);
         Fragment fg = new VisualizzaListaPersonalizzataRaccomandataFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = visualizzaNotificheFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+    }
+
+    private void addVisualizzaValutazioniProprieListePersonalizzateFragment(String titoloLista, String usernameMittente, int likeOrDislike, String commento){
+        Bundle bundle = new Bundle();
+        bundle.putString("titoloLista", titoloLista);
+        bundle.putString("usernameMittente", usernameMittente);
+        bundle.putInt("likeOrDislike", likeOrDislike);
+        bundle.putString("commento", commento);
+        Fragment fg = new VisualizzaValutazioniProprieListePersonalizzateFragment();
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaNotificheFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
