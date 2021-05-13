@@ -83,13 +83,19 @@
         android:text="Descrizione"
         android:background="@android:color/holo_orange_light"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="15dp"/>
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="3dp"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black" />
 
     <ListView
         android:id="@+id/lvVisualizzaListePersonalizzate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/tvEmptyListePersonalizzate"

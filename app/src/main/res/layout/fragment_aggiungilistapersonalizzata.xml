@@ -76,6 +76,8 @@
             android:layout_height="wrap_content"
             android:text="Crea lista"
             android:layout_gravity="center"
+            app:backgroundTint="@null"
+            android:background="@drawable/buttonstandard_custom"
             android:layout_margin="10dp"/>
     </LinearLayout>
 </LinearLayout>
