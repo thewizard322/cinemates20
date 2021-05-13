@@ -128,4 +128,13 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
+    public void setVisibilityTvDescrizioneVisualizzaListaPers(int visibility){
+        tvDescrizioneVisualizzaListaPers.setVisibility(visibility);
+    }
+
+    public void setVisibilityTvDescrizioneVisualizzaListePersonalizzate(int visibility){
+        tvDescrizioneVisualizzaListePersonalizzate.setVisibility(visibility);
+    }
+
+
 }
