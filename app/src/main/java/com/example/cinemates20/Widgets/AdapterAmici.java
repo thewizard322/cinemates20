@@ -10,14 +10,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.Presenter.Fragment.AmiciPresenter;
+import com.example.cinemates20.Presenter.Fragment.VisualizzaListePersonalizzateAmiciPresenter;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AmiciFragment;
+import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateAmiciFragment;
 
 import java.util.ArrayList;
 
@@ -58,13 +63,11 @@ public class AdapterAmici extends ArrayAdapter<String> {
         holder.btVisualizzaListeAmico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+             amiciPresenter.replaceVisualizzaListePersonalizzateAmiciFragment(username);
             }
         });
-
         return rootView;
     }
-
     private void setView(ViewHolder holder, String username){
         holder.tvAmici.setText(username);
         RequestOptions options = new RequestOptions();

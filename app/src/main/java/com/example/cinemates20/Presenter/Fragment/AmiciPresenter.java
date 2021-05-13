@@ -1,6 +1,7 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,6 +15,7 @@ import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiAmicoFragment;
 import com.example.cinemates20.View.Fragment.AmiciFragment;
 import com.example.cinemates20.View.Fragment.RicercaFilmFragment;
+import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateAmiciFragment;
 import com.example.cinemates20.Widgets.AdapterAmici;
 
 import java.util.ArrayList;
@@ -44,6 +46,15 @@ public class AmiciPresenter {
           }
       });
   }
+    public void replaceVisualizzaListePersonalizzateAmiciFragment(String amico){
+        Bundle bundle = new Bundle();
+        bundle.putString("amico",amico);
+        Fragment fg = new VisualizzaListePersonalizzateAmiciFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = amiciFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+    }
     private void prelevaAmici(){
         PrelievoAmiciTask prelievoAmiciTask=new PrelievoAmiciTask();
         prelievoAmiciTask.execute();
