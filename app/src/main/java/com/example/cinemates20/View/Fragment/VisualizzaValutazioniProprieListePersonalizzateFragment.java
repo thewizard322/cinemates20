@@ -53,4 +53,9 @@ public class VisualizzaValutazioniProprieListePersonalizzateFragment extends Fra
     public void setTextRapida(String rapida) {
         tvRapidaValutazioneVisualizzaValutazioniProprieListePersonalizzate.setText(rapida);
     }
+
+    public void setTvIntestazioneVisualizzaValutazioniProprieListePersonalizzate(String titoloLista){
+        tvIntestazioneVisualizzaValutazioniProprieListePersonalizzate.setText("Valutazione lista '" + titoloLista + "'");
+    }
+
 }
