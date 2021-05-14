@@ -73,13 +73,13 @@ public class AdapterVisualizzaNotifiche extends ArrayAdapter<Notifica>  {
             holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ha accettato la tua richiesta di amicizia");
         }
         else if(notifica.getTipo().equals("RFP")) {
-            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha raccomandato un suo film preferito: " + notifica.getTitoloFilmPreferito());
+            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha raccomandato un suo film preferito '" + notifica.getTitoloFilmPreferito() + "'");
         }
         else if(notifica.getTipo().equals("RLP")) {
-            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha raccomandato una sua lista personalizzata: " + notifica.getTitoloLista());
+            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ti ha raccomandato una sua lista personalizzata '" + notifica.getTitoloLista() + "'");
         }
         else if(notifica.getTipo().equals("VLP")) {
-            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ha valutato la tua lista personalizzata: " + notifica.getTitoloLista());
+            holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ha valutato la tua lista personalizzata '" + notifica.getTitoloLista() + "'");
         }
         else if(notifica.getTipo().equals("ARSS")) {
             holder.tvTestoNotifica.setText("Un amministratore ha rifiutato la tua segnalazione"); // dire quale segnalazione?
