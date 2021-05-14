@@ -35,7 +35,7 @@ public class VisualizzaListaPersonalizzataRaccomandataPresenter {
         this.titoloListaNotificaSelezionata = titoloLista;
         this.usernameMittenteListaNotificaSelezionata = usernameMittente;
         initializeListView();
-        prelevaListePersonalizzate();
+        prelevaListaPersonalizzata();
     }
 
     private void initializeListView() {
@@ -61,29 +61,28 @@ public class VisualizzaListaPersonalizzataRaccomandataPresenter {
         ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
-    private void prelevaListePersonalizzate(){
-        PrelevaListeTask prelevaListeTask = new PrelevaListeTask();
-        prelevaListeTask.execute();
+    private void prelevaListaPersonalizzata(){
+        PrelevaDescrizioneListaTask prelevaListaTask = new PrelevaDescrizioneListaTask();
+        prelevaListaTask.execute();
     }
 
-    private class PrelevaListeTask extends AsyncTask<Void, Void, ArrayList<ListaPersonalizzata>> {
+    private class PrelevaDescrizioneListaTask extends AsyncTask<Void, Void, ListaPersonalizzata> {
         @Override
         protected void onPreExecute() {
             visualizzaListaPersonalizzataRaccomandataFragment.mostraProgressDialogCaricamento();
         }
 
         @Override
-        protected ArrayList<ListaPersonalizzata> doInBackground(Void... aVoid) {
-            String username = Utente.getUtenteLoggato().getUsername();
+        protected ListaPersonalizzata doInBackground(Void... aVoid) {
             ListaPersonalizzataDAO listaPersonalizzataDAO = new ListaPersonalizzataDAO();
-            return listaPersonalizzataDAO.prelevaListePersonalizzate(username);
+            return listaPersonalizzataDAO.prelevaDescrizioneListaPersonalizzata(usernameMittenteListaNotificaSelezionata, titoloListaNotificaSelezionata);
         }
 
         @Override
-        protected void onPostExecute(ArrayList<ListaPersonalizzata> listaPers) {
+        protected void onPostExecute(ListaPersonalizzata listaPers) {
             visualizzaListaPersonalizzataRaccomandataFragment.togliProgressDialogCaricamento();
             visualizzaListaPersonalizzataRaccomandataFragment.setTextTitoloLista(titoloListaNotificaSelezionata);
-            visualizzaListaPersonalizzataRaccomandataFragment.setTextDescrizione(usernameMittenteListaNotificaSelezionata);
+            visualizzaListaPersonalizzataRaccomandataFragment.setTextDescrizione(listaPers.getDescrizione());
             PrelievoFilmListePersonalizzateTask prelievoFilmTask = new PrelievoFilmListePersonalizzateTask();
             prelievoFilmTask.execute();
         }
