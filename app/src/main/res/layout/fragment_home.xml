@@ -105,12 +105,14 @@
 
     <Button
         android:id="@+id/btLogoutHome"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="80dp"
         android:background="@drawable/buttoncircle_custom"
         android:backgroundTint="#ff0000"
         app:icon="@drawable/logout"
-        app:iconSize="40dp"
+        app:iconSize="20dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
         app:backgroundTint="@null"/>
 </LinearLayout>
