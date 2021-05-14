@@ -66,21 +66,10 @@ public class ValutaListaAmicoFragment extends Fragment {
         progressDialogCaricamento.setCancelable(false);
     }
 
-    public TextView getTvTitoloListaValuta() {
-        return tvTitoloListaValuta;
-    }
-
-    public TextInputLayout getTilCommentoValutaListaAmico() {
-        return tilCommentoValutaListaAmico;
-    }
-
     public Button getbValutaListaAmico() {
         return bValutaListaAmico;
     }
 
-    public RadioGroup getRgValutazioneRapida() {
-        return rgValutazioneRapida;
-    }
 
     public boolean rbLikeIsChecked(){
         return rbLike.isChecked();
@@ -88,10 +77,6 @@ public class ValutaListaAmicoFragment extends Fragment {
 
     public boolean rbDislikeIsChecked(){
         return rbDislike.isChecked();
-    }
-
-    public int getIdRadioChecked(){
-        return rgValutazioneRapida.getCheckedRadioButtonId();
     }
 
     public void mostraToast(String msg){
@@ -121,5 +106,9 @@ public class ValutaListaAmicoFragment extends Fragment {
 
     public void togliProgressDialogCaricamento(){
         progressDialogCaricamento.dismiss();
+    }
+
+    public void setTextTvTitoloListaValuta(String titoloLista){
+        tvTitoloListaValuta.setText("Stai valutando la lista '"+titoloLista+"'");
     }
 }

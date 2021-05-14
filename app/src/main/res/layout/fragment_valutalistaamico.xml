@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="true">
 
     <LinearLayout
         android:layout_width="330dp"
@@ -83,5 +84,6 @@
             app:backgroundTint="@null"
             android:background="@drawable/buttonstandard_custom"
             android:text="Valuta" />
+
     </LinearLayout>
 </LinearLayout>
