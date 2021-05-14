@@ -48,6 +48,7 @@ public class RicercaFilmPresenter {
         lwRicercaFilm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ricercaFilmFragment.hideKeyboard();
                 Film filmSelezionato = arrayListFilm.get(position);
                 addMostraFilmFragment(filmSelezionato);
             }

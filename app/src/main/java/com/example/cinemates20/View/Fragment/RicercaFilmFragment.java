@@ -47,6 +47,12 @@ public class RicercaFilmFragment extends Fragment {
         new RicercaFilmPresenter(this);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        etTitoloRicercaFilm.clearFocus();
+    }
+
     private void initializeProgressDialog(){
         progressDialogRicercaInCorso = new ProgressDialog(getActivity());
         progressDialogRicercaInCorso.setTitle("");
