@@ -89,7 +89,7 @@ public class VisualizzaNotifichePresenter {
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaNotificheFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void addVisualizzaListaPersonalizzateFragment(String titoloLista, String usernameMittente){
@@ -100,7 +100,7 @@ public class VisualizzaNotifichePresenter {
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaNotificheFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void addVisualizzaValutazioniProprieListePersonalizzateFragment(String titoloLista, String usernameMittente, int likeOrDislike, String commento){
@@ -113,7 +113,7 @@ public class VisualizzaNotifichePresenter {
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaNotificheFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void prelevaNotifiche(){

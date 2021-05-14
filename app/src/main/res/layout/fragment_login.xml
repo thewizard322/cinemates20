@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     android:clickable="true">
 
     <LinearLayout
@@ -51,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Password"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 

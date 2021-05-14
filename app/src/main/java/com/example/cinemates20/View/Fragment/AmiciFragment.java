@@ -69,6 +69,7 @@ public class AmiciFragment extends Fragment {
     public TextView getTvEmptyAmici(){
         return tvEmptyAmici;
     }
+
     public Button getBtAggiungiAmico(){return btAggiungiAmico;}
 
     public void mostraProgressDialogCaricamento(){
@@ -82,6 +83,7 @@ public class AmiciFragment extends Fragment {
     public void setAdapterLwAmici(AdapterAmici adapterAmici){
         lwAmici.setAdapter(adapterAmici);
     }
+
     public void aggiornaLwAmici(AdapterAmici adapterAmici){
         adapterAmici.notifyDataSetChanged();
     }

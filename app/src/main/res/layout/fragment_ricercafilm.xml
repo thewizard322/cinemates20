@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,6 +20,7 @@
             android:ems="10"
             android:hint="Inserire titolo"
             android:inputType="textPersonName"
+            android:imeOptions="actionDone"
             android:minWidth="300dp" />
 
         <Button

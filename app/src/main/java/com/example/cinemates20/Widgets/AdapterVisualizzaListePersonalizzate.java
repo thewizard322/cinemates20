@@ -21,6 +21,7 @@ import com.example.cinemates20.R;
 import java.util.ArrayList;
 
 public class AdapterVisualizzaListePersonalizzate extends ArrayAdapter<Film> {
+
     private Context context;
     private VisualizzaListePersonalizzateFragment visualizzaListePersonalizzateFragment;
     private ArrayList<Film> arrayList;
@@ -54,6 +55,7 @@ public class AdapterVisualizzaListePersonalizzate extends ArrayAdapter<Film> {
 
         Film film = arrayList.get(position);
         setView(holder,film);
+
         return rootView;
     }
 

@@ -32,6 +32,11 @@ public class AdapterRicercaFilm extends ArrayAdapter<Film> {
         this.context = context;
     }
 
+    @Override
+    public int getCount() {
+        return arrayList.size();
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

@@ -75,7 +75,9 @@ public class AggiungiAmicoFragment extends Fragment {
         alertDialog.show();
     }
     public EditText getEtUsername() { return etUsername; }
+
     public String getUsername(){ return etUsername.getText().toString(); }
+
     public Button getbRicercaUtenti() {
         return btRicercaUtente;
     }

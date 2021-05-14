@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     android:clickable="true">
 
     <LinearLayout
@@ -68,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:imeOptions="actionDone"
                 android:hint="E-mail" />
         </com.google.android.material.textfield.TextInputLayout>
 

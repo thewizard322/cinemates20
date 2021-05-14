@@ -21,12 +21,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class AmiciPresenter {
+
     private ArrayList<String> amici=new ArrayList<String>();
     private AdapterAmici adapterAmici;
     private AmiciFragment amiciFragment;
 
     public AmiciPresenter(AmiciFragment amiciFragment) {
-        this.amiciFragment= amiciFragment;
+        this.amiciFragment = amiciFragment;
         initializeListView();
         initializeListener();
         prelevaAmici();
@@ -42,19 +43,19 @@ public class AmiciPresenter {
       btAggiungiAmico.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              replaceAggiungiAmicoFragment();
+              addAggiungiAmicoFragment();
           }
       });
   }
 
-    public void replaceVisualizzaListePersonalizzateAmiciFragment(String amico){
+    public void addVisualizzaListePersonalizzateAmiciFragment(String amico){
         Bundle bundle = new Bundle();
         bundle.putString("amico",amico);
         Fragment fg = new VisualizzaListePersonalizzateAmiciFragment();
         fg.setArguments(bundle);
         FragmentManager fm = amiciFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void prelevaAmici(){
@@ -62,11 +63,11 @@ public class AmiciPresenter {
         prelievoAmiciTask.execute();
     }
 
-    private void replaceAggiungiAmicoFragment(){
+    private void addAggiungiAmicoFragment(){
         Fragment fg = new AggiungiAmicoFragment();
         FragmentManager fm = amiciFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private class PrelievoAmiciTask extends AsyncTask<Void,Void,Void> {
@@ -80,7 +81,7 @@ public class AmiciPresenter {
         protected Void doInBackground(Void... voids) {
             String username = Utente.getUtenteLoggato().getUsername();
             UtenteDAO utenteDAO=new UtenteDAO();
-            amici.addAll(utenteDAO.prelevaUsernameAmici(Utente.getUtenteLoggato().getUsername()));
+            amici.addAll(utenteDAO.prelevaUsernameAmici(username));
             return null;
         }
 

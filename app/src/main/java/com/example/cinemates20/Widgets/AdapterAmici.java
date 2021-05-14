@@ -44,16 +44,17 @@ public class AdapterAmici extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View rootView = convertView;
-        AdapterAmici.ViewHolder holder;
+        ViewHolder holder;
         if(rootView == null){
             LayoutInflater inflater = amiciFragment.getActivity().getLayoutInflater();
             rootView = inflater.inflate(R.layout.row_amici,null,true);
-            holder = new AdapterAmici.ViewHolder();
+            holder = new ViewHolder();
             holder.tvAmici = rootView.findViewById(R.id.tvAmici);
             holder.btVisualizzaListeAmico = rootView.findViewById(R.id.btVisualizzaListeAmico);
+            rootView.setTag(holder);
         }
         else{
-            holder = (AdapterAmici.ViewHolder) rootView.getTag();
+            holder = (ViewHolder) rootView.getTag();
         }
 
         String username = arrayList.get(position);
@@ -62,11 +63,12 @@ public class AdapterAmici extends ArrayAdapter<String> {
         holder.btVisualizzaListeAmico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             amiciPresenter.replaceVisualizzaListePersonalizzateAmiciFragment(username);
+             amiciPresenter.addVisualizzaListePersonalizzateAmiciFragment(username);
             }
         });
         return rootView;
     }
+
     private void setView(ViewHolder holder, String username){
         holder.tvAmici.setText(username);
     }

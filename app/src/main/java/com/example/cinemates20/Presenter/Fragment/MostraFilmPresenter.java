@@ -65,14 +65,14 @@ public class MostraFilmPresenter {
         aggiungiAiPreferitiTask.execute();
     }
 
-    public void replaceAggiungiAListaPersFragment(){
+    public void addAggiungiAListaPersFragment(){
         Bundle bundle = new Bundle();
         bundle.putSerializable("film", filmSelezionato);
         Fragment fg = new AggiungiAListaPersonalizzataFragment();
         fg.setArguments(bundle);
         FragmentManager fm = mostraFilmFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     public void inserisciRecensione(){
@@ -106,7 +106,7 @@ public class MostraFilmPresenter {
         fg.setArguments(bundle);
         FragmentManager fm = mostraFilmFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private class PrelevaRecensioniTask extends AsyncTask<Void,Void,Void>{

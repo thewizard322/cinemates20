@@ -171,7 +171,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
         holderFilm.bListePersMostraFilm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostraFilmPresenter.replaceAggiungiAListaPersFragment();
+                mostraFilmPresenter.addAggiungiAListaPersFragment();
             }
         });
 

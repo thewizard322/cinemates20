@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -31,6 +30,7 @@ import java.util.Objects;
 
 
 public class VisualizzaListePersonalizzatePresenter {
+
     private AdapterVisualizzaListePersonalizzate adapterVisualizzaListePersonalizzate;
     private ArrayList<Film> filmListaPersonalizzata = new ArrayList<>();
     private VisualizzaListePersonalizzateFragment visualizzaListePersonalizzateFragment;
@@ -65,11 +65,11 @@ public class VisualizzaListePersonalizzatePresenter {
         ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
-    private void replaceAggiungiListaPersonalizzataFragment(){
+    private void addAggiungiListaPersonalizzataFragment(){
         Fragment fg = new AggiungiListaPersonalizzataFragment();
         FragmentManager fm = visualizzaListePersonalizzateFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void initializeListener(){
@@ -78,7 +78,7 @@ public class VisualizzaListePersonalizzatePresenter {
         bAggiungiVisualizzaListePersonalizzate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceAggiungiListaPersonalizzataFragment();
+                addAggiungiListaPersonalizzataFragment();
             }
         });
         btRaccomandaListaPersonalizzata.setOnClickListener(new View.OnClickListener() {
