@@ -123,6 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <Button
                     android:id="@+id/bRecensisciMostraFilm"
                     android:layout_width="wrap_content"
@@ -130,14 +131,14 @@
                     android:layout_gravity="right|bottom"
                     android:layout_margin="4dp"
                     android:background="@drawable/buttonscrivi"
-                    android:textColor="@color/black"
                     android:text="Recensisci"
+                    android:textColor="@color/black"
                     app:backgroundTint="@null"
                     app:icon="@drawable/scrivi"
-                    app:iconTint="@null"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
-                    app:iconSize="30dp"/>
+                    app:iconSize="30dp"
+                    app:iconTint="@null" />
             </LinearLayout>
         </LinearLayout>
 

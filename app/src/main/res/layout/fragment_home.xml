@@ -105,14 +105,19 @@
 
     <Button
         android:id="@+id/btLogoutHome"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/buttoncircle_custom"
-        android:backgroundTint="#ff0000"
-        app:icon="@drawable/logout"
-        app:iconSize="20dp"
-        app:iconGravity="textStart"
+        android:background="@drawable/buttoncustom_home"
+        android:text="Logout"
+        android:textColor="#EFEDED"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:icon="@drawable/esci"
         app:iconPadding="0dp"
-        app:backgroundTint="@null"/>
+        app:iconSize="30dp"
+        app:iconTint="@color/white"
+        />
 </LinearLayout>
