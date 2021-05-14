@@ -24,6 +24,7 @@ public class VisualizzaValutazioniProprieListePersonalizzatePresenter {
             this.valutazioneRapida = "LIKE";
         }
 
+        visualizzaValutazioniProprieListePersonalizzateFragment.setTvIntestazioneVisualizzaValutazioniProprieListePersonalizzate(titoloLista);
         visualizzaValutazioniProprieListePersonalizzateFragment.setTextTestoValutazione(commento);
         visualizzaValutazioniProprieListePersonalizzateFragment.setTextRapida(valutazioneRapida);
     }
