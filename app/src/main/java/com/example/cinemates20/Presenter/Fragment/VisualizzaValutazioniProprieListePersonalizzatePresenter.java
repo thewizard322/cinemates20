@@ -17,6 +17,9 @@ public class VisualizzaValutazioniProprieListePersonalizzatePresenter {
         this.usernameMittenteListaNotificaSelezionata = usernameMittente;
         this.likeOrDislike = likeOrDislike;
         this.commento = commento;
+        if((commento == null) || (commento.equals(""))){
+            commento = "Commento non inserito...";
+        }
         if(likeOrDislike == 0) {
             this.valutazioneRapida = "DISLIKE";
         }

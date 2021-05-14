@@ -7,56 +7,70 @@
     android:clickable="true">
 
     <LinearLayout
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:gravity="center"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tvIntestazioneVisualizzaValutazioniProprieListePersonalizzate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textStyle="bold"
             android:gravity="center"
+            android:text="Valutazione lista 'Titolo lista'"
+            android:elegantTextHeight="true"
+            android:textColor="#000000"
             android:textSize="17dp"
-            android:text="Valutazione lista 'Titolo lista'"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="20dp"
-            android:text="Testo valutazione"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:background="#E8E8E8"
+            android:text="TESTO VALUTAZIONE"
+            android:textAlignment="center"
             android:textColor="#000000"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:text="Testo valutazione"
             android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tvLabelRapidaValutazioneVisualizzaValutazioniProprieListePersonalizzate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:text="Reazione rapida"
+            android:layout_marginRight="5dp"
+            android:background="#E8E8E8"
+            android:text="REAZIONE RAPIDA"
+            android:textAlignment="center"
             android:textColor="#000000"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvRapidaValutazioneVisualizzaValutazioniProprieListePersonalizzate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:text="Like o Dislike"
             android:textColor="#000000" />
 
