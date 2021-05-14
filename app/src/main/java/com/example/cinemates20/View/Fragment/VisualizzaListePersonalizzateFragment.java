@@ -23,7 +23,7 @@ import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzate;
 
 public class VisualizzaListePersonalizzateFragment extends Fragment {
 
-    private ImageButton bAggiungiVisualizzaListePersonalizzate;
+    private Button bAggiungiVisualizzaListePersonalizzate;
     private Button btRaccomandaListaPersonalizzata;
     private TextView tvTitoloVisualizzaListaPers;
     private Spinner spinnerTitoloVisualizzaListePersonalizzate;
@@ -70,7 +70,7 @@ public class VisualizzaListePersonalizzateFragment extends Fragment {
         progressDialogCaricamento.dismiss();
     }
 
-    public ImageButton getbAggiungiVisualizzaListePersonalizzate() {
+    public Button getbAggiungiVisualizzaListePersonalizzate() {
         return bAggiungiVisualizzaListePersonalizzate;
     }
 
