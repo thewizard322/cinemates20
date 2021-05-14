@@ -15,7 +15,7 @@ public class FilmDAO {
 
     private Connection con;
 
-    public boolean connect(){
+    private boolean connect(){
         con = ConnectionDAO.getConnection();
         if(con == null)
             return false;
@@ -204,7 +204,7 @@ public class FilmDAO {
         return list;
     }
 
-    public void closeConnection(){
+    private void closeConnection(){
         try {
             con.close();
         } catch (SQLException throwables) {

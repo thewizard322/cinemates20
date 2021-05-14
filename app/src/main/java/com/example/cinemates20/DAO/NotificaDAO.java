@@ -14,7 +14,7 @@ public class NotificaDAO {
 
     private Connection con;
 
-    public boolean connect(){
+    private boolean connect(){
         con = ConnectionDAO.getConnection();
         if(con == null)
             return false;
@@ -266,15 +266,6 @@ public class NotificaDAO {
         return true;
     }
 
-    public void closeConnection(){
-        try {
-            con.close();
-        } catch (SQLException throwables) {
-            Log.e("Error close connection","Impossibile chiudere la connessione");
-            return;
-        }
-    }
-
     public boolean rimuoviNotifica(String usernameMittente, String usernameDestinatario, String tipo){
         boolean isCon = connect();
         if(isCon==false)
@@ -295,6 +286,15 @@ public class NotificaDAO {
             closeConnection();
         }
         return true;
+    }
+
+    private void closeConnection(){
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            Log.e("Error close connection","Impossibile chiudere la connessione");
+            return;
+        }
     }
 
 }
