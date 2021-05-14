@@ -50,6 +50,7 @@ public class PreferitiFragment extends Fragment {
                 });
         alertDialog.show();
     }
+
     private void initializeProgressDialog(){
         progressDialogCaricamento = new ProgressDialog(getActivity());
         progressDialogCaricamento.setTitle("");

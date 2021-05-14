@@ -81,6 +81,7 @@ public class VisualizzaListePersonalizzateAmiciPresenter {
     private void replaceValutaListaAmicoFragment(String titoloLista){
         Bundle bundle = new Bundle();
         bundle.putString("titoloLista", titoloLista);
+        bundle.putString("utenteLista", amicoselezionato);
         Fragment fg = new ValutaListaAmicoFragment();
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaListePersonalizzateAmiciFragment.getActivity().getSupportFragmentManager();

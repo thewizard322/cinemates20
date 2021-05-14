@@ -21,6 +21,66 @@ public class NotificaDAO {
         return true;
     }
 
+    public boolean inviaNotificaValutazioneListaAmico(String usernameMittente, String usernameDestinatario,
+                                              String titoloLista, int likeOrDislike, String commento){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "INSERT INTO notifica (username_mittente,username_destinatario,tipologia,like_dislike,commento,titolo_lista,username_lista) " +
+                "VALUES (?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, usernameMittente);
+            st.setString(2, usernameDestinatario);
+            st.setString(3, "VLP");
+            st.setInt(4, likeOrDislike);
+            st.setString(5, commento);
+            st.setString(6, titoloLista);
+            st.setString(7, usernameDestinatario);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Log.e("Error invio val","Impossibile inviare valutazione");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
+
+    public boolean checkValutazioneGiaInviata(String usernameMittente, String usernameDestinatario,
+                                              String titoloLista){
+        boolean isCon = connect();
+        if(isCon==false)
+            return false;
+        String query = "SELECT COUNT(*) AS count FROM notifica WHERE username_mittente=? AND " +
+                "username_destinatario=? AND titolo_lista=? AND username_lista=? AND tipologia='VLP'";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, usernameMittente);
+            st.setString(2, usernameDestinatario);
+            st.setString(3, titoloLista);
+            st.setString(4, usernameDestinatario);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                int count = rs.getInt("count");
+                if(count!=0)
+                    return false;
+            }
+            st.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Log.e("Error check racc list","Impossibile Verificare lista raccomandata");
+            return false;
+        }
+        finally {
+            closeConnection();
+        }
+        return true;
+    }
+
     public boolean checkPreferitoGiaRaccomandato(String usernameMittente, String usernameDestinatario
                                     , int idFilm){
         boolean isCon = connect();
