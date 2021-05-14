@@ -117,12 +117,12 @@ public class VisualizzaNotifichePresenter {
     }
 
     private void prelevaNotifiche(){
-        VisualizzaNotifichePresenter.PrelievoNotificheTask prelievoNotificheTask = new VisualizzaNotifichePresenter.PrelievoNotificheTask();
+        PrelievoNotificheTask prelievoNotificheTask = new PrelievoNotificheTask();
         prelievoNotificheTask.execute();
     }
 
     public void accettaRichiestaAmicizia(String usernameMittente, String usernameDestinatario, String tipo){
-        VisualizzaNotifichePresenter.AccettaRichiestaAmiciziaTask accettaRichiestaAmiciziaTask = new VisualizzaNotifichePresenter.AccettaRichiestaAmiciziaTask();
+        AccettaRichiestaAmiciziaTask accettaRichiestaAmiciziaTask = new AccettaRichiestaAmiciziaTask();
         accettaRichiestaAmiciziaTask.execute(usernameMittente, usernameDestinatario, tipo);
     }
 

@@ -59,7 +59,6 @@ public class AdapterAmici extends ArrayAdapter<String> {
         String username = arrayList.get(position);
         setView(holder,username);
 
-        RequestOptions options = new RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
         holder.btVisualizzaListeAmico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,8 +69,6 @@ public class AdapterAmici extends ArrayAdapter<String> {
     }
     private void setView(ViewHolder holder, String username){
         holder.tvAmici.setText(username);
-        RequestOptions options = new RequestOptions();
-                options.centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
     }
 
     private static class ViewHolder{

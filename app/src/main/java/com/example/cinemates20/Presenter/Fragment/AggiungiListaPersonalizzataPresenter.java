@@ -59,7 +59,7 @@ public class AggiungiListaPersonalizzataPresenter {
         else if(descrizioneLista.length() > 300)
             aggiungiListaPersonalizzataFragment.mostraToast("Superata lunghezza massima descrizione (300 caratteri)");
         else {
-            AggiungiListaPersonalizzataPresenter.AggiungiListaPersonalizzataTask aggiungiListaPersonalizzataTask = new AggiungiListaPersonalizzataPresenter.AggiungiListaPersonalizzataTask();
+            AggiungiListaPersonalizzataTask aggiungiListaPersonalizzataTask = new AggiungiListaPersonalizzataTask();
             aggiungiListaPersonalizzataTask.execute(titoloLista, descrizioneLista);
         }
     }

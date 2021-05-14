@@ -52,18 +52,17 @@ public class AdapterAggiungiAmici extends ArrayAdapter<String> {
 
         String username = arrayList.get(position);
         setView(holder,username);
-holder.btRichiestaAmicizia.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        aggiungiAmicoPresenter.inviaRichiestaAmicizia(arrayList.get(position));
-    }
-});
+        holder.btRichiestaAmicizia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aggiungiAmicoPresenter.inviaRichiestaAmicizia(arrayList.get(position));
+            }
+        });
         return rootView;
     }
 
     private void setView(ViewHolder holder, String username){
         holder.tvUsername.setText(username);
-        RequestOptions options = new RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
     }
 
     private static class ViewHolder{

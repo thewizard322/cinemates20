@@ -1,21 +1,28 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.ListaPersonalizzataDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
+import com.example.cinemates20.R;
+import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateAmiciFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzateAmici;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
 
 public class VisualizzaListePersonalizzateAmiciPresenter {
 
@@ -33,12 +40,30 @@ public class VisualizzaListePersonalizzateAmiciPresenter {
     }
 
     private void initializeListView() {
+        ListView lvVisualizzaListePersonalizzateAmico = visualizzaListePersonalizzateAmiciFragment.getLvVisualizzaListePersonalizzateAmico();
         adapterVisualizzaListePersonalizzateAmici = new AdapterVisualizzaListePersonalizzateAmici(Objects.requireNonNull(visualizzaListePersonalizzateAmiciFragment.getContext()), visualizzaListePersonalizzateAmiciFragment, filmListaPersonalizzata, this);
         visualizzaListePersonalizzateAmiciFragment.setAdapterVisualizzaListePersonalizzateAmico(adapterVisualizzaListePersonalizzateAmici);
+        lvVisualizzaListePersonalizzateAmico.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Film filmSelezionato = filmListaPersonalizzata.get(position);
+                addMostraFilmFragment(filmSelezionato);
+            }
+        });
     }
 
     private void initializeListener(){
 
+    }
+
+    private void addMostraFilmFragment(Film filmSelezionato){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("film", filmSelezionato);
+        Fragment fg = new MostraFilmFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = visualizzaListePersonalizzateAmiciFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void prelevaListePersonalizzate(){
