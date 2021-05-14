@@ -96,7 +96,7 @@ public class FilmDAO {
         boolean isCon = connect();
         if(isCon==false)
             return list;
-        String query = "SELECT id_film,titolo,anno,posterpath FROM film_preferito WHERE username=?";
+        String query = "SELECT id_film,titolo,anno,posterpath FROM film_preferito WHERE username=? ORDER BY titolo ASC";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
@@ -126,7 +126,7 @@ public class FilmDAO {
         boolean isCon = connect();
         if(isCon==false)
             return list;
-        String query = "SELECT id_film,titolo,anno,posterpath FROM film_da_vedere WHERE username=?";
+        String query = "SELECT id_film,titolo,anno,posterpath FROM film_da_vedere WHERE username=? ORDER BY titolo ASC";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
@@ -177,7 +177,8 @@ public class FilmDAO {
         boolean isCon = connect();
         if(isCon==false)
             return list;
-        String query = "SELECT id_film,titolo_film,anno,posterpath FROM film_lista_personalizzata WHERE username=? AND titolo_lista=?";
+        String query = "SELECT id_film,titolo_film,anno,posterpath FROM film_lista_personalizzata " +
+                "WHERE username=? AND titolo_lista=? ORDER BY titolo_film ASC";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);

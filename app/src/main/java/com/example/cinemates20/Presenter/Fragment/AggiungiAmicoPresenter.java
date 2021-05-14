@@ -1,10 +1,13 @@
 package com.example.cinemates20.Presenter.Fragment;
 
 import android.os.AsyncTask;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.cinemates20.DAO.NotificaDAO;
 import com.example.cinemates20.DAO.UtenteDAO;
@@ -41,6 +44,17 @@ public class AggiungiAmicoPresenter {
             public void onClick(View v) {
                 aggiungiAmicoFragment.hideKeyboard();
                 effettuaRicerca();
+            }
+        });
+        EditText etUsername = aggiungiAmicoFragment.getEtUsername();
+        etUsername.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_DONE) {
+                    btRicercaUtente.performClick();
+                    return true;
+                }
+                return false;
             }
         });
     }
