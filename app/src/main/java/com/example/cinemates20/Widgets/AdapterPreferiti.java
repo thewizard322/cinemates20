@@ -58,9 +58,6 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
         Film film = arrayList.get(position);
         setView(holder,film);
 
-        RequestOptions options = new RequestOptions()
-                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
-        Glide.with(context).load(arrayList.get(position).getPatPosterW92()).apply(options).into(holder.ivRowPreferiti);
         holder.btRimuoviDaPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +67,7 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
         holder.btCondividiPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preferitiPresenter.replaceRaccomandaPreferitoFragment(arrayList.get(position));
+                preferitiPresenter.addRaccomandaPreferitoFragment(arrayList.get(position));
             }
         });
 
@@ -82,7 +79,7 @@ public class AdapterPreferiti extends ArrayAdapter<Film> {
         holder.tvAnnoRowPreferiti.setText(film.getDataUscita());
 
         RequestOptions options = new RequestOptions()
-                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+                .centerCrop().placeholder(R.drawable.delete).error(R.drawable.delete);
         Glide.with(context).load(film.getPatPosterW92()).apply(options).into(holder.ivRowPreferiti);
     }
 

@@ -86,21 +86,21 @@ public class VisualizzaListePersonalizzatePresenter {
             public void onClick(View v) {
                 String titoloLista = visualizzaListePersonalizzateFragment.getTitoloLista();
                 if(!titoloLista.equals(""))
-                    replaceRaccomandaLstaPersonalizzataFragment();
+                    addRaccomandaLstaPersonalizzataFragment();
                 else
                     visualizzaListePersonalizzateFragment.mostraToast("Seleziona una lista");
             }
         });
     }
 
-    private void replaceRaccomandaLstaPersonalizzataFragment(){
+    private void addRaccomandaLstaPersonalizzataFragment(){
         Bundle bundle = new Bundle();
         bundle.putString("titoloLista", visualizzaListePersonalizzateFragment.getTitoloLista());
         Fragment fg = new RaccomandaListaPersonalizzataFragment();
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaListePersonalizzateFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void prelevaListePersonalizzate(){

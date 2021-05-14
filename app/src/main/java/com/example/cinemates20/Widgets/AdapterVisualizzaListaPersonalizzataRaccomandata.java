@@ -62,7 +62,7 @@ public class AdapterVisualizzaListaPersonalizzataRaccomandata extends ArrayAdapt
         holder.tvAnnoRowVisualizzaListePersonalizzate.setText(film.getDataUscita());
 
         RequestOptions options = new RequestOptions()
-                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+                .centerCrop().placeholder(R.drawable.delete).error(R.drawable.delete);
         Glide.with(context).load(film.getPatPosterW92()).apply(options).into(holder.ivRowListePersonalizzate);
 
     }

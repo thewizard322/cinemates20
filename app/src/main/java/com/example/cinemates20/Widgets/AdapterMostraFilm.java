@@ -139,7 +139,7 @@ public class AdapterMostraFilm extends ArrayAdapter<Recensione> {
         holderFilm.tvTramaMostraFilm.setText(film.getTrama());
 
         RequestOptions options = new RequestOptions()
-                .centerCrop().placeholder(R.mipmap.ic_launcher_round).error(R.mipmap.ic_launcher_round);
+                .centerCrop().placeholder(R.drawable.delete).error(R.drawable.delete);
         Glide.with(context).load(film.getPatPosterW154()).apply(options).into(holderFilm.iwMostraFilm);
     }
 

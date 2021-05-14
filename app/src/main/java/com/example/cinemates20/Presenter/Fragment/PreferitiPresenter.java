@@ -71,14 +71,14 @@ public class PreferitiPresenter {
         ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
-    public void replaceRaccomandaPreferitoFragment(Film filmSelezionato){
+    public void addRaccomandaPreferitoFragment(Film filmSelezionato){
         Bundle bundle = new Bundle();
         bundle.putSerializable("film", filmSelezionato);
         Fragment fg = new RaccomandaPreferitoFragment();
         fg.setArguments(bundle);
         FragmentManager fm = preferitiFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private class PrelievoPreferitiTask extends AsyncTask<Void,Void,Void> {
