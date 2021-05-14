@@ -4,7 +4,8 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.NotificaDAO;
 import com.example.cinemates20.Model.Utente;
@@ -21,6 +22,7 @@ public class ValutaListaAmicoPresenter {
         this.valutaListaAmicoFragment = valutaListaAmicoFragment;
         this.titoloLista = titoloLista;
         this.utenteLista = utenteLista;
+        valutaListaAmicoFragment.setTextTvTitoloListaValuta(titoloLista);
         initializeListener();
     }
 
@@ -43,6 +45,13 @@ public class ValutaListaAmicoPresenter {
         }
     }
 
+    private void backToVisualizzaListePersonalizzateAmiciFragment(){
+        FragmentManager fm = valutaListaAmicoFragment.getActivity().getSupportFragmentManager();
+        fm.popBackStack();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.commit();
+    }
+
     private class CheckValutazioneGiaInviata extends AsyncTask<Void,Void,Boolean>{
 
         @Override
@@ -54,6 +63,9 @@ public class ValutaListaAmicoPresenter {
         protected Boolean doInBackground(Void... voids) {
             String mittente = Utente.getUtenteLoggato().getUsername();
             NotificaDAO notificaDAO = new NotificaDAO();
+            System.out.println(mittente);
+            System.out.println(utenteLista);
+            System.out.println(titoloLista);
             return notificaDAO.checkValutazioneGiaInviata(mittente,utenteLista,titoloLista);
         }
 
@@ -62,6 +74,7 @@ public class ValutaListaAmicoPresenter {
             if(valNonInviata==false){
                 valutaListaAmicoFragment.togliProgressDialogCaricamento();
                 valutaListaAmicoFragment.mostraAlertDialogOk("ERRORE", "Hai già valutato questa lista");
+                backToVisualizzaListePersonalizzateAmiciFragment();
             }
             else{
                 InviaValutazioneListaTask inviaValutazioneListaTask = new InviaValutazioneListaTask();
@@ -92,6 +105,7 @@ public class ValutaListaAmicoPresenter {
                 valutaListaAmicoFragment.mostraAlertDialogOk("LISTA COMMENTATA", "Lista commentata con successo");
             else
                 valutaListaAmicoFragment.mostraAlertDialogOk("ERRORE","Impossibile commentare la lista");
+            backToVisualizzaListePersonalizzateAmiciFragment();
         }
     }
 
