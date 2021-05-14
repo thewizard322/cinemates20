@@ -98,6 +98,31 @@ public class ListaPersonalizzataDAO {
         return true;
     }
 
+    public ListaPersonalizzata prelevaDescrizioneListaPersonalizzata(String username, String titoloLista){
+        boolean isCon = connect();
+        if(isCon==false)
+            return null;
+        ListaPersonalizzata listaPersonalizzata;
+        String query = "SELECT descrizione FROM lista_personalizzata WHERE username=? AND titolo=?";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, username);
+            st.setString(2, titoloLista);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            String descrizione = rs.getString("descrizione");
+            listaPersonalizzata = new ListaPersonalizzata(titoloLista, descrizione, username);
+            st.close();
+        } catch (SQLException throwables) {
+            Log.e("Error prelievo","Impossibile prelevare la lista pers");
+            return null;
+        }
+        finally {
+            closeConnection();
+        }
+        return listaPersonalizzata;
+    }
+
     public void closeConnection(){
         try {
             con.close();
