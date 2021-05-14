@@ -73,7 +73,7 @@ public class VisualizzaListePersonalizzatePresenter {
     }
 
     private void initializeListener(){
-        ImageButton bAggiungiVisualizzaListePersonalizzate = visualizzaListePersonalizzateFragment.getbAggiungiVisualizzaListePersonalizzate();
+        Button bAggiungiVisualizzaListePersonalizzate = visualizzaListePersonalizzateFragment.getbAggiungiVisualizzaListePersonalizzate();
         Button btRaccomandaListaPersonalizzata = visualizzaListePersonalizzateFragment.getBtRaccomandaListaPersonalizzata();
         bAggiungiVisualizzaListePersonalizzate.setOnClickListener(new View.OnClickListener() {
             @Override
