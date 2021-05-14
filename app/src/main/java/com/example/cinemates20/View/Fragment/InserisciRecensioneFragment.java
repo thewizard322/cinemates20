@@ -5,9 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -44,6 +46,9 @@ public class InserisciRecensioneFragment extends Fragment {
         tilTestoRecensioneInserisciRecensione = view.findViewById(R.id.tilTestoRecensioneInserisciRecensione);
         bRececensisciInserisciRecensione = view.findViewById(R.id.bRececensisciInserisciRecensione);
         tvFilmInserisciRecensione = view.findViewById(R.id.tvFilmInserisciRecensione);
+        tilTestoRecensioneInserisciRecensione.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
+        tilTestoRecensioneInserisciRecensione.getEditText().setRawInputType(InputType.TYPE_CLASS_TEXT);
+
         initializeProgressDialog();
 
         Bundle bundle = getArguments();

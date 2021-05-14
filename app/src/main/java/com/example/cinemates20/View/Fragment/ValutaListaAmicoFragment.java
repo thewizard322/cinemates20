@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -48,6 +50,8 @@ public class ValutaListaAmicoFragment extends Fragment {
         rgValutazioneRapida = view.findViewById(R.id.rgValutazioneRapida);
         rbLike = view.findViewById(R.id.rbLike);
         rbDislike = view.findViewById(R.id.rbDislike);
+        tilCommentoValutaListaAmico.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
+        tilCommentoValutaListaAmico.getEditText().setRawInputType(InputType.TYPE_CLASS_TEXT);
 
         initializeProgressDialog();
 

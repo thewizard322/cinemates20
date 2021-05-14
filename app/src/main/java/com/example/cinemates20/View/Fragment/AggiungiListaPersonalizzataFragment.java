@@ -5,9 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
@@ -39,6 +41,8 @@ public class AggiungiListaPersonalizzataFragment extends Fragment {
         tilTitoloListaAggiungiListaPersonalizzata = view.findViewById(R.id.tilTitoloListaAggiungiListaPersonalizzata);
         tilTestoDescrizioneAggiungiListaPersonalizzata = view.findViewById(R.id.tilTestoDescrizioneAggiungiListaPersonalizzata);
         bCreaListaAggiungiListaPersonalizzata = view.findViewById(R.id.bCreaListaAggiungiListaPersonalizzata);
+        tilTestoDescrizioneAggiungiListaPersonalizzata.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
+        tilTestoDescrizioneAggiungiListaPersonalizzata.getEditText().setRawInputType(InputType.TYPE_CLASS_TEXT);
         initializeProgressDialog();
 
         new AggiungiListaPersonalizzataPresenter(this);

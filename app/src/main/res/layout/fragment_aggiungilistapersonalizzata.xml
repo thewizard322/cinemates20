@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
-                android:hint="Descrizione lista"
+                android:hint="Descrizione lista (opzionale)"
                 android:inputType="textMultiLine"
                 android:lines="8"
                 android:minLines="6"
