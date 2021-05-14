@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -18,6 +19,7 @@ import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
+import com.example.cinemates20.View.Fragment.ValutaListaAmicoFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateAmiciFragment;
 import com.example.cinemates20.Widgets.AdapterVisualizzaListePersonalizzateAmici;
 
@@ -53,13 +55,33 @@ public class VisualizzaListePersonalizzateAmiciPresenter {
     }
 
     private void initializeListener(){
-
+        Button btValutaListaPersonalizzataAmico = visualizzaListePersonalizzateAmiciFragment.getBtValutaListaPersonalizzataAmico();
+        btValutaListaPersonalizzataAmico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String titoloLista = visualizzaListePersonalizzateAmiciFragment.getTitoloLista();
+                if(titoloLista!=null && !titoloLista.equals(""))
+                    replaceValutaListaAmicoFragment(titoloLista);
+                else
+                    visualizzaListePersonalizzateAmiciFragment.mostraToast("Selezioare una lista da valutare");
+            }
+        });
     }
 
     private void addMostraFilmFragment(Film filmSelezionato){
         Bundle bundle = new Bundle();
         bundle.putSerializable("film", filmSelezionato);
         Fragment fg = new MostraFilmFragment();
+        fg.setArguments(bundle);
+        FragmentManager fm = visualizzaListePersonalizzateAmiciFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
+    }
+
+    private void replaceValutaListaAmicoFragment(String titoloLista){
+        Bundle bundle = new Bundle();
+        bundle.putString("titoloLista", titoloLista);
+        Fragment fg = new ValutaListaAmicoFragment();
         fg.setArguments(bundle);
         FragmentManager fm = visualizzaListePersonalizzateAmiciFragment.getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

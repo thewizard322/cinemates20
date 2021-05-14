@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitoloListaValuta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="Stai valutando la lista 'Titolo lista'"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCommentoValutaListaAmico"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:boxBackgroundColor="#FFFFFF"
+            android:layout_margin="10dp"
+            app:counterMaxLength="300"
+            app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Commento (opzionale)"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:gravity="start"
+                android:minLines="3"
+                android:maxLines="5"
+                android:scrollbars="vertical" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <RadioGroup
+            android:id="@+id/rgValutazioneRapida"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbLike"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:button="@null"
+                android:background="@drawable/like_custom"/>
+
+            <RadioButton
+                android:id="@+id/rbDislike"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:button="@null"
+                android:layout_margin="5dp"
+                android:background="@drawable/dislike_custom"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/bValutaListaAmico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/buttonstandard_custom"
+            android:text="Valuta" />
+    </LinearLayout>
+</LinearLayout>

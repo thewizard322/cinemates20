@@ -72,7 +72,7 @@ public class VisualizzaListePersonalizzateAmiciFragment extends Fragment {
     }
 
 
-    public Button getBtValutaListaPersonalizzataAmicoa(){
+    public Button getBtValutaListaPersonalizzataAmico(){
         return btValutaListaPersonalizzataAmico;
     }
 
