@@ -58,4 +58,11 @@ public class VisualizzaValutazioniProprieListePersonalizzateFragment extends Fra
         tvIntestazioneVisualizzaValutazioniProprieListePersonalizzate.setText("Valutazione lista '" + titoloLista + "'");
     }
 
+    public TextView getTvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate() {
+        return tvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate;
+    }
+
+    public TextView getTvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate() {
+        return tvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate;
+    }
 }

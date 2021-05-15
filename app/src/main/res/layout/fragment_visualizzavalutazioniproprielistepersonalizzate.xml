@@ -25,37 +25,12 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="5dp"
-            android:background="#E8E8E8"
-            android:text="TESTO VALUTAZIONE"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="Testo valutazione"
-            android:textColor="#000000" />
-
-        <TextView
             android:id="@+id/tvLabelRapidaValutazioneVisualizzaValutazioniProprieListePersonalizzate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="5dp"
             android:background="#E8E8E8"
             android:text="REAZIONE RAPIDA"
@@ -72,6 +47,31 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:text="Like o Dislike"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:background="#E8E8E8"
+            android:text="TESTO VALUTAZIONE"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="Testo valutazione"
             android:textColor="#000000" />
 
     </LinearLayout>

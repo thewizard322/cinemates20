@@ -1,5 +1,7 @@
 package com.example.cinemates20.Presenter.Fragment;
 
+import android.view.View;
+
 import com.example.cinemates20.View.Fragment.VisualizzaValutazioniProprieListePersonalizzateFragment;
 
 public class VisualizzaValutazioniProprieListePersonalizzatePresenter {
@@ -17,19 +19,23 @@ public class VisualizzaValutazioniProprieListePersonalizzatePresenter {
         this.usernameMittenteListaNotificaSelezionata = usernameMittente;
         this.likeOrDislike = likeOrDislike;
         this.commento = commento;
-        if((commento == null) || (commento.equals(""))){
-            commento = "Commento non inserito...";
+        visualizzaValutazioniProprieListePersonalizzateFragment.getTvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate().setVisibility(View.GONE);
+        visualizzaValutazioniProprieListePersonalizzateFragment.getTvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate().setVisibility(View.GONE);
+        if(!((commento == null) || (commento.equals("")))){
+            visualizzaValutazioniProprieListePersonalizzateFragment.getTvLabelValutazioneVisualizzaValutazioniProprieListePersonalizzate().setVisibility(View.VISIBLE);
+            visualizzaValutazioniProprieListePersonalizzateFragment.getTvTestoValutazioneVisualizzaValutazioniProprieListePersonalizzate().setVisibility(View.VISIBLE);
         }
         if(likeOrDislike == 0) {
-            this.valutazioneRapida = "DISLIKE";
+            this.valutazioneRapida = " non ";
         }
         else if(likeOrDislike == 1){
-            this.valutazioneRapida = "LIKE";
+            this.valutazioneRapida = " ";
         }
 
         visualizzaValutazioniProprieListePersonalizzateFragment.setTvIntestazioneVisualizzaValutazioniProprieListePersonalizzate(titoloLista);
         visualizzaValutazioniProprieListePersonalizzateFragment.setTextTestoValutazione(commento);
-        visualizzaValutazioniProprieListePersonalizzateFragment.setTextRapida(valutazioneRapida);
+        visualizzaValutazioniProprieListePersonalizzateFragment.setTextRapida("All'utente " + usernameMittenteListaNotificaSelezionata +
+                valutazioneRapida + "è piaciuta la tua lista '" + titoloListaNotificaSelezionata +"'");
     }
 
 
