@@ -166,7 +166,6 @@ public class VisualizzaNotifichePresenter {
 
             NotificaDAO notificaDAO = new NotificaDAO();
             notificaDAO.rimuoviNotifica(usernameMittente, usernameDestinatario, tipo);
-            notificaDAO.rimuoviNotifica(usernameDestinatario, usernameMittente, tipo);
 
             if(amiciAggiunti1 && amiciAggiunti2) {
                 notificaDAO.inviaNotificaAmicizia(usernameDestinatario, usernameMittente, "RAA");
