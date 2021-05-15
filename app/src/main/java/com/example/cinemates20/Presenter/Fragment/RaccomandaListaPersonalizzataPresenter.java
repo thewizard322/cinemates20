@@ -31,7 +31,7 @@ public class RaccomandaListaPersonalizzataPresenter {
         bInviaRaccomandaLista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkPrefertoGiaRaccomandato();
+                checkListaGiaRaccomandata();
             }
         });
     }
@@ -48,7 +48,7 @@ public class RaccomandaListaPersonalizzataPresenter {
         raccomandaListaPersonalizzataFragment.setAdapterSpinnerTitoloLista(adapter);
     }
 
-    private void checkPrefertoGiaRaccomandato(){
+    private void checkListaGiaRaccomandata(){
         String usernameAmico = raccomandaListaPersonalizzataFragment.getUsernameAmico();
         if(usernameAmico.equals(""))
             raccomandaListaPersonalizzataFragment.mostraToast("Selezionare un amico");
@@ -58,7 +58,7 @@ public class RaccomandaListaPersonalizzataPresenter {
         }
     }
 
-    private void raccomandaFilmPreferito(){
+    private void raccomandaLista(){
         RaccomandaListaTask raccomandaListaTask = new RaccomandaListaTask();
         raccomandaListaTask.execute();
     }
@@ -102,7 +102,7 @@ public class RaccomandaListaPersonalizzataPresenter {
         @Override
         protected void onPostExecute(Boolean listaNonCondivisa) {
             if(listaNonCondivisa == true)
-                raccomandaFilmPreferito();
+                raccomandaLista();
             else{
                 raccomandaListaPersonalizzataFragment.togliProgrssDialogCaricamento();
                 raccomandaListaPersonalizzataFragment.mostraAlertDialogOk("ERRORE","Hai già raccomandato questa lista" +
@@ -127,9 +127,9 @@ public class RaccomandaListaPersonalizzataPresenter {
         }
 
         @Override
-        protected void onPostExecute(Boolean filmRaccomandato) {
+        protected void onPostExecute(Boolean listaRaccomandata) {
             raccomandaListaPersonalizzataFragment.togliProgrssDialogCaricamento();
-            if(filmRaccomandato == true)
+            if(listaRaccomandata == true)
                 raccomandaListaPersonalizzataFragment.mostraAlertDialogOk("LISTA CONDIVISA", "Lista condivisa con successo");
             else
                 raccomandaListaPersonalizzataFragment.mostraAlertDialogOk("ERRORE", "Impossibile raccomandare la lista");
