@@ -31,12 +31,13 @@ public class ValutaListaAmicoPresenter {
         bValutaListaAmico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inviaRecensione();
+                valutaListaAmicoFragment.hideKeyboard();
+                inviaValutazione();
             }
         });
     }
 
-    private void inviaRecensione(){
+    private void inviaValutazione(){
         if(!valutaListaAmicoFragment.rbDislikeIsChecked() && !valutaListaAmicoFragment.rbLikeIsChecked())
             valutaListaAmicoFragment.mostraToast("Selezionare like o dislike");
         else{
