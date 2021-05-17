@@ -50,7 +50,6 @@ public class UtenteDAO {
             if(check != 0)
                 return 2;
         } catch (Throwable e) {
-            e.printStackTrace();
             Log.e("Error register user","Impossibile registrare utente");
             return 1;
         }
@@ -128,7 +127,29 @@ public class UtenteDAO {
     }
 
     public Utente prelevaUtente(String username){
-        boolean isCon = connect();
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/prelevaUtente.php");
+        Utente utente;
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONArray jsonArray = new JSONArray(responseString);
+            int n = jsonArray.length();
+            String email = null;
+            for (int i = 0; i < n; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                email = jsonObject.getString("email");
+            }
+            utente = new Utente(username,email);
+        } catch (Throwable e) {
+            Log.e("Error get user","Impossibile prelevare l'username");
+            return null;
+        }
+        return utente;
+        /*boolean isCon = connect();
         if(isCon==false)
             return null;
         Utente utente = null;
@@ -149,7 +170,7 @@ public class UtenteDAO {
         finally {
             closeConnection();
         }
-        return utente;
+        return utente;*/
     }
 
     public int checkUser(String username){
@@ -171,7 +192,7 @@ public class UtenteDAO {
             if(count!=0)
                 return 1;
         } catch (Throwable e) {
-            Log.e("Error login user","Impossibile loggare utente");
+            Log.e("Error check username","Impossibile verificare l'username");
             return 2;
         }
         return 0;
@@ -218,7 +239,7 @@ public class UtenteDAO {
             if(count!=0)
                 return 1;
         } catch (Throwable e) {
-            Log.e("Error login user","Impossibile loggare utente");
+            Log.e("Error check email","Impossibile verificare l'email");
             return 2;
         }
         return 0;
