@@ -129,7 +129,7 @@ public class RaccomandaPreferitoPresenter {
             String dataUscita = filmSelezionato.getDataUscita();
             String posterPath = filmSelezionato.getPathPoster();
             NotificaDAO notificaDAO = new NotificaDAO();
-            return notificaDAO.RaccomdandaPreferito(usernameMittente,usernameDestinatario,idFilm,titoloFilm,dataUscita,posterPath);
+            return notificaDAO.raccomandaPreferito(usernameMittente,usernameDestinatario,idFilm,titoloFilm,dataUscita,posterPath);
         }
 
         @Override
