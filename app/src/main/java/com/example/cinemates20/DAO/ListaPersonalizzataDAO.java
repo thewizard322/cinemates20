@@ -5,131 +5,124 @@ import android.util.Log;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaPersonalizzataDAO {
 
-    private Connection con;
-
-    private boolean connect(){
-        con = ConnectionDAO.getConnection();
-        if(con == null)
-            return false;
-        return true;
-    }
+    private String url = "http://ec2-18-196-42-56.eu-central-1.compute.amazonaws.com";
 
     public ArrayList<ListaPersonalizzata> prelevaListePersonalizzate(String username){
         ArrayList<ListaPersonalizzata> arrayList = new ArrayList<>();
-        boolean isCon = connect();
-        if(isCon==false)
-            return arrayList;
-        String query = "SELECT username, titolo, descrizione FROM lista_personalizzata WHERE username=?";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/prelevaListePersonalizzate.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, username);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                String user = rs.getString("username");
-                String titolo = rs.getString("titolo");
-                String descrizione = rs.getString("descrizione");
-                ListaPersonalizzata listaPersonalizzata = new ListaPersonalizzata(titolo,descrizione,user);
-                arrayList.add(listaPersonalizzata);
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONArray jsonArray = new JSONArray(responseString);
+            int n = jsonArray.length();
+            String user = null;
+            String titolo = null;
+            String descrizione = null;
+            for (int i = 0; i < n; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                titolo = jsonObject.getString("titolo");
+                user = jsonObject.getString("username");
+                descrizione = jsonObject.getString("descrizione");
+                arrayList.add(new ListaPersonalizzata(titolo,descrizione,user));
             }
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error prelievo","Impossibile prelevare le liste pers");
-            return arrayList;
-        }
-        finally {
-            closeConnection();
+        } catch (Throwable e) {
+            Log.e("Error prelievo pref","Impossibile prelevare i preferiti");
+            return null;
         }
         return arrayList;
     }
 
     public boolean aggiungiFilmAListaPers(String username, String titolo, Film film){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "INSERT INTO film_lista_personalizzata (titolo_lista,username,id_film,titolo_film,anno,posterpath)" +
-                " VALUES (?,?,?,?,?,?)";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("titolo_lista", titolo));
+        params.add(new BasicNameValuePair("idFilm", String.valueOf(film.getId())));
+        params.add(new BasicNameValuePair("titolo_film", film.getTitolo()));
+        params.add(new BasicNameValuePair("dataUscita", film.getDataUscita()));
+        params.add(new BasicNameValuePair("posterPath", film.getPathPoster()));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/aggiungiFilmAListaPersonalizzata.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, titolo);
-            st.setString(2, username);
-            st.setInt(3,film.getId());
-            st.setString(4,film.getTitolo());
-            st.setString(5,film.getDataUscita());
-            st.setString(6,film.getPathPoster());
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error add to pers","Impossibile aggiungere film alla lista pers");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONObject jsonObject = new JSONObject(responseString);
+            int check = jsonObject.getInt("response");
+            if(check != 0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error add pref","Impossibile aggiungere film preferito");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public boolean creaListaPers(String titolo, String username, String descrizione){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "INSERT INTO lista_personalizzata (titolo,username,descrizione) VALUES (?,?,?)";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("titolo", titolo));
+        params.add(new BasicNameValuePair("descrizione", descrizione));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/creaListaPersonalizzata.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, titolo);
-            st.setString(2, username);
-            st.setString(3, descrizione);
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error insert lista_pers","Impossibile inserire lista personalizzata");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONObject jsonObject = new JSONObject(responseString);
+            int check = jsonObject.getInt("response");
+            if(check != 0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error add pref","Impossibile aggiungere film preferito");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public ListaPersonalizzata prelevaDescrizioneListaPersonalizzata(String username, String titoloLista){
-        boolean isCon = connect();
-        if(isCon==false)
-            return null;
-        ListaPersonalizzata listaPersonalizzata;
-        String query = "SELECT descrizione FROM lista_personalizzata WHERE username=? AND titolo=?";
+        ListaPersonalizzata listaPersonalizzata = null;
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("titolo_lista", titoloLista));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/prelevaDescrizioneListaPersonalizzata.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, username);
-            st.setString(2, titoloLista);
-            ResultSet rs = st.executeQuery();
-            rs.next();
-            String descrizione = rs.getString("descrizione");
-            listaPersonalizzata = new ListaPersonalizzata(titoloLista, descrizione, username);
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error prelievo","Impossibile prelevare la lista pers");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONArray jsonArray = new JSONArray(responseString);
+            int n = jsonArray.length();
+            String descrizione = null;
+            for (int i = 0; i < n; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                descrizione = jsonObject.getString("descrizione");
+                listaPersonalizzata = new ListaPersonalizzata(titoloLista,descrizione,username);
+            }
+        } catch (Throwable e) {
+            Log.e("Error prelievo pref","Impossibile prelevare i preferiti");
             return null;
-        }
-        finally {
-            closeConnection();
         }
         return listaPersonalizzata;
-    }
-
-    private void closeConnection(){
-        try {
-            con.close();
-        } catch (SQLException throwables) {
-            Log.e("Error close connection","Impossibile chiudere la connessione");
-            return;
-        }
     }
 
 }

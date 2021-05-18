@@ -4,12 +4,15 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.ListaPersonalizzataDAO;
 import com.example.cinemates20.Model.Utente;
+import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiListaPersonalizzataFragment;
+import com.example.cinemates20.View.Fragment.VisualizzaListePersonalizzateFragment;
 
 public class AggiungiListaPersonalizzataPresenter {
     AggiungiListaPersonalizzataFragment aggiungiListaPersonalizzataFragment;
@@ -37,14 +40,23 @@ public class AggiungiListaPersonalizzataPresenter {
     private void onReviewInsertSuccess(){
         aggiungiListaPersonalizzataFragment.mostraAlertDialogOk("LISTA PERSONALIZZATA CREATA"
                 ,"Lista creata con successo");
-        backToVisualizzaListePersonalizzateFragment();
+        doubleBackStack();
+        addVisualizzaListePersonalizzateFragment();
     }
 
-    private void backToVisualizzaListePersonalizzateFragment(){
+    private void doubleBackStack(){
         FragmentManager fm = aggiungiListaPersonalizzataFragment.getActivity().getSupportFragmentManager();
+        fm.popBackStack();
         fm.popBackStack();
         FragmentTransaction ft = fm.beginTransaction();
         ft.commit();
+    }
+
+    private void addVisualizzaListePersonalizzateFragment(){
+        Fragment fg = new VisualizzaListePersonalizzateFragment();
+        FragmentManager fm = aggiungiListaPersonalizzataFragment.getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_container_main_activity, fg).addToBackStack(null).commit();
     }
 
     private void aggiungiListaPersonalizzata(){
