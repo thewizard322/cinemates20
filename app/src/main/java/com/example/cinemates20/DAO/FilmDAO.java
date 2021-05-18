@@ -103,16 +103,12 @@ public class FilmDAO {
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
             int n = jsonArray.length();
-            int idFilm = 0;
-            String titolo = null;
-            String dataUscita = null;
-            String posterPath = null;
             for (int i = 0; i < n; i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                idFilm = jsonObject.getInt("id_film");
-                titolo = jsonObject.getString("titolo");
-                dataUscita = jsonObject.getString("anno");
-                posterPath = jsonObject.getString("posterpath");
+                int idFilm = jsonObject.getInt("id_film");
+                String titolo = jsonObject.getString("titolo");
+                String dataUscita = jsonObject.getString("anno");
+                String posterPath = jsonObject.getString("posterpath");
                 arrayList.add(new Film(idFilm,titolo,dataUscita,posterPath));
             }
         } catch (Throwable e) {
@@ -134,16 +130,12 @@ public class FilmDAO {
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
             int n = jsonArray.length();
-            int idFilm = 0;
-            String titolo = null;
-            String dataUscita = null;
-            String posterPath = null;
             for (int i = 0; i < n; i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                idFilm = jsonObject.getInt("id_film");
-                titolo = jsonObject.getString("titolo");
-                dataUscita = jsonObject.getString("anno");
-                posterPath = jsonObject.getString("posterpath");
+                int idFilm = jsonObject.getInt("id_film");
+                String titolo = jsonObject.getString("titolo");
+                String dataUscita = jsonObject.getString("anno");
+                String posterPath = jsonObject.getString("posterpath");
                 arrayList.add(new Film(idFilm,titolo,dataUscita,posterPath));
             }
         } catch (Throwable e) {
@@ -187,16 +179,12 @@ public class FilmDAO {
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
             int n = jsonArray.length();
-            int idFilm = 0;
-            String titolo = null;
-            String dataUscita = null;
-            String posterPath = null;
             for (int i = 0; i < n; i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                idFilm = jsonObject.getInt("id_film");
-                titolo = jsonObject.getString("titolo_film");
-                dataUscita = jsonObject.getString("anno");
-                posterPath = jsonObject.getString("posterpath");
+                int idFilm = jsonObject.getInt("id_film");
+                String titolo = jsonObject.getString("titolo_film");
+                String dataUscita = jsonObject.getString("anno");
+                String posterPath = jsonObject.getString("posterpath");
                 arrayList.add(new Film(idFilm,titolo,dataUscita,posterPath));
             }
         } catch (Throwable e) {

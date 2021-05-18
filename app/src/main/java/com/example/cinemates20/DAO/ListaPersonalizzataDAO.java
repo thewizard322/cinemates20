@@ -35,14 +35,11 @@ public class ListaPersonalizzataDAO {
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
             int n = jsonArray.length();
-            String user = null;
-            String titolo = null;
-            String descrizione = null;
             for (int i = 0; i < n; i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                titolo = jsonObject.getString("titolo");
-                user = jsonObject.getString("username");
-                descrizione = jsonObject.getString("descrizione");
+                String titolo = jsonObject.getString("titolo");
+                String user = jsonObject.getString("username");
+                String descrizione = jsonObject.getString("descrizione");
                 arrayList.add(new ListaPersonalizzata(titolo,descrizione,user));
             }
         } catch (Throwable e) {
@@ -112,10 +109,9 @@ public class ListaPersonalizzataDAO {
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
             int n = jsonArray.length();
-            String descrizione = null;
             for (int i = 0; i < n; i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                descrizione = jsonObject.getString("descrizione");
+                String descrizione = jsonObject.getString("descrizione");
                 listaPersonalizzata = new ListaPersonalizzata(titoloLista,descrizione,username);
             }
         } catch (Throwable e) {
