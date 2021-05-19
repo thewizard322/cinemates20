@@ -64,9 +64,6 @@ public class ValutaListaAmicoPresenter {
         protected Boolean doInBackground(Void... voids) {
             String mittente = Utente.getUtenteLoggato().getUsername();
             NotificaDAO notificaDAO = new NotificaDAO();
-            System.out.println(mittente);
-            System.out.println(utenteLista);
-            System.out.println(titoloLista);
             return notificaDAO.checkValutazioneGiaInviata(mittente,utenteLista,titoloLista);
         }
 

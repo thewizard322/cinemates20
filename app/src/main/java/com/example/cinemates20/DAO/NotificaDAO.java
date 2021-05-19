@@ -4,222 +4,208 @@ import android.util.Log;
 
 import com.example.cinemates20.Model.Notifica;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotificaDAO {
 
-    private Connection con;
-
-    private boolean connect(){
-        con = ConnectionDAO.getConnection();
-        if(con == null)
-            return false;
-        return true;
-    }
+    private String url = "http://ec2-18-196-42-56.eu-central-1.compute.amazonaws.com";
 
     public boolean inviaNotificaValutazioneListaAmico(String usernameMittente, String usernameDestinatario,
                                               String titoloLista, int likeOrDislike, String commento){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "INSERT INTO notifica (username_mittente,username_destinatario,tipologia,like_dislike,commento,titolo_lista,username_lista) " +
-                "VALUES (?,?,?,?,?,?,?)";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("titolo_lista", titoloLista));
+        params.add(new BasicNameValuePair("like_or_dislike", String.valueOf(likeOrDislike)));
+        params.add(new BasicNameValuePair("commento", commento));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/inviaNotificaValutazioneListaAmico.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setString(3, "VLP");
-            st.setInt(4, likeOrDislike);
-            st.setString(5, commento);
-            st.setString(6, titoloLista);
-            st.setString(7, usernameDestinatario);
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Log.e("Error invio val","Impossibile inviare valutazione");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONObject jsonObject = new JSONObject(responseString);
+            int check = jsonObject.getInt("response");
+            if(check != 0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error register user","Impossibile registrare utente");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public boolean checkValutazioneGiaInviata(String usernameMittente, String usernameDestinatario,
                                               String titoloLista){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "SELECT COUNT(*) AS count FROM notifica WHERE username_mittente=? AND " +
-                "username_destinatario=? AND titolo_lista=? AND username_lista=? AND tipologia='VLP'";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("titolo_lista", titoloLista));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/checkValutazioneGiaInviata.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setString(3, titoloLista);
-            st.setString(4, usernameDestinatario);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                int count = rs.getInt("count");
-                if(count!=0)
-                    return false;
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONArray jsonArray = new JSONArray(responseString);
+            int n = jsonArray.length();
+            int count = 0;
+            for (int i = 0; i < n; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                count = jsonObject.getInt("count");
             }
-            st.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Log.e("Error check racc list","Impossibile Verificare lista raccomandata");
+            if(count!=0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error check email","Impossibile verificare l'email");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public boolean checkPreferitoGiaRaccomandato(String usernameMittente, String usernameDestinatario
                                     , int idFilm){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "SELECT COUNT(*) AS count FROM notifica WHERE username_mittente=? AND " +
-                "username_destinatario=? AND id_film_preferito=? AND tipologia='RFP'";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("id_film_preferito", String.valueOf(idFilm)));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/checkPreferitoGiaRaccomandato.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setInt(3, idFilm);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                int count = rs.getInt("count");
-                if(count!=0)
-                    return false;
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONArray jsonArray = new JSONArray(responseString);
+            int n = jsonArray.length();
+            int count = 0;
+            for (int i = 0; i < n; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                count = jsonObject.getInt("count");
             }
-            st.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Log.e("Error check prefracc","Impossibile Verificare preferito raccomandato");
+            if(count!=0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error check email","Impossibile verificare l'email");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public boolean checkListaGiaRaccomandata(String usernameMittente, String usernameDestinatario
             , String titoloLista){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "SELECT COUNT(*) AS count FROM notifica WHERE username_mittente=? AND " +
-                "username_destinatario=? AND titolo_lista=? AND tipologia='RLP'";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("titolo_lista", titoloLista));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/checkListaGiaRaccomandata.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setString(3, titoloLista);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                int count = rs.getInt("count");
-                if(count!=0)
-                    return false;
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONArray jsonArray = new JSONArray(responseString);
+            int n = jsonArray.length();
+            int count = 0;
+            for (int i = 0; i < n; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                count = jsonObject.getInt("count");
             }
-            st.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Log.e("Error check list","Impossibile Verificare lista raccomandata");
+            if(count!=0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error check email","Impossibile verificare l'email");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
-    public boolean RaccomdandaPreferito(String usernameMittente, String usernameDestinatario
+    public boolean raccomandaPreferito(String usernameMittente, String usernameDestinatario
             , int idFilm, String titoloFilm, String dataUscita, String posterPath){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "INSERT INTO notifica (username_mittente,username_destinatario,id_film_preferito," +
-                "titolo_film_preferito,data_film_preferito,posterpath_film_preferto,tipologia) VALUES (?,?,?,?,?,?,?)";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("id_film", String.valueOf(idFilm)));
+        params.add(new BasicNameValuePair("titolo_film", titoloFilm));
+        params.add(new BasicNameValuePair("data_uscita", dataUscita));
+        params.add(new BasicNameValuePair("poster_path", posterPath));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/raccomandaPreferito.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setInt(3,idFilm);
-            st.setString(4,titoloFilm);
-            st.setString(5,dataUscita);
-            st.setString(6,posterPath);
-            st.setString(7,"RFP");
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error racc pref","Impossibile raccomandare film preferito");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONObject jsonObject = new JSONObject(responseString);
+            int check = jsonObject.getInt("response");
+            if(check != 0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error register user","Impossibile registrare utente");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public boolean raccomandaLista(String usernameMittente, String usernameDestinatario
             , String titoloLista){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "INSERT INTO notifica (username_mittente,username_destinatario,titolo_lista," +
-                "username_lista,tipologia) VALUES (?,?,?,?,?)";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("titolo_lista", titoloLista));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/raccomandaLista.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setString(3,titoloLista);
-            st.setString(4,usernameMittente);
-            st.setString(5,"RLP");
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error racc list","Impossibile raccomandare lista personalizzata");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONObject jsonObject = new JSONObject(responseString);
+            int check = jsonObject.getInt("response");
+            if(check != 0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error register user","Impossibile registrare utente");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public ArrayList<Notifica> prelevaNotifiche(String username) {
-        ArrayList<Notifica> list = new ArrayList<>();
-        boolean isCon = connect();
-        if(isCon==false)
-            return list;
-        String query = "SELECT id_notifica,username_mittente,username_destinatario,tipologia," +
-                "id_film_preferito,titolo_film_preferito,data_film_preferito,posterpath_film_preferto,titolo_lista,username_lista,like_dislike," +
-                "commento FROM notifica WHERE username_destinatario=? ORDER BY id_notifica DESC";
+        ArrayList<Notifica> arrayList = new ArrayList<>();
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/prelevaNotifiche.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, username);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                int idNotifica = rs.getInt("id_notifica");
-                String usernameMittente = rs.getString("username_mittente");
-                String usernameDestinatario = rs.getString("username_destinatario");
-                String tipo = rs.getString("tipologia");
-                int idFilmPreferito = rs.getInt("id_film_preferito");
-                String titoloFilmPreferito = rs.getString("titolo_film_preferito");
-                String dataUscitaPreferito = rs.getString("data_film_preferito");
-                String posterPathPreferito = rs.getString("posterpath_film_preferto");
-                String titoloLista = rs.getString("titolo_lista");
-                String usernamelista = rs.getString("username_lista");
-                int likeOrDislike = rs.getInt("like_dislike");
-                String commento = rs.getString("commento");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONArray jsonArray = new JSONArray(responseString);
+            int n = jsonArray.length();
+            for (int i = 0; i < n; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                int idNotifica = jsonObject.getInt("id_notifica");
+                String usernameMittente = jsonObject.getString("username_mittente");
+                String usernameDestinatario = jsonObject.getString("username_destinatario");
+                String tipo = jsonObject.getString("tipologia");
+                int idFilmPreferito = jsonObject.optInt("id_film_preferito",0);
+                String titoloFilmPreferito = jsonObject.getString("titolo_film_preferito");
+                String dataUscitaPreferito = jsonObject.getString("data_film_preferito");
+                String posterPathPreferito = jsonObject.getString("posterpath_film_preferto");
+                String titoloLista = jsonObject.getString("titolo_lista");
+                String usernamelista = jsonObject.getString("username_lista");
+                int likeOrDislike = jsonObject.optInt("like_dislike",2);
+                String commento = jsonObject.getString("commento");
 
                 Notifica notifica = new Notifica(idNotifica,usernameMittente,usernameDestinatario,tipo);
                 notifica.setIdFilmPreferito(idFilmPreferito);
@@ -230,71 +216,57 @@ public class NotificaDAO {
                 notifica.setCommento(commento);
                 notifica.setLikeOrDislike(likeOrDislike);
 
-                list.add(notifica);
+                arrayList.add(notifica);
             }
-            st.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Log.e("Error prelievo notif","Impossibile prelevare le notifiche");
-            return list;
+        } catch (Throwable e) {
+            Log.e("Error prelievo pref","Impossibile prelevare i preferiti");
+            return null;
         }
-        finally {
-            closeConnection();
-        }
-        return list;
+        return arrayList;
     }
 
     public boolean inviaNotificaAmicizia(String usernameMittente, String usernameDestinatario, String tipologia) {
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "INSERT INTO notifica (username_mittente,username_destinatario,tipologia) VALUES (?,?,?)";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("tipo", tipologia));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/inviaNotificaAmicizia.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setString(3, tipologia);
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error invia rich","Impossibile inviare notifica di amicizia");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONObject jsonObject = new JSONObject(responseString);
+            int check = jsonObject.getInt("response");
+            if(check != 0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error register user","Impossibile registrare utente");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
     }
 
     public boolean rimuoviNotifica(String usernameMittente, String usernameDestinatario, String tipo){
-        boolean isCon = connect();
-        if(isCon==false)
-            return false;
-        String query = "DELETE FROM notifica WHERE username_mittente=? AND username_destinatario=? AND tipologia=?";
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", usernameMittente));
+        params.add(new BasicNameValuePair("username_destinatario", usernameDestinatario));
+        params.add(new BasicNameValuePair("tipo", tipo));
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url+"/rimuoviNotifica.php");
         try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, usernameMittente);
-            st.setString(2, usernameDestinatario);
-            st.setString(3, tipo);
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException throwables) {
-            Log.e("Error rimuovi notifica","Impossibile eliminare la notifica");
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity());
+            JSONObject jsonObject = new JSONObject(responseString);
+            int check = jsonObject.getInt("response");
+            if(check != 0)
+                return false;
+        } catch (Throwable e) {
+            Log.e("Error add pref","Impossibile eliminare film da vedere");
             return false;
-        }
-        finally {
-            closeConnection();
         }
         return true;
-    }
-
-    private void closeConnection(){
-        try {
-            con.close();
-        } catch (SQLException throwables) {
-            Log.e("Error close connection","Impossibile chiudere la connessione");
-            return;
-        }
     }
 
 }
