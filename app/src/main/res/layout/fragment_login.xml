@@ -58,18 +58,18 @@
 
         <Button
             android:id="@+id/btLogin"
-            android:layout_width="137dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/button_login"
             android:text="Login"
-            android:textStyle="bold"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:backgroundTint="@null"
             app:icon="@drawable/loginnew"
             app:iconPadding="0dp"
-            app:iconSize="26dp"
-            app:iconTint="@color/black" />
+            app:iconSize="22dp"
+            app:iconTint="#A2231D" />
 
         <TextView
             android:id="@+id/txtRegistrazioneLgn"
