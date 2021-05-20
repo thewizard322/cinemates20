@@ -85,9 +85,9 @@
             android:background="@drawable/buttonstandard_custom"
             android:text="INVIA"
             app:backgroundTint="@null"
-            app:icon="@drawable/iconarecensione"
+            app:icon="@drawable/send"
             app:iconGravity="textStart"
-            app:iconPadding="8dp"
+            app:iconPadding="2dp"
             app:iconSize="30dp"
             app:iconTint="@color/white" />
     </LinearLayout>
