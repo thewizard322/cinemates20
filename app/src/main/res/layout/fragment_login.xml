@@ -61,15 +61,15 @@
             android:layout_width="137dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/buttonstandard_custom"
+            android:background="@drawable/button_login"
             android:text="Login"
             android:textStyle="bold"
-            android:textColor="#F3EDED"
+            android:textColor="@color/black"
             app:backgroundTint="@null"
-            app:icon="@drawable/login"
+            app:icon="@drawable/loginnew"
             app:iconPadding="0dp"
             app:iconSize="26dp"
-            app:iconTint="@color/white" />
+            app:iconTint="@color/black" />
 
         <TextView
             android:id="@+id/txtRegistrazioneLgn"
