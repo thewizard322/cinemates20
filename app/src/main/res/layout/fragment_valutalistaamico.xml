@@ -80,10 +80,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            app:backgroundTint="@null"
+            android:layout_margin="50dp"
             android:background="@drawable/buttonstandard_custom"
-            android:text="Valuta" />
+            android:text="Valuta"
+            app:backgroundTint="@null"
+            app:icon="@drawable/valutalisteamico"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:iconSize="30dp"
+            app:iconTint="@color/white" />
 
     </LinearLayout>
 </LinearLayout>

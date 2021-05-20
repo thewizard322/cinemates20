@@ -76,10 +76,15 @@
             android:id="@+id/bCreaListaAggiungiListaPersonalizzata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Crea lista"
+            android:text="AGGIUNGI LISTA"
             android:layout_gravity="center"
-            app:backgroundTint="@null"
             android:background="@drawable/buttonstandard_custom"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            app:backgroundTint="@null"
+            app:icon="@drawable/crealista"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:iconSize="35dp"
+            app:iconTint="@color/white"/>
     </LinearLayout>
 </LinearLayout>

@@ -87,6 +87,11 @@
             android:layout_margin="20dp"
             android:background="@drawable/buttonstandard_custom"
             android:text="Aggiungi"
-            app:backgroundTint="@null" />
+            app:backgroundTint="@null"
+            app:icon="@drawable/add"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:iconSize="30dp"
+            app:iconTint="@color/white"/>
     </LinearLayout>
 </LinearLayout>
