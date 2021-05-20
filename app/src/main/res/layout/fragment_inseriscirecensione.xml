@@ -82,8 +82,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            app:backgroundTint="@null"
             android:background="@drawable/buttonstandard_custom"
-            android:text="Recensisci" />
+            android:text="INVIA"
+            app:backgroundTint="@null"
+            app:icon="@drawable/iconarecensione"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconSize="30dp"
+            app:iconTint="@color/white" />
     </LinearLayout>
 </LinearLayout>
