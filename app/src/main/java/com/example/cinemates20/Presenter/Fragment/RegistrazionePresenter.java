@@ -10,14 +10,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates20.DAO.UtenteDAO;
 import com.example.cinemates20.Model.Utente;
-import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.LoginFragment;
 import com.example.cinemates20.View.Fragment.RegistrazioneFragment;
 import com.google.android.material.textfield.TextInputLayout;
 
