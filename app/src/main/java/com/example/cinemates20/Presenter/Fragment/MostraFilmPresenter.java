@@ -234,8 +234,8 @@ public class MostraFilmPresenter {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            RecensioneDAO filmDAO = new RecensioneDAO();
-            boolean segnalazioneAvvenuta = filmDAO.segnalaRecensione(username,idRecensione);
+            RecensioneDAO recensioneDAO = new RecensioneDAO();
+            boolean segnalazioneAvvenuta = recensioneDAO.segnalaRecensione(username,idRecensione);
             return segnalazioneAvvenuta;
         }
 
