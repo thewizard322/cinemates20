@@ -41,7 +41,7 @@ public class ValutaListaAmicoPresenter {
         if(!valutaListaAmicoFragment.rbDislikeIsChecked() && !valutaListaAmicoFragment.rbLikeIsChecked())
             valutaListaAmicoFragment.mostraToast("Selezionare like o dislike");
         else{
-            CheckValutazioneGiaInviata checkValutazioneGiaInviata = new CheckValutazioneGiaInviata();
+            CheckValutazioneGiaInviataTask checkValutazioneGiaInviata = new CheckValutazioneGiaInviataTask();
             checkValutazioneGiaInviata.execute();
         }
     }
@@ -53,7 +53,7 @@ public class ValutaListaAmicoPresenter {
         ft.commit();
     }
 
-    private class CheckValutazioneGiaInviata extends AsyncTask<Void,Void,Boolean>{
+    private class CheckValutazioneGiaInviataTask extends AsyncTask<Void,Void,Boolean>{
 
         @Override
         protected void onPreExecute() {
