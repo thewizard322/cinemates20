@@ -33,7 +33,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/inviaNotificaValutazioneListaAmico.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -56,7 +56,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/checkValutazioneGiaInviata.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -84,7 +84,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/checkPreferitoGiaRaccomandato.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -112,7 +112,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/checkListaGiaRaccomandata.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -143,7 +143,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/raccomandaPreferito.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -166,7 +166,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/raccomandaLista.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -187,7 +187,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/prelevaNotifiche.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -233,7 +233,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/inviaNotificaAmicizia.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -255,7 +255,7 @@ public class NotificaDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/rimuoviNotifica.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);

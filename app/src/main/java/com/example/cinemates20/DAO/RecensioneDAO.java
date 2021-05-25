@@ -29,7 +29,7 @@ public class RecensioneDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/prelevaRecensioniFilm.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -88,7 +88,7 @@ public class RecensioneDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/inserisciRecensione.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -129,7 +129,7 @@ public class RecensioneDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/segnalaRecensione.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);

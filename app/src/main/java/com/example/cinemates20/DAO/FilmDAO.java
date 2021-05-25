@@ -32,7 +32,7 @@ public class FilmDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/aggiungiAiPreferiti.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -56,7 +56,7 @@ public class FilmDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/aggiungiAiFilmDaVedere.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -77,7 +77,7 @@ public class FilmDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/eliminaDaPreferiti.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -98,7 +98,7 @@ public class FilmDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/prelevaPreferiti.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -125,7 +125,7 @@ public class FilmDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/prelevaFilmDaVedere.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -152,7 +152,7 @@ public class FilmDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/eliminaFilmDaVedere.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -174,7 +174,7 @@ public class FilmDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/prelevafilmListaPersonalizzata.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);

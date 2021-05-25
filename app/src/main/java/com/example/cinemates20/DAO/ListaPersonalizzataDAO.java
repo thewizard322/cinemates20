@@ -30,7 +30,7 @@ public class ListaPersonalizzataDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/prelevaListePersonalizzate.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
@@ -60,7 +60,7 @@ public class ListaPersonalizzataDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/aggiungiFilmAListaPersonalizzata.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -82,7 +82,7 @@ public class ListaPersonalizzataDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/creaListaPersonalizzata.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONObject jsonObject = new JSONObject(responseString);
@@ -104,7 +104,7 @@ public class ListaPersonalizzataDAO {
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url+"/prelevaDescrizioneListaPersonalizzata.php");
         try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             HttpResponse response = client.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity());
             JSONArray jsonArray = new JSONArray(responseString);
