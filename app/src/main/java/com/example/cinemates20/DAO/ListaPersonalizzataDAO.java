@@ -54,7 +54,7 @@ public class ListaPersonalizzataDAO {
         params.add(new BasicNameValuePair("username", username));
         params.add(new BasicNameValuePair("titolo_lista", titolo));
         params.add(new BasicNameValuePair("idFilm", String.valueOf(film.getId())));
-        params.add(new BasicNameValuePair("titolo_film", film.getTitolo()));
+        params.add(new BasicNameValuePair("titolo", film.getTitolo()));
         params.add(new BasicNameValuePair("dataUscita", film.getDataUscita()));
         params.add(new BasicNameValuePair("posterPath", film.getPathPoster()));
         HttpClient client = new DefaultHttpClient();
