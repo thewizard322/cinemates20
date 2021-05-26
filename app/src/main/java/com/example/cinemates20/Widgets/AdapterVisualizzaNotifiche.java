@@ -82,16 +82,16 @@ public class AdapterVisualizzaNotifiche extends ArrayAdapter<Notifica>  {
             holder.tvTestoNotifica.setText("L'utente " + notifica.getUsernameMittente() + " ha valutato la tua lista personalizzata '" + notifica.getTitoloLista() + "'");
         }
         else if(notifica.getTipo().equals("ARSS")) {
-            holder.tvTestoNotifica.setText("Un amministratore ha rifiutato la tua segnalazione"); // dire quale segnalazione?
+            holder.tvTestoNotifica.setText("Un amministratore ha rifiutato una tua segnalazione");
         }
         else if(notifica.getTipo().equals("AASS")) {
-            holder.tvTestoNotifica.setText("Un amministratore ha accolto la tua segnalazione"); // dire quale segnalazione?
+            holder.tvTestoNotifica.setText("Un amministratore ha accolto una tua segnalazione");
         }
         else if(notifica.getTipo().equals("ARSP")) {
-            holder.tvTestoNotifica.setText("Un amministratore ha rifiutato la tua segnalazione"); // dire quale segnalazione?
+            holder.tvTestoNotifica.setText("Un amministratore ha approvato una tua recensione segnalata");
         }
         else if(notifica.getTipo().equals("AASP")) {
-            holder.tvTestoNotifica.setText("Un amministratore ha accolto la tua segnalazione"); // dire quale segnalazione?
+            holder.tvTestoNotifica.setText("Un amministratore ha rimosso una tua recensione segnalata");
         }
 
     }
