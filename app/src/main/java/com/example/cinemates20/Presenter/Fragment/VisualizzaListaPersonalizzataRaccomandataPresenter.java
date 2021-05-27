@@ -14,7 +14,6 @@ import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.DAO.ListaPersonalizzataDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.ListaPersonalizzata;
-import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.VisualizzaListaPersonalizzataRaccomandataFragment;

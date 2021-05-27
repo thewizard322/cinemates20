@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,6 @@ import com.example.cinemates20.DAO.FilmDAO;
 import com.example.cinemates20.Model.Film;
 import com.example.cinemates20.Model.Utente;
 import com.example.cinemates20.R;
-import com.example.cinemates20.View.Fragment.AggiungiAListaPersonalizzataFragment;
 import com.example.cinemates20.View.Fragment.MostraFilmFragment;
 import com.example.cinemates20.View.Fragment.PreferitiFragment;
 import com.example.cinemates20.View.Fragment.RaccomandaPreferitoFragment;
@@ -23,9 +21,6 @@ import com.example.cinemates20.Widgets.AdapterPreferiti;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
-import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.model.MovieDb;
 
 public class PreferitiPresenter {
     private ArrayList <Film> filmPreferiti=new ArrayList<Film>();

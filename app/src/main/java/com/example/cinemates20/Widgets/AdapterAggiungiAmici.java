@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.request.RequestOptions;
 import com.example.cinemates20.Presenter.Fragment.AggiungiAmicoPresenter;
 import com.example.cinemates20.R;
 import com.example.cinemates20.View.Fragment.AggiungiAmicoFragment;
