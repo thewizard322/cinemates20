@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cinemates20.DAO.NotificaDAO;
@@ -31,7 +30,7 @@ public class AggiungiAmicoPresenter {
         initializeListener();
     }
 
-    private void initializeListView(){ ;
+    private void initializeListView(){
         adapterAggiungiAmici = new AdapterAggiungiAmici(Objects.requireNonNull(aggiungiAmicoFragment.getContext()),aggiungiAmicoFragment,arrayList,this);
         aggiungiAmicoFragment.setAdapterLwRicercaUtente(adapterAggiungiAmici);
 
