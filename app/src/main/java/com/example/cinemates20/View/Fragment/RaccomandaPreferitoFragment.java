@@ -26,7 +26,7 @@ public class RaccomandaPreferitoFragment extends Fragment {
     private TextView tvTitoloRaccomandaPreferito;
     private Spinner spinnerAmicoRaccomandaPreferito;
     private Button bInviaRaccomandaPreferito;
-    ProgressDialog progressDialogCaricamento;
+    private ProgressDialog progressDialogCaricamento;
 
     @Nullable
     @Override
