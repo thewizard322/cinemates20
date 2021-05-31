@@ -38,8 +38,11 @@ public class ValutaListaAmicoPresenter {
     }
 
     private void inviaValutazione(){
+        String testoValutazione = valutaListaAmicoFragment.getCommentoValutazone();
         if(!valutaListaAmicoFragment.rbDislikeIsChecked() && !valutaListaAmicoFragment.rbLikeIsChecked())
             valutaListaAmicoFragment.mostraToast("Selezionare like o dislike");
+        else if (testoValutazione.length()>300)
+            valutaListaAmicoFragment.mostraToast("Il commento può essere massimo di 300 caratteri");
         else{
             CheckValutazioneGiaInviataTask checkValutazioneGiaInviata = new CheckValutazioneGiaInviataTask();
             checkValutazioneGiaInviata.execute();
