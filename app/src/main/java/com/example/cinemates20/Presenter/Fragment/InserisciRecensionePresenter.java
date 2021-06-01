@@ -54,7 +54,7 @@ public class InserisciRecensionePresenter {
         }
     }
 
-    private boolean campiNonVuoti(String testo, String votoRecensione){
+    public boolean campiNonVuoti(String testo, String votoRecensione){
         if(testo.equals("") || votoRecensione.equals(""))
             return false;
         return true;
