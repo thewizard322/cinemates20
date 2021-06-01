@@ -97,7 +97,7 @@ public class NotificaDAO {
             if(count!=0)
                 return false;
         } catch (Throwable e) {
-            Log.e("Error check email","Impossibile verificare l'email");
+            e.printStackTrace();
             return false;
         }
         return true;
